@@ -26,17 +26,22 @@ const float SCREEN_NEAR = 0.1f;
 class GraphicsClass
 {
 public:
-	GraphicsClass();
-	GraphicsClass(const GraphicsClass&);
-	~GraphicsClass();
+
+
 
 	bool Initialize(int, int, HWND);
 	void Shutdown();
 	bool Frame();
 
+	static GraphicsClass& GetInstance();
+
 private:
 	bool Render();
 
+	GraphicsClass();
+	GraphicsClass(const GraphicsClass&);
+	GraphicsClass& operator= (const GraphicsClass&);
+	~GraphicsClass();
 };
 
 #endif

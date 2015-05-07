@@ -3,20 +3,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include "SystemClass.h"
 
-
 SystemClass::SystemClass()
 {
-	mInput = 0;
-	mGraphics = 0;
 	mTimer = 0;
+	for (unsigned int i = 0; i < NROFSTATES; i++)
+	{
+		mStates[i] = nullptr;
+	}
 }
 
-SystemClass::SystemClass(const SystemClass& other)
-{
-
-}
 SystemClass::~SystemClass()
 {
+
 }
 
 bool SystemClass::Initialize()
@@ -31,25 +29,11 @@ bool SystemClass::Initialize()
 	// Initialize the windows api.
 	InitializeWindows(screenWidth, screenHeight);
 
-	// Create the input object.  This object will be used to handle reading the keyboard input from the user.
-	mInput = new InputClass;
-	if (!mInput)
-	{
-		return false;
-	}
-
 	// Initialize the input object.
-	mInput->Initialize();
-
-	// Create the graphics object.  This object will handle rendering all the graphics for this application.
-	mGraphics = new GraphicsClass;
-	if (!mGraphics)
-	{
-		return false;
-	}
+	mInput.Initialize();
 
 	// Initialize the graphics object.
-	result = mGraphics->Initialize(screenWidth, screenHeight, mHwnd);
+	result = mGraphics.Initialize(screenWidth, screenHeight, mHwnd);
 	if (!result)
 	{
 		return false;
@@ -59,26 +43,41 @@ bool SystemClass::Initialize()
 	mTimer = new TimerClass();
 
 
+	// Create all display states.
+	mStates[MAINMENUSTATE] = new MainMenu();
+	mStates[NEWSTATE] = new NewTournament();
+	if (!mStates[MAINMENUSTATE])
+	{
+		return false;
+	}
+	if (!mStates[NEWSTATE])
+	{
+		return false;
+	}
+	mCurrDisplayState = mStates[MAINMENUSTATE];
+	
+
 	return true;
 }
 
 void SystemClass::Shutdown()
 {
-	// Release the graphics object.
-	if (mGraphics)
+	// Realease all created state objects.
+	for (unsigned int i = 0; i < NROFSTATES; i++)
 	{
-		mGraphics->Shutdown();
-		delete mGraphics;
-		mGraphics = 0;
+		if (mStates[i])
+		{
+			delete mStates[i];
+			mStates[i] = 0;
+		}
 	}
-
-	// Release the input object.
-	if (mInput)
+	
+	// Realease the timer object.
+	if (mTimer)
 	{
-		delete mInput;
-		mInput = 0;
+		delete mTimer;
+		mTimer = 0;
 	}
-
 	// Shutdown the window.
 	ShutdownWindows();
 
@@ -88,7 +87,7 @@ void SystemClass::Shutdown()
 void SystemClass::Run()
 {
 	MSG msg;
-	bool done, result;
+	bool result;
 
 	// Reset the timer
 	mTimer->Reset();
@@ -97,8 +96,8 @@ void SystemClass::Run()
 	ZeroMemory(&msg, sizeof(MSG));
 
 	// Loop until there is a quit message from the window or the user.
-	done = false;
-	while (!done)
+	mRunning = true;
+	while (mRunning)
 	{
 		// Handle the windows messages.
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
@@ -107,23 +106,17 @@ void SystemClass::Run()
 			DispatchMessage(&msg);
 		}
 
-		// If windows signals to end the application then exit out.
-		if (msg.message == WM_QUIT)
-		{
-			done = true;
-		}
-		else
-		{
-			// Otherwise do the frame processing.
+
+			// Do the frame processing.
 
 			mTimer->Tick();
 
 			result = Frame();
 			if (!result)
 			{
-				done = true;
+				mRunning = false;
 			}
-		}
+		
 
 	}
 
@@ -161,30 +154,28 @@ bool SystemClass::Frame()
 }
 bool SystemClass::HandleInput()
 {
-	// Check if the user pressed escape and wants to exit the application.
-	if (mInput->IsKeyDown(VK_ESCAPE))
+
+	if (!mCurrDisplayState->HandleInput())
 	{
 		return false;
 	}
-
+	
 	return true;
 }
 bool SystemClass::Update(float dt)
 {
-
+	if (!mCurrDisplayState->Update(dt))
+	{
+		return false;
+	}
 	return true;
 }
 bool SystemClass::Render()
 {
-	bool result; 
-
-	// Do the frame processing for the graphics object.
-	result = mGraphics->Frame();
-	if (!result)
+	if (!mCurrDisplayState->Render())
 	{
 		return false;
 	}
-
 	return true;
 }
 
@@ -192,11 +183,11 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 {
 	switch (umsg)
 	{
-		// Check if a key has been pressed on the keyboard.
+	// Check if a key has been pressed on the keyboard.
 	case WM_KEYDOWN:
 	{
 		// If a key is pressed send it to the input object so it can record that state.
-		mInput->KeyDown((unsigned int)wparam);
+		mInput.KeyDown((unsigned int)wparam);
 		return 0;
 	}
 
@@ -204,7 +195,7 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 	case WM_KEYUP:
 	{
 		// If a key is released then send it to the input object so it can unset the state for that key.
-		mInput->KeyUp((unsigned int)wparam);
+		mInput.KeyUp((unsigned int)wparam);
 		return 0;
 	}
 	// Check if a key on the mouse has been pressed.
@@ -212,7 +203,7 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 	case WM_MBUTTONDOWN:
 	case WM_RBUTTONDOWN:
 	{
-		mInput->MouseDown((unsigned int)wparam);
+		mInput.MouseDown((unsigned int)wparam);
 		return 0;
 	}
 	// Check if a key on the mouse has been released.
@@ -220,13 +211,13 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 	case WM_MBUTTONUP:
 	case WM_RBUTTONUP:
 	{
-		mInput->MouseUp((unsigned int)wparam);
+		mInput.MouseUp((unsigned int)wparam);
 		return 0;
 	}
 	// Check if mouse has been moved.
 	case WM_MOUSEMOVE:
 	{
-		mInput->OnMouseMove(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+		mInput.OnMouseMove(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
 		return 0;
 	}
 		// Any other messages send to the default message handler as our application won't make use of them.
@@ -380,4 +371,26 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 		return ApplicationHandle->MessageHandler(hwnd, umessage, wparam, lparam);
 	}
 	}
+}
+
+SystemClass& SystemClass::GetInstance()
+{
+	static SystemClass inst;
+	return inst;
+}
+
+void SystemClass::ChangeState(unsigned int state)
+{
+	std::wostringstream outs;
+	outs.precision(6);
+	outs << "State changes to: " << state;
+	SetWindowText(mHwnd, outs.str().c_str());
+
+
+	mCurrDisplayState = mStates[state];
+}
+
+void SystemClass::Exit()
+{
+	mRunning = false;
 }

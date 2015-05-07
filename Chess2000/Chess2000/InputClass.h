@@ -15,9 +15,7 @@
 class InputClass
 {
 public:
-	InputClass();
-	InputClass(const InputClass&);
-	~InputClass();
+
 
 	void Initialize();
 
@@ -36,11 +34,20 @@ public:
 
 	void GetMousePos(int &x, int &y);
 
+	static InputClass& GetInstance();
+
 private:
 	bool mKeys[256];
 	bool mMouseKeys[20];
 
 	int mMousePosX, mMousePosY, mLastMousePosX, mLastMousePosY;
+
+	InputClass();
+	InputClass(const InputClass&);
+	InputClass& operator= (const InputClass&);
+	~InputClass();
+
 };
+
 
 #endif

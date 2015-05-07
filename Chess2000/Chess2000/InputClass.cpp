@@ -3,6 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include "InputClass.h"
 
+//InputClass* InputClass::mInstance = nullptr;
 
 InputClass::InputClass()
 {
@@ -10,13 +11,9 @@ InputClass::InputClass()
 }
 
 
-InputClass::InputClass(const InputClass& other)
-{
-}
-
-
 InputClass::~InputClass()
 {
+ 
 }
 
 
@@ -105,4 +102,11 @@ void InputClass::GetMousePos(int &x, int &y)
 	// Return the mouse position.
 	x = mMousePosX;
 	y = mMousePosY;
+}
+
+InputClass& InputClass::GetInstance()
+{
+	static InputClass inst;
+	return inst;
+
 }

@@ -3,19 +3,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include "GraphicsClass.h"
 
-
 GraphicsClass::GraphicsClass()
-{
-}
-
-
-GraphicsClass::GraphicsClass(const GraphicsClass& other)
 {
 }
 
 
 GraphicsClass::~GraphicsClass()
 {
+
 }
 
 
@@ -44,4 +39,10 @@ bool GraphicsClass::Render()
 {
 
 	return true;
+}
+
+GraphicsClass& GraphicsClass::GetInstance()
+{
+	static GraphicsClass inst;
+	return inst;
 }

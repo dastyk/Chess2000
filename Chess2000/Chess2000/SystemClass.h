@@ -4,6 +4,8 @@
 #ifndef _SYSTEMCLASS_H_
 #define _SYSTEMCLASS_H_
 
+#pragma once
+
 ///////////////////////////////
 // PRE-PROCESSING DIRECTIVES //
 ///////////////////////////////
@@ -22,20 +24,33 @@
 #include "inputclass.h"
 #include "graphicsclass.h"
 #include "TimerClass.h"
+#include "MainMenu.h"
+#include "NewTournament.h"
 
-#pragma once
+
+//Defines
+#define NROFSTATES 4
+#define PLAYSTATE 0
+#define NEWSTATE 1
+#define VIEWSTATE 2
+#define MAINMENUSTATE 3
+
+
 class SystemClass
 {
 public:
-	SystemClass();
-	SystemClass(const SystemClass&);
-	~SystemClass();
+
 
 	bool Initialize();
 	void Shutdown();
 	void Run();
 
 	LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
+
+	static SystemClass& GetInstance();
+
+	void ChangeState(unsigned int state);
+	void Exit();
 
 private:
 	bool Frame();
@@ -52,9 +67,20 @@ private:
 	HINSTANCE mHinstance;
 	HWND mHwnd;
 
-	InputClass* mInput;
-	GraphicsClass* mGraphics;
+	InputClass& mInput = InputClass::GetInstance();
+	GraphicsClass& mGraphics = GraphicsClass::GetInstance();
 	TimerClass* mTimer;
+
+	SystemClass();
+	SystemClass(const SystemClass&);
+	SystemClass& operator= (const SystemClass&);
+	~SystemClass();
+
+	Display *mCurrDisplayState;
+
+	Display* mStates[NROFSTATES];
+
+	bool mRunning;
 };
 
 /////////////////////////
