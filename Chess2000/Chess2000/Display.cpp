@@ -1,5 +1,6 @@
 #include "Display.h"
 
+#include "SystemClass.h"
 
 Display::Display()
 {
@@ -23,4 +24,10 @@ bool Display::Update(float dt)
 bool Display::Render()
 {
 	return true;
+}
+
+
+void Display::GoToMainMenu()
+{
+	SystemClass::GetInstance().ChangeState(MAINMENUSTATE);
 }

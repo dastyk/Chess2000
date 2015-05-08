@@ -26,7 +26,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -65,20 +65,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="GraphicsClass.h" />
     <ClInclude Include="InputClass.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NewTournament.h" />
+    <ClInclude Include="PlayGame.h" />
     <ClInclude Include="SystemClass.h" />
     <ClInclude Include="TimerClass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GraphicsClass.cpp" />
     <ClCompile Include="InputClass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="NewTournament.cpp" />
+    <ClCompile Include="PlayGame.cpp" />
     <ClCompile Include="SystemClass.cpp" />
     <ClCompile Include="TimerClass.cpp" />
   </ItemGroup>

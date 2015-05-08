@@ -21,7 +21,6 @@ public:
 private:
 	InputClass& mInput = InputClass::GetInstance();
 
-	void GoToMainMenu();
 };
 
 #endif

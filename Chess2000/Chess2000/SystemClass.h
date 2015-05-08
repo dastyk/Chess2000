@@ -26,7 +26,7 @@
 #include "TimerClass.h"
 #include "MainMenu.h"
 #include "NewTournament.h"
-
+#include "PlayGame.h"
 
 //Defines
 #define NROFSTATES 4

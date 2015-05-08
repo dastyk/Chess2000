@@ -46,11 +46,18 @@ bool SystemClass::Initialize()
 	// Create all display states.
 	mStates[MAINMENUSTATE] = new MainMenu();
 	mStates[NEWSTATE] = new NewTournament();
+	PlayGame::CreateInstance();
+	mStates[PLAYSTATE] = PlayGame::GetInstancePointer();
+
 	if (!mStates[MAINMENUSTATE])
 	{
 		return false;
 	}
 	if (!mStates[NEWSTATE])
+	{
+		return false;
+	}
+	if (!mStates[PLAYSTATE])
 	{
 		return false;
 	}
@@ -68,7 +75,6 @@ void SystemClass::Shutdown()
 		if (mStates[i])
 		{
 			delete mStates[i];
-			mStates[i] = 0;
 		}
 	}
 	

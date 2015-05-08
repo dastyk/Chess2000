@@ -32,9 +32,3 @@ bool NewTournament::Render()
 {
 	return true;
 }
-
-
-void NewTournament::GoToMainMenu()
-{
-	SystemClass::GetInstance().ChangeState(MAINMENUSTATE);
-}

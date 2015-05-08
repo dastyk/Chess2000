@@ -16,6 +16,9 @@ public:
 	
 protected:
 	Display();
+
+
+	void GoToMainMenu();
 };
 
 #endif

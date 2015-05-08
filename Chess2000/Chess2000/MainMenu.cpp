@@ -1,5 +1,5 @@
 #include "MainMenu.h"
-
+#include "SystemClass.h"
 
 MainMenu::MainMenu()
 {
@@ -24,6 +24,11 @@ bool MainMenu::HandleInput()
 	{
 		View();
 	}
+	// Check if user pressed the F1 key and wants to change to play game state.
+	if (mInput.IsKeyDown(VK_F1))
+	{
+		Play();
+	}
 	return true;
 }
 
@@ -41,7 +46,8 @@ bool MainMenu::Render()
 
 void MainMenu::Play()
 {
-
+	// Change to PlayGame state
+	SystemClass::GetInstance().ChangeState(PLAYSTATE);
 }
 
 
