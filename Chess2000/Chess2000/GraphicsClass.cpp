@@ -48,7 +48,8 @@ void GraphicsClass::Shutdown()
 
 bool GraphicsClass::BeginFrame()
 {
-	
+	// Begin the frame.
+	// This consist of creating a backbuffer and clearing the backbuffer.
 	RECT rect;
 	rect.left = 0;
 	rect.top = 0;
@@ -79,7 +80,7 @@ bool GraphicsClass::BeginFrame()
 bool GraphicsClass::EndFrame()
 {
 
-
+	// Swap the backbuffer to the screen, then delete it.
 	BitBlt(hdc, 0, 0, mWidth, mHeight, backbuffDC, 0, 0, SRCCOPY);
 	RestoreDC(backbuffDC, savedDC);
 
@@ -97,21 +98,17 @@ void GraphicsClass::DrawString(WCHAR* text, int x, int y, REAL fontSize)
 	Font font(&FontFamily(L"Arial"), fontSize);
 	LinearGradientBrush brush(Rect(0, 0, 100, 100), Color::Black, Color::Black, LinearGradientModeHorizontal);
 	mDevice->DrawString(text, -1, &font, PointF((REAL)x, (REAL)y), &brush);
-	//DrawString(text, x, y, fontSize);
-	//DrawString(text, x, y, fontSize);
 }
 
 void GraphicsClass::DrawRectangle(Color c, REAL boarderWidth, int x, int y, int w, int h)
 {
 	Pen pen(c, boarderWidth);
-	//DrawRectangle(c, boarderWidth, x, y, w, h);
 	mDevice->DrawRectangle(&pen, x, y, w, h);
 }
 
 void GraphicsClass::FillRectangle(Color c, int x, int y, int w, int h)
 {
 	SolidBrush brush(c);
-	//FillRectangle(c, x, y, w, h);
 	mDevice->FillRectangle(&brush, x, y, w, h);
 }
 

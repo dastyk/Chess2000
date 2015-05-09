@@ -18,13 +18,19 @@
 #define RANKS 8
 #define FILES 8
 
+#define MAXMOVES 64
 
 class PlayState :
 	public GameState
 {
 private:
-	Piece* board[RANKS][FILES];
+	Piece*** board;
+	TextLabel* squares[RANKS][FILES];
 
+	Pos lastPick;
+
+	Pos validMoves[64];
+	int validMoveCount;
 
 public:
 	PlayState();
@@ -34,6 +40,9 @@ public:
 	bool Update(float dt);
 	bool Render();
 	bool HandleInput();
+
+
+
 };
 
 #endif

@@ -3,15 +3,19 @@
 
 PlayState::PlayState()
 {
+	validMoveCount = 0;
+
 	mMenuItems.push_back(new TextLabel(150, 5, 550, 50, L"CHESS 2000 FUCK YEAHH!!!!", 30, Color(255, 255, 0, 0)));
 
+	board = new Piece**[RANKS];
 	for (UINT x = 0; x < RANKS; x++)
 	{
+		board[x] = new Piece*[FILES];
 		for (UINT y = 0; y < FILES; y++)
 		{
 			UINT c = (x+y) % 2;
 			board[x][y] = nullptr;
-			mMenuItems.push_back(new TextLabel(200 + x * 50, 50 + (FILES - y) * 50, 50, 50, L"", 45, Color(255, c * 255, c * 255, c * 255)));
+			mMenuItems.push_back(squares[x][y] = new TextLabel(200 + x * 50, 50 + (FILES - y) * 50, 50, 50, L"", 45, Color(255, c * 255, c * 255, c * 255)));
 		}
 	}
 
@@ -66,13 +70,15 @@ PlayState::~PlayState()
 				board[x][y] = nullptr;
 			}
 		}
+		delete[] board[x];
 	}
-
+	delete[] board;
 }
 
 bool PlayState::Update(float dt)
 {
 	GameState::Update(dt);
+
 
 	return true;
 }
@@ -95,7 +101,10 @@ bool PlayState::Render()
 		}
 	}
 
-
+	for (int i = 0; i < validMoveCount; i++)
+	{
+		g.DrawRectangle(Color(255, 255, 0, 0), 3, 200 + validMoves[i].rank * 50, 50 + (FILES - validMoves[i].files) * 50, 50, 50);
+	}
 	return true;
 }
 
@@ -108,6 +117,24 @@ bool PlayState::HandleInput()
 	if (i.IsKeyDown(VK_ESCAPE))
 	{
 		PlayGame::GetInstance().ChangeState(PAUSESTATE); // If key was pressed change to pause state.		
+	}
+
+	for (UINT x = 0; x < RANKS; x++)
+	{
+		for (UINT y = 0; y < FILES; y++)
+		{
+			if (board[x][y])
+			{
+				if (squares[x][y]->IsClicked())
+				{
+					validMoveCount = 0;
+					board[x][y]->GetValidMoves(board, Pos(x, y), validMoveCount, validMoves);
+					/*delete board[x][y];
+					board[x][y] = nullptr;*/
+					//lastPick = Pos(x, y);
+				}
+			}
+		}
 	}
 
 	return true;
