@@ -17,12 +17,12 @@ Queen::~Queen()
 
 #pragma region Get and Set functions
 
-void Queen::SetColor(Color playerColor)
+void Queen::SetColor(PlayerColor playerColor)
 {
 	player = playerColor;
 }
 
-Color Queen::GetColor()
+PlayerColor Queen::GetColor()
 {
 	return player;
 }

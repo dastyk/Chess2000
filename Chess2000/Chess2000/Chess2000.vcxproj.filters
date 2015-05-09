@@ -13,162 +13,189 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Pieces">
-      <UniqueIdentifier>{92f6294a-5b70-4ec0-a7ee-887074b5aef7}</UniqueIdentifier>
+    <Filter Include="Header Files\DisplayStates">
+      <UniqueIdentifier>{79c76a61-f15b-4d32-946a-1808658eda67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Pieces\Help Classes">
-      <UniqueIdentifier>{690ce24c-8511-4554-ae63-f493eb123e27}</UniqueIdentifier>
+    <Filter Include="Header Files\ControlClasses">
+      <UniqueIdentifier>{4208fc6b-7e0e-4e02-8c36-02f0518e54a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MenuItems">
+      <UniqueIdentifier>{ff05ccf5-1bb5-4a03-abed-bcd5825c509d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Pieces">
+      <UniqueIdentifier>{a42111d9-de11-4326-b98c-75fbb6c94ad7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameStates">
+      <UniqueIdentifier>{b4eee639-987f-4944-979b-267481d6070a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DisplayStates">
+      <UniqueIdentifier>{78783bc5-33df-4cfd-91a1-7b0732e7e7ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ControlClasses">
+      <UniqueIdentifier>{08d85085-3bb6-410f-a0b8-db257939e684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MenuItems">
+      <UniqueIdentifier>{72f35f73-7ff3-4d2d-ae83-3a9770fab3cd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Pieces">
-      <UniqueIdentifier>{e345d9f4-0ca4-4cd9-9d1f-3a70e0a72bfc}</UniqueIdentifier>
+      <UniqueIdentifier>{6ee265d2-344b-4217-a239-2a6d9e3f53d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStates">
+      <UniqueIdentifier>{bacfe7d3-abb1-41b1-8bbe-99f91392245d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HelpClasses">
+      <UniqueIdentifier>{012d801e-c802-4541-83fd-6a9d3d56637e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\HelpClasses">
+      <UniqueIdentifier>{eae5ff9f-43bb-40cf-a676-ca54770714f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GraphicsClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SystemClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TimerClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Display.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DisplayStates</Filter>
     </ClInclude>
     <ClInclude Include="NewTournament.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DisplayStates</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewTournament.h">
+      <Filter>Header Files\DisplayStates</Filter>
     </ClInclude>
     <ClInclude Include="PlayGame.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DisplayStates</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\DisplayStates</Filter>
     </ClInclude>
-    <ClInclude Include="Pos.h">
-      <Filter>Header Files\Pieces\Help Classes</Filter>
+    <ClInclude Include="SystemClass.h">
+      <Filter>Header Files\ControlClasses</Filter>
     </ClInclude>
-    <ClInclude Include="Move.h">
-      <Filter>Header Files\Pieces\Help Classes</Filter>
+    <ClInclude Include="InputClass.h">
+      <Filter>Header Files\ControlClasses</Filter>
     </ClInclude>
-    <ClInclude Include="Piece.h">
-      <Filter>Header Files\Pieces</Filter>
+    <ClInclude Include="GraphicsClass.h">
+      <Filter>Header Files\ControlClasses</Filter>
     </ClInclude>
-    <ClInclude Include="Enum.h">
-      <Filter>Header Files\Pieces\Help Classes</Filter>
+    <ClInclude Include="GraphicsObject.h">
+      <Filter>Header Files\MenuItems</Filter>
     </ClInclude>
-    <ClInclude Include="Pawn.h">
-      <Filter>Header Files\Pieces</Filter>
+    <ClInclude Include="TextLabel.h">
+      <Filter>Header Files\MenuItems</Filter>
     </ClInclude>
-    <ClInclude Include="Rock.h">
-      <Filter>Header Files\Pieces</Filter>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\MenuItems</Filter>
     </ClInclude>
     <ClInclude Include="Bishop.h">
-      <Filter>Header Files\Pieces</Filter>
-    </ClInclude>
-    <ClInclude Include="Queen.h">
       <Filter>Header Files\Pieces</Filter>
     </ClInclude>
     <ClInclude Include="Knight.h">
       <Filter>Header Files\Pieces</Filter>
     </ClInclude>
+    <ClInclude Include="Pawn.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="Piece.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="Queen.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
     <ClInclude Include="PauseState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="PickState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="PlayState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="ViewTournament.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Enum.h">
+      <Filter>Header Files\HelpClasses</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicsObject.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Move.h">
+      <Filter>Header Files\HelpClasses</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Pos.h">
+      <Filter>Header Files\HelpClasses</Filter>
     </ClInclude>
-    <ClInclude Include="TextLabel.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="TimerClass.h">
+      <Filter>Header Files\HelpClasses</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GraphicsClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TimerClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Display.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\DisplayStates</Filter>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\DisplayStates</Filter>
     </ClCompile>
     <ClCompile Include="NewTournament.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\DisplayStates</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewTournament.cpp">
+      <Filter>Source Files\DisplayStates</Filter>
     </ClCompile>
     <ClCompile Include="PlayGame.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\DisplayStates</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GraphicsClass.cpp">
+      <Filter>Source Files\ControlClasses</Filter>
     </ClCompile>
-    <ClCompile Include="Pawn.cpp">
-      <Filter>Source Files\Pieces</Filter>
+    <ClCompile Include="InputClass.cpp">
+      <Filter>Source Files\ControlClasses</Filter>
     </ClCompile>
-    <ClCompile Include="Piece.cpp">
-      <Filter>Source Files\Pieces</Filter>
+    <ClCompile Include="SystemClass.cpp">
+      <Filter>Source Files\ControlClasses</Filter>
     </ClCompile>
-    <ClCompile Include="Rock.cpp">
-      <Filter>Source Files\Pieces</Filter>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\MenuItems</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsObject.cpp">
+      <Filter>Source Files\MenuItems</Filter>
+    </ClCompile>
+    <ClCompile Include="TextLabel.cpp">
+      <Filter>Source Files\MenuItems</Filter>
     </ClCompile>
     <ClCompile Include="Bishop.cpp">
-      <Filter>Source Files\Pieces</Filter>
-    </ClCompile>
-    <ClCompile Include="Queen.cpp">
       <Filter>Source Files\Pieces</Filter>
     </ClCompile>
     <ClCompile Include="Knight.cpp">
       <Filter>Source Files\Pieces</Filter>
     </ClCompile>
-    <ClCompile Include="PauseState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files\Pieces</Filter>
     </ClCompile>
-    <ClCompile Include="PickState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Queen.cpp">
+      <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="Piece.cpp">
+      <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\ControlClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerClass.cpp">
+      <Filter>Source Files\HelpClasses</Filter>
     </ClCompile>
     <ClCompile Include="PlayState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="ViewTournament.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicsObject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>Source Files\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextLabel.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="PickState.cpp">
+      <Filter>Source Files\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -8,7 +8,7 @@
 class Piece
 {
 private:
-	Color player;
+	PlayerColor player;
 	std::string type;
 
 protected:
@@ -19,8 +19,8 @@ protected:
 public:
 	
 	~Piece();
-	virtual Color GetColor() = 0;
-	virtual void SetColor(Color playerColor) = 0;
+	virtual PlayerColor GetColor() = 0;
+	virtual void SetColor(PlayerColor playerColor) = 0;
 	virtual void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]) = 0;
 };
 

@@ -6,7 +6,7 @@
 class Queen : public Piece
 {
 private:
-	Color player;
+	PlayerColor player;
 	std::string type = "Queen";
 
 public:
@@ -14,8 +14,8 @@ public:
 	Queen();
 
 	void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]);
-	Color GetColor();
-	void SetColor(Color playerColor);
+	PlayerColor GetColor();
+	void SetColor(PlayerColor playerColor);
 
 
 };

@@ -17,12 +17,12 @@ Bishop::~Bishop()
 
 #pragma region Get and Set functions
 
-void Bishop::SetColor(Color playerColor)
+void Bishop::SetColor(PlayerColor playerColor)
 {
 	player = playerColor;
 }
 
-Color Bishop::GetColor()
+PlayerColor Bishop::GetColor()
 {
 	return player;
 }

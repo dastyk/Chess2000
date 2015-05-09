@@ -18,12 +18,12 @@ Rock::~Rock()
 
 #pragma region Get and Set functions
 
-void Rock::SetColor(Color playerColor)
+void Rock::SetColor(PlayerColor playerColor)
 {
 	player = playerColor;
 }
 
-Color Rock::GetColor()
+PlayerColor Rock::GetColor()
 {
 	return player;
 }

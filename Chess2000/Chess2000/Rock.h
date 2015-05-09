@@ -6,7 +6,7 @@
 class Rock : public Piece
 {
 private:
-	Color player;
+	PlayerColor player;
 	std::string type = "Rock";
 	bool firstMoveDone;
 
@@ -15,8 +15,8 @@ public:
 	Rock();
 
 	void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]);
-	Color GetColor();
-	void SetColor(Color playerColor);
+	PlayerColor GetColor();
+	void SetColor(PlayerColor playerColor);
 
 
 };

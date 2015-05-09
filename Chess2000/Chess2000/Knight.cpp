@@ -17,12 +17,12 @@ Knight::~Knight()
 
 #pragma region Get and Set functions
 
-void Knight::SetColor(Color playerColor)
+void Knight::SetColor(PlayerColor playerColor)
 {
 	player = playerColor;
 }
 
-Color Knight::GetColor()
+PlayerColor Knight::GetColor()
 {
 	return player;
 }

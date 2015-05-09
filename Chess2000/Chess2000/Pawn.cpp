@@ -18,12 +18,12 @@ Pawn::~Pawn()
 
 #pragma region Get and Set functions
 
-void Pawn::SetColor(Color playerColor)
+void Pawn::SetColor(PlayerColor playerColor)
 {
 	player = playerColor;
 }
 
-Color Pawn::GetColor()
+PlayerColor Pawn::GetColor()
 {
 	return player;
 }
