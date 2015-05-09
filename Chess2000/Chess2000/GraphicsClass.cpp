@@ -25,13 +25,15 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	{
 		return false;
 	}
-
+	HDC hdc = BeginPaint(mHwnd, &mPs);
+	mDevice = new Graphics(hdc);
 	return true;
 }
 
 
 void GraphicsClass::Shutdown()
 {
+	EndPaint(mHwnd, &mPs);
 	// Shutdown GDIplus
 	GdiplusShutdown(gdiplusToken);
 
@@ -42,31 +44,44 @@ void GraphicsClass::Shutdown()
 bool GraphicsClass::BeginFrame()
 {
 
-	HDC hdc = BeginPaint(mHwnd, &mPs);
-	mDevice = new Graphics(hdc);
-
 
 	return true;
 }
 
 bool GraphicsClass::EndFrame()
 {
-	delete mDevice;
-	EndPaint(mHwnd, &mPs);
 
 	return true;
 }
 
-void GraphicsClass::DrawString(WCHAR* text, int x, int y)
+void GraphicsClass::DrawString(WCHAR* text, int x, int y, REAL fontSize)
 {
-	Font font(&FontFamily(L"Arial"), 12);
+	Font font(&FontFamily(L"Arial"), fontSize);
 	LinearGradientBrush brush(Rect(0, 0, 100, 100), Color::Red, Color::Yellow, LinearGradientModeHorizontal);
 	Status st = mDevice->DrawString(text, -1, &font, PointF((REAL)x, (REAL)y), &brush);
 }
 
+void GraphicsClass::DrawRectangle(Color c, REAL boarderWidth, int x, int y, int w, int h)
+{
+	Pen pen(c, boarderWidth);
+
+	mDevice->DrawRectangle(&pen, x, y, w, h);
+}
+
+void GraphicsClass::FillRectangle(Color c, int x, int y, int w, int h)
+{
+	SolidBrush brush(c);
+
+	mDevice->FillRectangle(&brush, x, y, w, h);
+}
 
 GraphicsClass& GraphicsClass::GetInstance()
 {
 	static GraphicsClass inst;
 	return inst;
+}
+
+void GraphicsClass::ClearScreen(Color c)
+{
+	mDevice->Clear(c);
 }

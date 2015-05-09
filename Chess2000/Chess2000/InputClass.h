@@ -7,9 +7,9 @@
 /////////////
 // Defines //
 /////////////
-#define LMOUSE 1
-#define RMOUSE 2
-#define MMOUSE 16
+#define LMOUSE 0
+#define RMOUSE 1
+#define MMOUSE 2
 
 ////////////////////////////////////////////////////////////////////////////////
 // Class name: InputClass
@@ -41,7 +41,7 @@ public:
 
 private:
 	bool mKeys[256];
-	bool mMouseKeys[20];
+	bool mMouseKeys[3];
 
 	int mMousePosX, mMousePosY, mLastMousePosX, mLastMousePosY;
 

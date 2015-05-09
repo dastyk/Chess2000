@@ -8,6 +8,9 @@
 #include "Display.h"
 #include "InputClass.h"
 #include "GraphicsClass.h"
+#include "Button.h"
+#include "TextLabel.h"
+#include <vector>
 
 class MainMenu : public Display
 {
@@ -25,9 +28,10 @@ private:
 	void View();
 	void Exit();
 
+	Button* mExitButton;
+	Button* mPlayButton;
 
-	InputClass& mInput = InputClass::GetInstance();
-	GraphicsClass& mGraphics = GraphicsClass::GetInstance();
+	std::vector<GraphicsObject*> mMenuItems;
 };
 
 

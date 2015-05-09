@@ -64,9 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GraphicsClass.h" />
+    <ClInclude Include="GraphicsObject.h" />
     <ClInclude Include="InputClass.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NewTournament.h" />
@@ -75,13 +77,16 @@
     <ClInclude Include="PlayGame.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="SystemClass.h" />
+    <ClInclude Include="TextLabel.h" />
     <ClInclude Include="TimerClass.h" />
     <ClInclude Include="ViewTournament.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GraphicsClass.cpp" />
+    <ClCompile Include="GraphicsObject.cpp" />
     <ClCompile Include="InputClass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
@@ -91,6 +96,7 @@
     <ClCompile Include="PlayGame.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SystemClass.cpp" />
+    <ClCompile Include="TextLabel.cpp" />
     <ClCompile Include="TimerClass.cpp" />
     <ClCompile Include="ViewTournament.cpp" />
   </ItemGroup>

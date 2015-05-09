@@ -34,14 +34,17 @@ public:
 
 
 
-	bool Initialize(int, int, HWND);
+	bool Initialize(int, int, HWND hwnd);
 	void Shutdown();
 	bool BeginFrame();
 	bool EndFrame();
 
 	static GraphicsClass& GetInstance();
 
-	void DrawString(WCHAR* text, int x, int y);
+	void DrawString(WCHAR* text, int x, int y, REAL fontSize);
+	void DrawRectangle(Color c, REAL boarderWidth, int x, int y, int w, int h);
+	void FillRectangle(Color c, int x, int y, int w, int h);
+	void ClearScreen(Color c);
 
 private:
 

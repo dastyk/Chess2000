@@ -3,36 +3,35 @@
 
 MainMenu::MainMenu()
 {
+	// Create the meny items
+	mMenuItems.push_back(mPlayButton = new Button(300, 350, 200, 30, L"Play Game", 15, Color(255, 100, 100, 100)));
+	mMenuItems.push_back(mExitButton = new Button(300, 400, 200, 30, L"Exit Game", 15, Color(255, 100, 100, 100)));
 
+	mMenuItems.push_back(new TextLabel(260, 50, 300, 30, L"Chess 2000", 30, Color(0, 0, 0, 0)));
 }
 
 
 MainMenu::~MainMenu()
 {
+	UINT items = mMenuItems.size();
+	for (UINT i = 0; i < items; i++)
+	{
+		delete mMenuItems[i];
+		mMenuItems[i] = 0;
+	}
 }
 
 
 bool MainMenu::HandleInput()
 {
-	// Check if the user pressed escape and wants to exit the application.
-	if (mInput.IsKeyDown(VK_ESCAPE))
-	{
-		Exit();
-	}
-	// Check if user pressed the return key and wants to change to view tournament state.
-	if (mInput.IsKeyDown(VK_RETURN))
-	{
-		View();
-	}
-	// Check if user pressed the F1 key and wants to change to play game state.
-	if (mInput.IsKeyDown(VK_F1))
-	{
-		Play();
-	}
+	// Check if exit button is clicked.
+	if (mExitButton->IsClicked())
+		Exit(); // if clicked exit application.
 
-	if (mInput.IsMouseKeyDown(LMOUSE))
+	// Check if play button is clicked.
+	if (mPlayButton->IsClicked())
 	{
-		Exit();
+		Play(); // if clicked switch to PlayGame.
 	}
 
 	return true;
@@ -45,9 +44,16 @@ bool MainMenu::Update(float dt)
 
 bool MainMenu::Render()
 {
-	mGraphics.DrawString(L"MAIN FUCKING MENU BITCHES!!!!", 50, 50);
-	mGraphics.DrawString(L"PLAY THE FUCKING GAME", 50, 75);
-	mGraphics.DrawString(L"EXIT THE FUCKING GAME", 50, 100);
+
+	// Render all the meny items.
+	UINT items = mMenuItems.size();
+	for (UINT i = 0; i < items; i++)
+	{
+		mMenuItems[i]->Render();
+	}
+
+
+
 	return true;
 }
 

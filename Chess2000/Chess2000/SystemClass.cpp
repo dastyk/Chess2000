@@ -194,7 +194,7 @@ bool SystemClass::Update(float dt)
 bool SystemClass::Render()
 {
 	mGraphics.BeginFrame();
-
+	
 	if (!mCurrDisplayState->Render())
 	{
 		return false;
@@ -226,18 +226,34 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 	}
 	// Check if a key on the mouse has been pressed.
 	case WM_LBUTTONDOWN:
+	{
+		mInput.MouseDown(LMOUSE);
+		return 0;
+	}
 	case WM_MBUTTONDOWN:
+	{
+		mInput.MouseDown(MMOUSE);
+		return 0;
+	}
 	case WM_RBUTTONDOWN:
 	{
-		mInput.MouseDown((unsigned int)wparam);
+		mInput.MouseDown(RMOUSE);
 		return 0;
 	}
 	// Check if a key on the mouse has been released.
 	case WM_LBUTTONUP:
+	{
+		mInput.MouseUp(LMOUSE);
+		return 0;
+	}
 	case WM_MBUTTONUP:
+	{
+		mInput.MouseUp(MMOUSE);
+		return 0;
+	}
 	case WM_RBUTTONUP:
 	{
-		mInput.MouseUp((unsigned int)wparam);
+		mInput.MouseUp(RMOUSE);
 		return 0;
 	}
 	// Check if mouse has been moved.
@@ -409,11 +425,14 @@ void SystemClass::ChangeState(unsigned int state)
 {
 	std::wostringstream outs;
 	outs.precision(6);
-	outs << "State changes to: " << state;
+	outs << "State changed to: " << state;
 	SetWindowText(mHwnd, outs.str().c_str());
 
+	mGraphics.ClearScreen(Color(255, 0, 0, 0));
 
 	mCurrDisplayState = mStates[state];
+
+
 }
 
 void SystemClass::Exit()

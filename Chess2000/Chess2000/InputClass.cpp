@@ -93,12 +93,6 @@ bool InputClass::GetMouseKeyStateAndReset(unsigned int key)
 	// Return what state the key is in (pressed/not pressed) then set state to false.
 	bool temp = mMouseKeys[key];
 	mMouseKeys[key] = false;
-
-	if (temp)
-	{
-		int b = 1;
-	}
-
 	return temp;
 }
 

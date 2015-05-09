@@ -2,6 +2,8 @@
 #define _GAMESTATE_H_
 
 #pragma once
+#include "GraphicsClass.h"
+
 class GameState
 {
 public:
@@ -11,6 +13,9 @@ public:
 	virtual bool Update(float dt);
 	virtual bool Render();
 	virtual bool HandleInput();
+
+protected:
+	GraphicsClass& mGraphics = GraphicsClass::GetInstance();
 };
 
 #endif
