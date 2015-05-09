@@ -41,26 +41,41 @@ bool SystemClass::Initialize()
 
 	// Create the timer object.
 	mTimer = new TimerClass();
-
+	if (!mTimer)
+	{
+		return false;
+	}
 
 	// Create all display states.
 	mStates[MAINMENUSTATE] = new MainMenu();
-	mStates[NEWSTATE] = new NewTournament();
-	PlayGame::CreateInstance();
-	mStates[PLAYSTATE] = PlayGame::GetInstancePointer();
-
 	if (!mStates[MAINMENUSTATE])
 	{
 		return false;
 	}
+
+	mStates[NEWSTATE] = new NewTournament();
 	if (!mStates[NEWSTATE])
 	{
 		return false;
 	}
-	if (!mStates[PLAYSTATE])
+
+	mStates[VIEWSTATE] = new ViewTournament();
+	if (!mStates[VIEWSTATE])
 	{
 		return false;
 	}
+
+	PlayGame::CreateInstance();
+	PlayGame* inst = PlayGame::GetInstancePointer();
+	result = inst->Init();
+	if (!result)
+	{
+		return false;
+	}
+	mStates[PLAYSTATE] = inst;
+
+
+	// Set to the default display state.
 	mCurrDisplayState = mStates[MAINMENUSTATE];
 	
 

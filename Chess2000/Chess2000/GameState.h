@@ -7,6 +7,10 @@ class GameState
 public:
 	GameState();
 	virtual ~GameState();
+
+	virtual bool Update(float dt);
+	virtual bool Render();
+	virtual bool HandleInput();
 };
 
 #endif

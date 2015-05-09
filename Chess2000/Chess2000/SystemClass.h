@@ -27,6 +27,7 @@
 #include "MainMenu.h"
 #include "NewTournament.h"
 #include "PlayGame.h"
+#include "ViewTournament.h"
 
 //Defines
 #define NROFSTATES 4
