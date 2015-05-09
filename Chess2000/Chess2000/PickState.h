@@ -4,7 +4,7 @@
 #pragma once
 #include "GameState.h"
 #include "Button.h"
-#include <vector>
+
 
 class PickState :
 	public GameState
@@ -21,8 +21,9 @@ private:
 	void StartGame();
 
 	Button* mMenuButton;
+	Button* mStartButton;
 
-	std::vector<GraphicsObject*> mMenuItems;
+
 };
 
 #endif

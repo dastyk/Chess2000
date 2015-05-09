@@ -1,40 +1,38 @@
 #include "PickState.h"
 
 #include "SystemClass.h"
+#include "PlayGame.h"
 
 PickState::PickState()
 {
-	mMenuItems.push_back(mMenuButton = new Button(300, 400, 200, 30, L"Main Menu", 15, Color(255, 100, 100, 100)));
 
-	mMenuItems.push_back(new TextLabel(260, 50, 300, 30, L"Chess 2000", 30, Color(0, 0, 0, 0)));
+	// Create the meny items
+	mMenuItems.push_back(new ImageClass(0, 0, 800, 600, Color(0, 0, 0, 0), L"Resources/chessBG.png"));
+
+	mMenuItems.push_back(mStartButton = new Button(300, 350, 200, 30, L"Start Game", 15, Color(255, 100, 100, 200)));
+	mMenuItems.push_back(mMenuButton = new Button(300, 400, 200, 30, L"Main Menu", 15, Color(255, 100, 100, 200)));
+
+	mMenuItems.push_back(new TextLabel(250, 50, 300, 30, L"Chess 2000", 45, Color(0, 0, 0, 0)));
+	mMenuItems.push_back(new TextLabel(255, 95, 300, 30, L"Play", 35, Color(0, 0, 0, 0)));
 }
 
 
 PickState::~PickState()
 {
-	UINT items = mMenuItems.size();
-	for (UINT i = 0; i < items; i++)
-	{
-		delete mMenuItems[i];
-		mMenuItems[i] = 0;
-	}
+	GameState::~GameState();
 }
 
 bool PickState::Update(float dt)
 {
+	GameState::Update(dt);
+
 	return true;
 }
 
 
 bool PickState::Render()
 {
-
-	// Render all the meny items.
-	UINT items = mMenuItems.size();
-	for (UINT i = 0; i < items; i++)
-	{
-		mMenuItems[i]->Render();
-	}
+	GameState::Render();
 
 	return true;
 }
@@ -46,10 +44,15 @@ bool PickState::HandleInput()
 	if (mMenuButton->IsClicked())
 		SystemClass::GetInstance().ChangeState(MAINMENUSTATE);// if clicked go to menu.
 
+	// Check if start button is clicked.
+	if (mStartButton->IsClicked())
+		StartGame();// if clicked start the game.
+
 
 	return true;
 }
 
 void PickState::StartGame()
 {
+	PlayGame::GetInstance().StartGame();
 }

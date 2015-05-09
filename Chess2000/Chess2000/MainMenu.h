@@ -10,7 +10,7 @@
 #include "GraphicsClass.h"
 #include "Button.h"
 #include "TextLabel.h"
-#include <vector>
+
 
 class MainMenu : public Display
 {
@@ -31,7 +31,6 @@ private:
 	Button* mExitButton;
 	Button* mPlayButton;
 
-	std::vector<GraphicsObject*> mMenuItems;
 };
 
 

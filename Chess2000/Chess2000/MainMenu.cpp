@@ -3,22 +3,23 @@
 
 MainMenu::MainMenu()
 {
-	// Create the meny items
-	mMenuItems.push_back(mPlayButton = new Button(300, 350, 200, 30, L"Play Game", 15, Color(255, 100, 100, 100)));
-	mMenuItems.push_back(mExitButton = new Button(300, 400, 200, 30, L"Exit Game", 15, Color(255, 100, 100, 100)));
 
-	mMenuItems.push_back(new TextLabel(260, 50, 300, 30, L"Chess 2000", 30, Color(0, 0, 0, 0)));
+	// Create the meny items
+	mMenuItems.push_back(new ImageClass(0, 0, 800, 600, Color(0, 0, 0, 0), L"Resources/chessBG.png"));
+
+	mMenuItems.push_back(mPlayButton = new Button(300, 350, 200, 30, L"Play Game", 15, Color(255, 100, 100, 200)));
+	mMenuItems.push_back(mExitButton = new Button(300, 400, 200, 30, L"Exit Game", 15, Color(255, 100, 100, 200)));
+
+	mMenuItems.push_back(new TextLabel(250, 50, 300, 30, L"Chess 2000", 45, Color(0, 0, 0, 0)));
+	mMenuItems.push_back(new TextLabel(255, 95, 300, 30, L"Main Menu", 35, Color(0, 0, 0, 0)));
+
+	
 }
 
 
 MainMenu::~MainMenu()
 {
-	UINT items = mMenuItems.size();
-	for (UINT i = 0; i < items; i++)
-	{
-		delete mMenuItems[i];
-		mMenuItems[i] = 0;
-	}
+	Display::~Display();
 }
 
 
@@ -39,20 +40,15 @@ bool MainMenu::HandleInput()
 
 bool MainMenu::Update(float dt)
 {
+	Display::Update(dt);
+
+
 	return true;
 }
 
 bool MainMenu::Render()
 {
-
-	// Render all the meny items.
-	UINT items = mMenuItems.size();
-	for (UINT i = 0; i < items; i++)
-	{
-		mMenuItems[i]->Render();
-	}
-
-
+	Display::Render();
 
 	return true;
 }

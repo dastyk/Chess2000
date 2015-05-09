@@ -126,6 +126,9 @@
     <ClInclude Include="TimerClass.h">
       <Filter>Header Files\HelpClasses</Filter>
     </ClInclude>
+    <ClInclude Include="ImageClass.h">
+      <Filter>Header Files\MenuItems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Display.cpp">
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="PickState.cpp">
       <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageClas.cpp">
+      <Filter>Source Files\MenuItems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

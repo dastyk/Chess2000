@@ -66,6 +66,9 @@ bool GraphicsClass::BeginFrame()
 
 	mDevice = Graphics::FromHDC(backbuffDC);
 
+	ClearScreen(Color(255, 0, 0, 0));
+
+
 	//HBRUSH hBrush = CreateSolidBrush(RGB(255, 255, 255));
 	//FillRect(backbuffDC, &rect, hBrush);
 	//DeleteObject(hBrush);
@@ -92,7 +95,7 @@ bool GraphicsClass::EndFrame()
 void GraphicsClass::DrawString(WCHAR* text, int x, int y, REAL fontSize)
 {
 	Font font(&FontFamily(L"Arial"), fontSize);
-	LinearGradientBrush brush(Rect(0, 0, 100, 100), Color::Red, Color::Yellow, LinearGradientModeHorizontal);
+	LinearGradientBrush brush(Rect(0, 0, 100, 100), Color::Black, Color::Black, LinearGradientModeHorizontal);
 	mDevice->DrawString(text, -1, &font, PointF((REAL)x, (REAL)y), &brush);
 	//DrawString(text, x, y, fontSize);
 	//DrawString(text, x, y, fontSize);
@@ -121,4 +124,9 @@ GraphicsClass& GraphicsClass::GetInstance()
 void GraphicsClass::ClearScreen(Color c)
 {
 	mDevice->Clear(c);
+}
+
+void GraphicsClass::DrawImage(Image* image, int x, int y, int w, int h)
+{
+	mDevice->DrawImage(image, x, y, w, h);
 }

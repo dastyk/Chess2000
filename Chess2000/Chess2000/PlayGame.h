@@ -26,6 +26,8 @@ public:
 	bool Update(float dt);
 	bool Render();
 
+	void ChangeState(UINT state);
+	void StartGame();
 
 	static void CreateInstance();
 	static PlayGame* GetInstancePointer();

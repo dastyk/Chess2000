@@ -45,6 +45,7 @@ public:
 	void DrawRectangle(Color c, REAL boarderWidth, int x, int y, int w, int h);
 	void FillRectangle(Color c, int x, int y, int w, int h);
 	void ClearScreen(Color c);
+	void DrawImage(Image* image, int x, int y, int w, int h);
 
 private:
 

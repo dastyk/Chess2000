@@ -3,6 +3,8 @@
 
 #pragma once
 #include "GraphicsClass.h"
+#include "GraphicsObject.h"
+#include <vector>
 
 class GameState
 {
@@ -10,12 +12,12 @@ public:
 	GameState();
 	virtual ~GameState();
 
-	virtual bool Update(float dt);
-	virtual bool Render();
-	virtual bool HandleInput();
+	virtual bool Update(float dt) = 0;
+	virtual bool Render() = 0;
+	virtual bool HandleInput() = 0;
 
 protected:
-	GraphicsClass& mGraphics = GraphicsClass::GetInstance();
+	std::vector<GraphicsObject*> mMenuItems;
 };
 
 #endif

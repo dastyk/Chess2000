@@ -430,8 +430,7 @@ void SystemClass::ChangeState(unsigned int state)
 	outs << "State changed to: " << state;
 	SetWindowText(mHwnd, outs.str().c_str());
 
-	mGraphics.ClearScreen(Color(255, 0, 0, 0));
-
+	
 	mCurrDisplayState = mStates[state];
 
 

@@ -10,13 +10,12 @@ PlayGame::PlayGame()
 		mStates[i] = nullptr;
 	}
 
-
-
 }
 
 
 PlayGame::~PlayGame()
 {
+	Display::~Display();
 	for (unsigned int i = 0; i < NROFGAMESTATES; i++)
 	{
 		if (mStates[i])
@@ -107,4 +106,14 @@ PlayGame*  PlayGame::GetInstancePointer()
 PlayGame&  PlayGame::GetInstance()
 {
 	return *mInstance;
+}
+
+void PlayGame::ChangeState(UINT state)
+{
+	mCurrGameState = mStates[state];
+}
+
+void PlayGame::StartGame()
+{
+	mCurrGameState = mStates[PLAYGAMESTATE] = new PlayState();
 }
