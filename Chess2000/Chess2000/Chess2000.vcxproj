@@ -65,17 +65,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Bishop.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="Enum.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GraphicsClass.h" />
     <ClInclude Include="GraphicsObject.h" />
     <ClInclude Include="InputClass.h" />
+    <ClInclude Include="Knight.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Move.h" />
     <ClInclude Include="NewTournament.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PickState.h" />
+    <ClInclude Include="Pawn.h" />
+    <ClInclude Include="Piece.h" />
     <ClInclude Include="PlayGame.h" />
-    <ClInclude Include="PlayState.h" />
+    <ClInclude Include="Pos.h" />
+    <ClInclude Include="Queen.h" />
+    <ClInclude Include="Rock.h" />
     <ClInclude Include="SystemClass.h" />
     <ClInclude Include="TextLabel.h" />
     <ClInclude Include="TimerClass.h" />
@@ -83,17 +91,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Bishop.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GraphicsClass.cpp" />
     <ClCompile Include="GraphicsObject.cpp" />
     <ClCompile Include="InputClass.cpp" />
+    <ClCompile Include="Knight.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="NewTournament.cpp" />
+    <ClCompile Include="Pawn.cpp" />
+    <ClCompile Include="Piece.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PickState.cpp" />
     <ClCompile Include="PlayGame.cpp" />
+    <ClCompile Include="Queen.cpp" />
+    <ClCompile Include="Rock.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SystemClass.cpp" />
     <ClCompile Include="TextLabel.cpp" />
