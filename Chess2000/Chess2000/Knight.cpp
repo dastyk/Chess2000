@@ -8,24 +8,21 @@ Knight::Knight()
 	type = "Knight";
 }
 
+Knight::Knight(WCHAR* path) : Piece(path)
+{
+	type = "Knight";
+
+}
+
 Knight::~Knight()
 {
-
+	Piece::~Piece();
 }
 
 #pragma endregion
 
 #pragma region Get and Set functions
 
-void Knight::SetColor(PlayerColor playerColor)
-{
-	player = playerColor;
-}
-
-PlayerColor Knight::GetColor()
-{
-	return player;
-}
 
 void Knight::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[])
 {

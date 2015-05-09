@@ -4,7 +4,7 @@
 #pragma once
 #include "GameState.h"
 #include "Button.h"
-
+#include "ImageClass.h"
 
 class PickState :
 	public GameState

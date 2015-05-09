@@ -9,24 +9,22 @@ Pawn::Pawn()
 	firstMoveDone = false;
 }
 
+Pawn::Pawn(WCHAR* path) : Piece(path)
+{
+	type = "Pawn";
+	firstMoveDone = false;
+}
+
+
 Pawn::~Pawn()
 {
-
+	Piece::~Piece();
 }
 
 #pragma endregion
 
 #pragma region Get and Set functions
 
-void Pawn::SetColor(PlayerColor playerColor)
-{
-	player = playerColor;
-}
-
-PlayerColor Pawn::GetColor()
-{
-	return player;
-}
 
 void Pawn::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[])
 {

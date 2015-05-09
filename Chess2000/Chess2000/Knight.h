@@ -12,10 +12,8 @@ private:
 public:
 	~Knight();
 	Knight();
-
+	Knight(WCHAR* path);
 	void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]);
-	PlayerColor GetColor();
-	void SetColor(PlayerColor playerColor);
 
 
 };

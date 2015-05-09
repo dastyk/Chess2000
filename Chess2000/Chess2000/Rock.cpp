@@ -11,22 +11,12 @@ Rock::Rock()
 
 Rock::~Rock()
 {
-
+	Piece::~Piece();
 }
 
 #pragma endregion
 
 #pragma region Get and Set functions
-
-void Rock::SetColor(PlayerColor playerColor)
-{
-	player = playerColor;
-}
-
-PlayerColor Rock::GetColor()
-{
-	return player;
-}
 
 void Rock::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[])
 {

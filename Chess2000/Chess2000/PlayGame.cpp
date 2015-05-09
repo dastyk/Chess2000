@@ -15,7 +15,6 @@ PlayGame::PlayGame()
 
 PlayGame::~PlayGame()
 {
-	Display::~Display();
 	for (unsigned int i = 0; i < NROFGAMESTATES; i++)
 	{
 		if (mStates[i])
@@ -115,5 +114,18 @@ void PlayGame::ChangeState(UINT state)
 
 void PlayGame::StartGame()
 {
+	mCurrGameState = mStates[PLAYGAMESTATE] = new PlayState();
+}
+
+void PlayGame::EndGame()
+{
+	delete mStates[PLAYGAMESTATE];
+	mStates[PLAYGAMESTATE] = nullptr;
+	mCurrGameState = mStates[PICKSTATE];
+}
+
+void PlayGame::RestartGame()
+{
+	delete mStates[PLAYGAMESTATE];
 	mCurrGameState = mStates[PLAYGAMESTATE] = new PlayState();
 }

@@ -28,6 +28,8 @@ public:
 
 	void ChangeState(UINT state);
 	void StartGame();
+	void EndGame();
+	void RestartGame();
 
 	static void CreateInstance();
 	static PlayGame* GetInstancePointer();

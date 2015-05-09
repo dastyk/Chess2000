@@ -4,6 +4,7 @@
 #include <string>
 #include "Enum.h"
 #include "Pos.h"
+#include "GraphicsClass.h"
 
 class Piece
 {
@@ -11,17 +12,23 @@ private:
 	PlayerColor player;
 	std::string type;
 
+	Image* mImage;
+
 protected:
 	//Constructor
 	Piece();
-
+	Piece(WCHAR* path);
 
 public:
 	
 	~Piece();
-	virtual PlayerColor GetColor() = 0;
-	virtual void SetColor(PlayerColor playerColor) = 0;
+	PlayerColor GetColor();
+	void SetColor(PlayerColor playerColor);
+	Image* GetImage();
+
 	virtual void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]) = 0;
+
+
 };
 
 

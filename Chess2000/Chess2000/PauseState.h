@@ -3,6 +3,10 @@
 
 #pragma once
 #include "GameState.h"
+#include "Button.h"
+#include "TextLabel.h"
+#include "ImageClass.h"
+
 class PauseState :
 	public GameState
 {
@@ -18,6 +22,10 @@ private:
 	void Continue();
 	void Restart();
 	void End();
+
+	Button* mContinueButton;
+	Button* mRestartButton;
+	Button* mEndButton;
 };
 
 #endif

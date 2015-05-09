@@ -14,11 +14,8 @@ private:
 public:
 	~King();
 	King();
-
+	King(WCHAR* path);
 	void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]);
-	PlayerColor GetColor();
-	void SetColor(PlayerColor playerColor);
-
 
 };
 

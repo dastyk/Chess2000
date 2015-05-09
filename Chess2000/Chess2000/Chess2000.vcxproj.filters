@@ -126,11 +126,11 @@
     <ClInclude Include="TimerClass.h">
       <Filter>Header Files\HelpClasses</Filter>
     </ClInclude>
-    <ClInclude Include="King.h">
-      <Filter>Header Files\Pieces</Filter>
-    </ClInclude>
     <ClInclude Include="ImageClass.h">
       <Filter>Header Files\MenuItems</Filter>
+    </ClInclude>
+    <ClInclude Include="King.h">
+      <Filter>Header Files\Pieces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,11 +203,11 @@
     <ClCompile Include="PickState.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="King.cpp">
-      <Filter>Source Files\Pieces</Filter>
-    </ClCompile>
     <ClCompile Include="ImageClas.cpp">
       <Filter>Source Files\MenuItems</Filter>
+    </ClCompile>
+    <ClCompile Include="King.cpp">
+      <Filter>Source Files\Pieces</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

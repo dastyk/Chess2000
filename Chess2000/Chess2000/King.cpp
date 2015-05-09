@@ -9,24 +9,21 @@ King::King()
 	firstMoveDone = false;
 }
 
+King::King(WCHAR* path) : Piece(path)
+{
+	type = "King";
+	firstMoveDone = false;
+}
+
 King::~King()
 {
-
+	Piece::~Piece();
 }
 
 #pragma endregion
 
 #pragma region Get and Set functions
 
-void King::SetColor(PlayerColor playerColor)
-{
-	player = playerColor;
-}
-
-PlayerColor King::GetColor()
-{
-	return player;
-}
 
 void King::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[])
 {

@@ -8,24 +8,20 @@ Bishop::Bishop()
 	type = "Bishop";
 }
 
+Bishop::Bishop(WCHAR* path) : Piece(path)
+{
+	type = "Bishop";
+}
+
 Bishop::~Bishop()
 {
-
+	Piece::~Piece();
 }
 
 #pragma endregion
 
 #pragma region Get and Set functions
 
-void Bishop::SetColor(PlayerColor playerColor)
-{
-	player = playerColor;
-}
-
-PlayerColor Bishop::GetColor()
-{
-	return player;
-}
 
 void Bishop::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[])
 {

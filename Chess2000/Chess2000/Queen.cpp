@@ -10,22 +10,14 @@ Queen::Queen()
 
 Queen::~Queen()
 {
-
+	Piece::~Piece();
 }
 
 #pragma endregion
 
 #pragma region Get and Set functions
 
-void Queen::SetColor(PlayerColor playerColor)
-{
-	player = playerColor;
-}
 
-PlayerColor Queen::GetColor()
-{
-	return player;
-}
 
 void Queen::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[])
 {
