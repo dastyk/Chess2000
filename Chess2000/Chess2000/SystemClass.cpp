@@ -193,10 +193,15 @@ bool SystemClass::Update(float dt)
 }
 bool SystemClass::Render()
 {
+	mGraphics.BeginFrame();
+
 	if (!mCurrDisplayState->Render())
 	{
 		return false;
 	}
+
+	mGraphics.EndFrame();
+
 	return true;
 }
 

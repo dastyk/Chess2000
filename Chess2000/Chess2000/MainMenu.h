@@ -7,7 +7,7 @@
 
 #include "Display.h"
 #include "InputClass.h"
-
+#include "GraphicsClass.h"
 
 class MainMenu : public Display
 {
@@ -27,6 +27,7 @@ private:
 
 
 	InputClass& mInput = InputClass::GetInstance();
+	GraphicsClass& mGraphics = GraphicsClass::GetInstance();
 };
 
 

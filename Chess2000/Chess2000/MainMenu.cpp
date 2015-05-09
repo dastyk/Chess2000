@@ -29,6 +29,12 @@ bool MainMenu::HandleInput()
 	{
 		Play();
 	}
+
+	if (mInput.IsMouseKeyDown(LMOUSE))
+	{
+		Exit();
+	}
+
 	return true;
 }
 
@@ -39,6 +45,9 @@ bool MainMenu::Update(float dt)
 
 bool MainMenu::Render()
 {
+	mGraphics.DrawString(L"MAIN FUCKING MENU BITCHES!!!!", 50, 50);
+	mGraphics.DrawString(L"PLAY THE FUCKING GAME", 50, 75);
+	mGraphics.DrawString(L"EXIT THE FUCKING GAME", 50, 100);
 	return true;
 }
 

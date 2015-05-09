@@ -73,13 +73,13 @@ void InputClass::OnMouseMove(int x, int y)
 void InputClass::MouseDown(unsigned int key)
 {
 	// If a key is pressed then save that state in the key array.
-	mKeys[key] = true;
+	mMouseKeys[key] = true;
 }
 
 void InputClass::MouseUp(unsigned int key)
 {
 	// If a key is released then clear that state in the key array.
-	mKeys[key] = false;
+	mMouseKeys[key] = false;
 }
 
 bool InputClass::IsMouseKeyDown(unsigned int key)
@@ -93,6 +93,12 @@ bool InputClass::GetMouseKeyStateAndReset(unsigned int key)
 	// Return what state the key is in (pressed/not pressed) then set state to false.
 	bool temp = mMouseKeys[key];
 	mMouseKeys[key] = false;
+
+	if (temp)
+	{
+		int b = 1;
+	}
+
 	return temp;
 }
 

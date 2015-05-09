@@ -10,6 +10,11 @@
 // INCLUDES //
 //////////////
 #include <windows.h>
+#include <objidl.h>
+#include <gdiplus.h>
+
+using namespace Gdiplus;
+#pragma comment (lib,"Gdiplus.lib")
 
 
 /////////////
@@ -31,17 +36,26 @@ public:
 
 	bool Initialize(int, int, HWND);
 	void Shutdown();
-	bool Frame();
+	bool BeginFrame();
+	bool EndFrame();
 
 	static GraphicsClass& GetInstance();
 
+	void DrawString(WCHAR* text, int x, int y);
+
 private:
-	bool Render();
 
 	GraphicsClass();
 	GraphicsClass(const GraphicsClass&);
 	GraphicsClass& operator= (const GraphicsClass&);
 	~GraphicsClass();
+
+private:
+	GdiplusStartupInput gdiplusStartupInput;
+	ULONG_PTR           gdiplusToken;
+	PAINTSTRUCT  mPs;
+	HWND mHwnd;
+	Graphics* mDevice;
 };
 
 #endif
