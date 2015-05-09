@@ -6,8 +6,7 @@
 class King : public Piece
 {
 private:
-	PlayerColor player;
-	std::string type = "King";
+
 	bool firstMoveDone;
 
 

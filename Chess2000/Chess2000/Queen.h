@@ -6,8 +6,7 @@
 class Queen : public Piece
 {
 private:
-	PlayerColor player;
-	std::string type = "Queen";
+
 
 public:
 	~Queen();

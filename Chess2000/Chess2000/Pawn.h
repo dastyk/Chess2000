@@ -6,8 +6,6 @@
 class Pawn : public Piece
 {
 private:
-	PlayerColor player;
-	std::string type = "Pawn";
 	bool firstMoveDone;
 	
 

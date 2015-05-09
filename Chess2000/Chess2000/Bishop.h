@@ -6,8 +6,6 @@
 class Bishop : public Piece
 {
 private:
-	PlayerColor player;
-	std::string type = "Bishop";
 
 public:
 	~Bishop();

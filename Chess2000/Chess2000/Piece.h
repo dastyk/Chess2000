@@ -8,17 +8,16 @@
 
 class Piece
 {
-private:
-	PlayerColor player;
-	std::string type;
-
-	Image* mImage;
-
 protected:
 	//Constructor
 	Piece();
 	Piece(WCHAR* path);
 
+
+	PlayerColor player;
+	std::string type;
+
+	Image* mImage;
 public:
 	
 	~Piece();

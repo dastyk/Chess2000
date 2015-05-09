@@ -6,8 +6,7 @@
 class Knight : public Piece
 {
 private:
-	PlayerColor player;
-	std::string type = "Knight";
+
 
 public:
 	~Knight();

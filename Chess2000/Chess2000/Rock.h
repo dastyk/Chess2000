@@ -6,8 +6,7 @@
 class Rock : public Piece
 {
 private:
-	PlayerColor player;
-	std::string type = "Rock";
+
 	bool firstMoveDone;
 
 public:

@@ -8,6 +8,11 @@ Queen::Queen()
 	type = "Queen";
 }
 
+Queen::Queen(WCHAR* path) : Piece(path)
+{
+	type = "Queen";
+}
+
 Queen::~Queen()
 {
 	Piece::~Piece();

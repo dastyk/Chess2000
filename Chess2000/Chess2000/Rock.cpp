@@ -9,6 +9,12 @@ Rock::Rock()
 	firstMoveDone = false;
 }
 
+Rock::Rock(WCHAR* path) : Piece(path)
+{
+	type = "Rock";
+	firstMoveDone = false;
+}
+
 Rock::~Rock()
 {
 	Piece::~Piece();
