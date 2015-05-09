@@ -179,9 +179,16 @@ bool PlayState::HandleInput()
 				{
 					delete board[validMoves[x].rank][validMoves[x].files];				
 				}
+				std::wstringstream outs;
 
 
-				lastMoves->AddItem(board[lastPick.rank][lastPick.files]->GetType());
+				outs <<  lastPick.rank+1 << lastPick.files+1 << " | " << board[lastPick.rank][lastPick.files]->GetType() << " | " << validMoves[x].rank+1 << validMoves[x].files+1;
+
+				wchar_t* dst = new wchar_t[(outs.str().length()+1) * 2];
+				memcpy(dst, outs.str().c_str(), (outs.str().length()+1) * 2);
+
+
+				lastMoves->AddItem(dst);
 
 				board[validMoves[x].rank][validMoves[x].files] = board[lastPick.rank][lastPick.files];
 				board[lastPick.rank][lastPick.files] = nullptr;
