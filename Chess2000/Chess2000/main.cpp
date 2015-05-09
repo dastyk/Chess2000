@@ -22,10 +22,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	}
 
 
-	//Jag vet vart din brevlåda bor.
-	// Jag vet vart DU bor.
-	//NEJ
-
 	// Shutdown and release the system object.
 	System.Shutdown();
 
