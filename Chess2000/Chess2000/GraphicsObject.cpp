@@ -33,6 +33,7 @@ bool GraphicsObject::IsClicked()
 		{
 			if (y >= mPosY && y <= mPosY + mHeight)
 			{
+				i.MouseUp(LMOUSE);
 				return true;
 			}
 		}

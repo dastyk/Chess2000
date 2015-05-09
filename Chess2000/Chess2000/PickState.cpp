@@ -4,7 +4,9 @@
 
 PickState::PickState()
 {
-	mMenuItems.push_back(mExitButton = new Button(300, 400, 200, 30, L"Exit Game", 15, Color(255, 100, 100, 100)));
+	mMenuItems.push_back(mMenuButton = new Button(300, 400, 200, 30, L"Main Menu", 15, Color(255, 100, 100, 100)));
+
+	mMenuItems.push_back(new TextLabel(260, 50, 300, 30, L"Chess 2000", 30, Color(0, 0, 0, 0)));
 }
 
 
@@ -40,9 +42,9 @@ bool PickState::Render()
 
 bool PickState::HandleInput()
 {
-	// Check if exit button is clicked.
-	if (mExitButton->IsClicked())
-		SystemClass::GetInstance().Exit();// if clicked exit application.
+	// Check if menu button is clicked.
+	if (mMenuButton->IsClicked())
+		SystemClass::GetInstance().ChangeState(MAINMENUSTATE);// if clicked go to menu.
 
 
 	return true;

@@ -58,7 +58,13 @@ private:
 	ULONG_PTR           gdiplusToken;
 	PAINTSTRUCT  mPs;
 	HWND mHwnd;
+	HDC backbuffDC;
+	HDC hdc;
+	HBITMAP backbuffer;
+	int savedDC;
 	Graphics* mDevice;
+
+	int mWidth, mHeight;
 };
 
 #endif

@@ -20,8 +20,7 @@ public:
 private:
 	void StartGame();
 
-	Button* mExitButton;
-
+	Button* mMenuButton;
 
 	std::vector<GraphicsObject*> mMenuItems;
 };

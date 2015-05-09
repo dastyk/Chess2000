@@ -262,6 +262,8 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 		mInput.OnMouseMove(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
 		return 0;
 	}
+	case WM_ERASEBKGND:
+		return TRUE;
 		// Any other messages send to the default message handler as our application won't make use of them.
 	default:
 	{
