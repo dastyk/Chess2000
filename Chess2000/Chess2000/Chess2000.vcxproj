@@ -73,6 +73,7 @@
     <ClInclude Include="GraphicsObject.h" />
     <ClInclude Include="ImageClass.h" />
     <ClInclude Include="InputClass.h" />
+    <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Move.h" />
@@ -100,6 +101,7 @@
     <ClCompile Include="GraphicsObject.cpp" />
     <ClCompile Include="ImageClas.cpp" />
     <ClCompile Include="InputClass.cpp" />
+    <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
