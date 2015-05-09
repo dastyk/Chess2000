@@ -19,7 +19,6 @@ public:
 	bool Render();
 
 private:
-	InputClass& mInput = InputClass::GetInstance();
 
 };
 
