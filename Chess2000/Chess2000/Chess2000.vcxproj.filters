@@ -98,10 +98,10 @@
     <ClCompile Include="GameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Piece.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="Piece.cpp">
       <Filter>Source Files\Pieces</Filter>
     </ClCompile>
   </ItemGroup>
