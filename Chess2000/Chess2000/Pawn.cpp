@@ -5,13 +5,13 @@
 
 Pawn::Pawn()
 {
-	type = "Pawn";
+	type = L"Pawn";
 	firstMoveDone = false;
 }
 
 Pawn::Pawn(WCHAR* path) : Piece(path)
 {
-	type = "Pawn";
+	type = L"Pawn";
 	firstMoveDone = false;
 }
 

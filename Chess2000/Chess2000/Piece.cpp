@@ -32,3 +32,8 @@ Image* Piece::GetImage()
 {
 	return mImage;
 }
+
+WCHAR* Piece::GetType()
+{
+	return type;
+}

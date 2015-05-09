@@ -14,6 +14,13 @@ struct Pos
 	{
 
 	}
+	inline bool operator==(const Pos& p)
+	{
+		if (rank == p.rank)
+			if (files == p.files)
+				return true;
+		return false;
+	}
 };
 
 #endif

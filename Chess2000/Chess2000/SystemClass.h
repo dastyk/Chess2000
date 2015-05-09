@@ -17,6 +17,10 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <sstream>
+#include <mmsystem.h>
+#include <time.h>
+
+#pragma comment( lib, "Winmm.lib" )
 
 ///////////////////////
 // MY CLASS INCLUDES //

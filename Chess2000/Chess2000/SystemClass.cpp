@@ -110,6 +110,23 @@ void SystemClass::Run()
 	MSG msg;
 	bool result;
 
+	srand(time(NULL));
+
+	WCHAR** letters = new WCHAR*[6];
+	letters[0] = L"Resources/chess0";
+	letters[1] = L"Resources/chess1";
+	letters[2] = L"Resources/chess2";
+	letters[3] = L"Resources/chess3";
+	letters[4] = L"Resources/chess4";
+	letters[5] = L"Resources/chess5";
+
+	int rnd = rand() % 5;
+
+	waveOutSetVolume(0, 0x22222222);
+	PlaySound(letters[rnd], NULL, SND_FILENAME | SND_ASYNC);
+
+	delete[] letters;
+
 	// Reset the timer
 	mTimer->Reset();
 

@@ -132,6 +132,9 @@
     <ClInclude Include="King.h">
       <Filter>Header Files\Pieces</Filter>
     </ClInclude>
+    <ClInclude Include="TextListClass.h">
+      <Filter>Header Files\MenuItems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Display.cpp">
@@ -208,6 +211,9 @@
     </ClCompile>
     <ClCompile Include="King.cpp">
       <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="TextListClass.cpp">
+      <Filter>Source Files\MenuItems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

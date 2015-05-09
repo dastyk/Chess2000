@@ -5,12 +5,12 @@
 
 Queen::Queen()
 {
-	type = "Queen";
+	type = L"Queen";
 }
 
 Queen::Queen(WCHAR* path) : Piece(path)
 {
-	type = "Queen";
+	type = L"Queen";
 }
 
 Queen::~Queen()
