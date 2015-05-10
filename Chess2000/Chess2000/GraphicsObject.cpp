@@ -1,8 +1,9 @@
 #include "GraphicsObject.h"
 
 #include "SystemClass.h"
+#include "PopUpClass.h"
 
-GraphicsObject::GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover) : mPosX(x), mPosY(y), mWidth(w), mHeight(h), mBackGroundColor(bc), mLayer(layer), mHovering(false), mHoverIcon(hoverIcon), mChangeBGOnHover(changeBGOnHover), mBCHover(bcHover), mInFocus(false)
+GraphicsObject::GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover, bool popUpItem) : mPosX(x), mPosY(y), mWidth(w), mHeight(h), mBackGroundColor(bc), mLayer(layer), mHovering(false), mHoverIcon(hoverIcon), mChangeBGOnHover(changeBGOnHover), mBCHover(bcHover), mInFocus(false), mPopUpItem(popUpItem)
 {
 
 }
@@ -16,7 +17,6 @@ void GraphicsObject::Render()
 {
 	GraphicsClass& g = GraphicsClass::GetInstance();
 
-
 	g.FillRectangle(mBackGroundColor, mPosX, mPosY, mWidth, mHeight);
 
 	if (mChangeBGOnHover)
@@ -28,44 +28,91 @@ void GraphicsObject::Render()
 
 bool GraphicsObject::IsClicked()
 {
-	int x, y;
-	InputClass& i = InputClass::GetInstance();
-	if (mHovering)
+	if ((!PopUpClass::IsPopActive) || mPopUpItem)
 	{
-		if (i.IsMouseKeyDown(LMOUSE))
+		int x, y;
+		InputClass& i = InputClass::GetInstance();
+		if (mHovering)
 		{
+			if (i.IsMouseKeyDown(LMOUSE))
+			{
 
-			i.MouseUp(LMOUSE);
-			return true;
+				i.MouseUp(LMOUSE);
+				return true;
+			}
+
 		}
-
 	}
 	return false;
 }
 
+
+int GraphicsObject::GetPosX()
+{
+	return mPosX;
+}
+
+int GraphicsObject::GetPosY()
+{
+	return mPosY;
+}
+
+
+void GraphicsObject::SetPosX(int x)
+{
+	mPosX = x;
+}
 
 void GraphicsObject::SetPosY(int y)
 {
 	mPosY = y;
 }
 
+
+int GraphicsObject::GetLayer()
+{
+	return mLayer;
+}
+
+void GraphicsObject::SetLayer(int layer)
+{
+	mLayer = layer;
+}
+
+
+UINT GraphicsObject::GetWidth()
+{
+	return mWidth;
+}
+
+
 UINT GraphicsObject::GetHeight()
 {
 	return mHeight;
 }
 
+
+
+void GraphicsObject::SetPopUpItem(bool pop)
+{
+	mPopUpItem = pop;
+}
+
+
 bool GraphicsObject::IsHovering()
 {
-
-	int x, y;
-	InputClass& i = InputClass::GetInstance();
-
-	i.GetMousePos(x, y);
-	if (x >= mPosX && x <= mPosX + mWidth)
+	if ((!PopUpClass::IsPopActive) || mPopUpItem)
 	{
-		if (y >= mPosY && y <= mPosY + mHeight)
+		int x, y;
+		InputClass& i = InputClass::GetInstance();
+
+		i.GetMousePos(x, y);
+		if (x >= mPosX && x <= mPosX + mWidth)
 		{
-			return true;
+			if (y >= mPosY && y <= mPosY + mHeight)
+			{
+				return true;
+			}
 		}
 	}
 	return false;
@@ -73,6 +120,7 @@ bool GraphicsObject::IsHovering()
 
 void GraphicsObject::Update(int& layer)
 {
+
 	if (IsHovering())
 	{
 		if (mLayer >= layer)
@@ -86,6 +134,7 @@ void GraphicsObject::Update(int& layer)
 
 	OnEnter();
 	OnExit();
+
 }
 
 

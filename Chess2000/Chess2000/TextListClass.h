@@ -25,8 +25,8 @@ public:
 
 private:
 
-	virtual void OnEnter();
-	virtual void OnExit();
+	void OnEnter();
+	void OnExit();
 
 
 	TextLabel* mList;

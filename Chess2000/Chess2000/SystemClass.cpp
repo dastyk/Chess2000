@@ -2,6 +2,7 @@
 // Filename: SystemClass.cpp
 ////////////////////////////////////////////////////////////////////////////////
 #include "SystemClass.h"
+#include "PopUpClass.h"
 
 SystemClass::SystemClass()
 {
@@ -19,6 +20,7 @@ SystemClass::~SystemClass()
 
 bool SystemClass::Initialize()
 {
+
 	int screenWidth, screenHeight;
 	bool result;
 

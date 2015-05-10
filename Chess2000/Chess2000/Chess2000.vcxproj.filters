@@ -135,6 +135,9 @@
     <ClInclude Include="TextListClass.h">
       <Filter>Header Files\MenuItems</Filter>
     </ClInclude>
+    <ClInclude Include="PopUpClass.h">
+      <Filter>Header Files\MenuItems</Filter>
+    </ClInclude>
     <ClInclude Include="GameOverState.h">
       <Filter>Header Files\GameStates</Filter>
     </ClInclude>
@@ -209,9 +212,6 @@
     <ClCompile Include="PickState.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="ImageClas.cpp">
-      <Filter>Source Files\MenuItems</Filter>
-    </ClCompile>
     <ClCompile Include="King.cpp">
       <Filter>Source Files\Pieces</Filter>
     </ClCompile>
@@ -220,6 +220,12 @@
     </ClCompile>
     <ClCompile Include="Move.cpp">
       <Filter>Source Files\HelpClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageClass.cpp">
+      <Filter>Source Files\MenuItems</Filter>
+    </ClCompile>
+    <ClCompile Include="PopUpClass.cpp">
+      <Filter>Source Files\MenuItems</Filter>
     </ClCompile>
     <ClCompile Include="GameOverState.cpp">
       <Filter>Source Files\GameStates</Filter>

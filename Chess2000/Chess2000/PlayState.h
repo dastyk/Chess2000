@@ -15,6 +15,8 @@
 
 #include "TextLabel.h"
 #include "TextListClass.h"
+#include "PopUpClass.h"
+
 #include "Move.h"
 #include "Button.h"
 
@@ -42,6 +44,8 @@ private:
 
 	PlayerColor currPlayer;
 
+	PopUpClass* mPawnAtEndPop;
+	Pos mPawnAtEnd;
 	Button* mContinueButton;
 	Button* mRestartButton;
 	Button* mEndButton;

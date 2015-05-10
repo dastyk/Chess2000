@@ -3,6 +3,7 @@
 
 PlayState::PlayState()
 {
+	mPawnAtEnd = Pos();
 
 	// Set who starts the game.
 	currPlayer = White;
@@ -65,40 +66,36 @@ PlayState::PlayState()
 		}
 	}
 
+	mMenuItems.push_back(mPawnAtEndPop = new PopUpClass(250, 150, 300, 300, L"Pick a piece.", 15, Color(255, 100, 100, 200), 10));
+	mPawnAtEndPop->AddItem(new Button(75, 75, 125, 30, L"Queen", 15, Color(255, 255, 255, 255), 1), POPUPBUTTON);
+	mPawnAtEndPop->AddItem(new Button(75, 110, 125, 30, L"Rock", 15, Color(255, 255, 255, 255), 1), POPUPBUTTON);
+	mPawnAtEndPop->AddItem(new Button(75, 145, 125, 30, L"Knight", 15, Color(255, 255, 255, 255), 1), POPUPBUTTON);
+	mPawnAtEndPop->AddItem(new Button(75, 180, 125, 30, L"Bishop", 15, Color(255, 255, 255, 255), 1), POPUPBUTTON);
 
 	// Create all the game pieces.
 	for (int i = 0; i < FILES; i++)
 	{
-		board[i][1] = new Pawn(L"Resources/Pieces/White Pawn.png");
-		board[i][1]->SetColor(White);
-		board[i][6] = new Pawn(L"Resources/Pieces/Black Pawn.png");
-		board[i][6]->SetColor(Black);
+		board[i][1] = new Pawn(White);
+		board[i][6] = new Pawn(Black);
 	}
 
-board[0][0] = new Rock(L"Resources/Pieces/White Rock.png");
-board[1][0] = new Knight(L"Resources/Pieces/White Knight.png");
-board[2][0] = new Bishop(L"Resources/Pieces/White Bishop.png");
-board[3][0] = new Queen(L"Resources/Pieces/White Queen.png");
-board[4][0] = new King(L"Resources/Pieces/White King.png");
-board[5][0] = new Bishop(L"Resources/Pieces/White Bishop.png");
-board[6][0] = new Knight(L"Resources/Pieces/White Knight.png");
-board[7][0] = new Rock(L"Resources/Pieces/White Rock.png");
+	board[0][0] = new Rock(White);
+	board[1][0] = new Knight(White);
+	board[2][0] = new Bishop(White);
+	board[3][0] = new Queen(White);
+	board[4][0] = new King(White);
+	board[5][0] = new Bishop(White);
+	board[6][0] = new Knight(White);
+	board[7][0] = new Rock(White);
 
-board[0][7] = new Rock(L"Resources/Pieces/Black Rock.png");
-board[1][7] = new Knight(L"Resources/Pieces/Black Knight.png");
-board[2][7] = new Bishop(L"Resources/Pieces/Black Bishop.png");
-board[3][7] = new Queen(L"Resources/Pieces/Black Queen.png");
-board[4][7] = new King(L"Resources/Pieces/Black King.png");
-board[5][7] = new Bishop(L"Resources/Pieces/Black Bishop.png");
-board[6][7] = new Knight(L"Resources/Pieces/Black Knight.png");
-board[7][7] = new Rock(L"Resources/Pieces/Black Rock.png");
-
-
-for (int i = 0; i < FILES; i++)
-{
-	board[i][0]->SetColor(White);
-	board[i][7]->SetColor(Black);
-}
+	board[0][7] = new Rock(Black);
+	board[1][7] = new Knight(Black);
+	board[2][7] = new Bishop(Black);
+	board[3][7] = new Queen(Black);
+	board[4][7] = new King(Black);
+	board[5][7] = new Bishop(Black);
+	board[6][7] = new Knight(Black);
+	board[7][7] = new Rock(Black);
 
 }
 
@@ -142,9 +139,14 @@ bool PlayState::Update(float dt)
 
 bool PlayState::Render()
 {
+
+
+
 	GameState::Render(); // All squares and menuitems are rendered in here.
 	GraphicsClass& g = GraphicsClass::GetInstance();
 
+	if (!mPawnAtEndPop->IsPop())
+	{
 
 	// Loop through all the squares.
 	for (UINT x = 0; x < FILES; x++)
@@ -164,12 +166,52 @@ bool PlayState::Render()
 	{
 		g.DrawRectangle(Color(255, 255, 0, 0), 3, 200 + validMoves[i].files * 50, 50 + (RANKS - validMoves[i].rank) * 50, 50, 50);
 	}
+	}
 	return true;
 }
 
 
 bool PlayState::HandleInput()
 {
+	if (mPawnAtEndPop->IsPop())
+	{
+		int answer = -1;
+		mPawnAtEndPop->PopUp(answer);
+		if (answer >= 0)
+		{
+			PlayerColor c = board[mPawnAtEnd.files][mPawnAtEnd.rank]->GetColor();
+			switch (answer)
+			{
+			case 0:
+			{
+				delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
+				board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Queen(c);
+				break;
+			}
+			case 1:
+			{
+				delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
+				board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Rock(c);
+				break;
+			}
+			case 2:
+			{
+				delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
+				board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Knight(c);
+				break;
+			}
+			case 3:
+			{
+				delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
+				board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Bishop(c);
+				break;
+			}
+			}
+			
+		}
+	}
+	else
+	{
 	InputClass& i = InputClass::GetInstance();
 
 	// Check to see if user has pressed the escape button
@@ -196,11 +238,25 @@ bool PlayState::HandleInput()
 					delete board[validMoves[x].files][validMoves[x].rank];				
 				}
 
+					if (board[lastPick.files][lastPick.rank]->GetType() == L"Pawn")
+					{
+
+						if (validMoves[x].rank == ((1 - board[lastPick.files][lastPick.rank]->GetColor()) * 7))
+						{
+							int ret = -1;
+							mPawnAtEnd = validMoves[x];
+							mPawnAtEndPop->PopUp(ret);
+						}
+						
+						
+
+					}
+
 				// Record this move to lastMoves
 				lastMoves.push_back(new Move(lastPick, validMoves[x], board[lastPick.files][lastPick.rank]->GetType(), lastMoves.size() + 1));
 				
 				// Add the move to the Textlist
-				lastMoveList->AddItem(lastMoves[lastMoves.size()-1]->GetMoveText());
+					lastMoveList->AddItem(lastMoves[lastMoves.size() - 1]->GetMoveText());
 
 				//Set that the piece has been moved
 				board[lastPick.files][lastPick.rank]->HasMoved();
@@ -215,6 +271,8 @@ bool PlayState::HandleInput()
 
 				// Change who's turn it is.
 				currPlayer = (currPlayer == White) ? Black : White;
+
+
 			}
 		}
 	}
@@ -252,6 +310,6 @@ bool PlayState::HandleInput()
 			}
 		}
 	}
-
+	}
 	return true;
 }

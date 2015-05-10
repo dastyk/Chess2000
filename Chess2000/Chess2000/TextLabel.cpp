@@ -1,22 +1,27 @@
 #include "TextLabel.h"
+#include "PopUpClass.h"
 
-
-TextLabel::TextLabel() : GraphicsObject(0, 0, 0, 0, Color(0, 0, 0, 0), -1, 0, false, Color(0, 0, 0, 0)), mText(nullptr), mFontSize(0)
+TextLabel::TextLabel() : GraphicsObject(0, 0, 0, 0, Color(0, 0, 0, 0), -1, 0, false, Color(0, 0, 0, 0), false), mText(nullptr), mFontSize(0)
 {
 }
 
 
-TextLabel::TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer) : GraphicsObject(x, y, w, h, bc, layer, 0, false, Color(0, 0, 0, 0)), mText(t), mFontSize(fS)
+TextLabel::TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer) : GraphicsObject(x, y, w, h, bc, layer, 0, false, Color(0, 0, 0, 0), false), mText(t), mFontSize(fS)
 {
 
 }
 
-TextLabel::TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer, LPCTSTR hoverIcon) : GraphicsObject(x, y, w, h, bc, layer, hoverIcon, false, Color(0, 0, 0, 0)), mText(t), mFontSize(fS)
+TextLabel::TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer, LPCTSTR hoverIcon) : GraphicsObject(x, y, w, h, bc, layer, hoverIcon, false, Color(0, 0, 0, 0), false), mText(t), mFontSize(fS)
 {
 
 }
 
-TextLabel::TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover) : GraphicsObject(x, y, w, h, bc, layer, hoverIcon, changeBGOnHover, bcHover), mText(t), mFontSize(fS)
+TextLabel::TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover) : GraphicsObject(x, y, w, h, bc, layer, hoverIcon, changeBGOnHover, bcHover, false), mText(t), mFontSize(fS)
+{
+
+}
+
+TextLabel::TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover, bool popUpItem) : GraphicsObject(x, y, w, h, bc, layer, hoverIcon, changeBGOnHover, bcHover, popUpItem), mText(t), mFontSize(fS)
 {
 
 }
@@ -37,5 +42,8 @@ void TextLabel::Render()
 }
 void TextLabel::Update(int& layer)
 {
-	GraphicsObject::Update(layer);
+	if ((!PopUpClass::IsPopActive) || mPopUpItem)
+	{
+		GraphicsObject::Update(layer);
+	}
 }

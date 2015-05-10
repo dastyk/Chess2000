@@ -11,7 +11,7 @@ class Piece
 protected:
 	//Constructor
 	Piece();
-	Piece(WCHAR* path);
+	Piece(PlayerColor color);
 
 
 	PlayerColor player;

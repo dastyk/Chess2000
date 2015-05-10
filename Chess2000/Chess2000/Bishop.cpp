@@ -8,8 +8,17 @@ Bishop::Bishop()
 	type = L"Bishop";
 }
 
-Bishop::Bishop(WCHAR* path) : Piece(path)
+Bishop::Bishop(PlayerColor color) : Piece(color)
 {
+	if (player == White)
+	{
+		mImage = new Image(L"Resources/Pieces/White Bishop.png");
+	}
+	else
+	{
+		mImage = new Image(L"Resources/Pieces/Black Bishop.png");
+	}
+	
 	type = L"Bishop";
 }
 

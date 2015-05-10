@@ -11,7 +11,7 @@ public:
 	TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer);
 	TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer, LPCTSTR hoverIcon);
 	TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover);
-
+	TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover, bool popUpItem);
 	~TextLabel();
 
 	void Render();

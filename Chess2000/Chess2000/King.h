@@ -13,7 +13,7 @@ private:
 public:
 	~King();
 	King();
-	King(WCHAR* path);
+	King(PlayerColor color);
 	void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]);
 
 };
