@@ -6,9 +6,9 @@ PauseState::PauseState()
 	// Create the meny items
 	mMenuItems.push_back(new ImageClass(0, 0, 800, 600, Color(0, 0, 0, 0), L"Resources/chessBG.png", -1));
 
-	mMenuItems.push_back(mContinueButton = new Button(300, 300, 200, 30, L"Continue", 15, Color(255, 100, 100, 200), 1));
-	mMenuItems.push_back(mRestartButton = new Button(300, 350, 200, 30, L"Restart", 15, Color(255, 100, 100, 200), 1));
-	mMenuItems.push_back(mEndButton = new Button(300, 400, 200, 30, L"End Game", 15, Color(255, 100, 100, 200), 1));
+	mMenuItems.push_back(mContinueButton = new Button(300, 300, 200, 30, L"Continue", 15, Color(200, 100, 100, 200), 1));
+	mMenuItems.push_back(mRestartButton = new Button(300, 350, 200, 30, L"Restart", 15, Color(200, 100, 100, 200), 1));
+	mMenuItems.push_back(mEndButton = new Button(300, 400, 200, 30, L"End Game", 15, Color(200, 100, 100, 200), 1));
 
 	mMenuItems.push_back(new TextLabel(250, 50, 300, 30, L"Chess 2000", 45, Color(0, 0, 0, 0), -1));
 	mMenuItems.push_back(new TextLabel(255, 95, 300, 30, L"Paused", 35, Color(0, 0, 0, 0), -1));

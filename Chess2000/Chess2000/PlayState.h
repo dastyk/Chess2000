@@ -46,10 +46,16 @@ private:
 
 	PopUpClass* mPawnAtEndPop;
 	Pos mPawnAtEnd;
-	Button* mContinueButton;
-	Button* mRestartButton;
-	Button* mEndButton;
 
+	Button* mPauseButton;
+	Button* mSurrenderButton;
+
+
+	void WaitForPopAnswer();
+	void RemovePieceOnPos(Pos pos);
+	void PieceIsPawn(Pos e);
+	void RecordMove(Pos e);
+	void Deselect();
 
 public:
 	PlayState();

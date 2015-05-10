@@ -9,15 +9,22 @@ PlayState::PlayState()
 	currPlayer = White;
 
 	// Deselect all pieces.
-	validMoveCount = 0;
-	lastPick = Pos();
+	Deselect();
 
-	// Create UI elements
+
+
+//-------------------------------------------------------------////
+
+//					Create UI elements
+//-------------------------------------------------------------////
 	mMenuItems.push_back(new ImageClass(0, 0, 800, 600, Color(0, 0, 0, 0), L"Resources/chessBG.png", -1));
 	mMenuItems.push_back(new TextLabel(145, 5, 550, 50, L"CHESS 2000 FUCK YEAHH!!!!", 30, Color(0, 255, 0, 0), -1));
-	mMenuItems.push_back(new TextLabel(160, 50, 170, 25, L"Press 'Escape' to Pause.", 10, Color(255, 100, 100, 200), -1));
+	mMenuItems.push_back(new TextLabel(800 - 170, 600 - 25, 170, 25, L"Press 'Escape' to Pause.", 10, Color(200, 100, 100, 200), -1));
+	mMenuItems.push_back(mPauseButton = new Button(620, 460, 200, 30, L"Pause Game", 15, Color(200, 100, 100, 200), 1));
+	mMenuItems.push_back(mSurrenderButton = new Button(620, 510, 200, 30, L"Surrender Game", 15, Color(200, 100, 100, 200), 1));
 
-	mMenuItems.push_back(lastMoveList = new TextListClass(620, 100, 200, 350, L"Previous Moves:", 15, Color(255, 100, 100, 200), 1));
+	mMenuItems.push_back(lastMoveList = new TextListClass(620, 100, 200, 350, L"Previous Moves:", 15, Color(200, 100, 100, 200), 1));
+
 
 	WCHAR** letters = new WCHAR*[8];
 	letters[0] = L"A";
@@ -32,7 +39,7 @@ PlayState::PlayState()
 
 	for (UINT x = 0; x < FILES; x++)
 	{
-		mMenuItems.push_back(new TextLabel(200 + 50 * x, 500, 30, 30, letters[x], 10, Color(255, 100, 100, 200), -1));
+		mMenuItems.push_back(new TextLabel(200 + 50 * x, 500, 30, 30, letters[x], 10, Color(200, 100, 100, 200), -1));
 	}
 
 	letters[0] = L"1";
@@ -45,15 +52,14 @@ PlayState::PlayState()
 	letters[6] = L"7";
 	letters[7] = L"8";
 
-
-
 	for (UINT x = 0; x < RANKS; x++)
 	{
-		mMenuItems.push_back(new TextLabel(170, 470 - 50 * x, 30, 30, letters[x], 10, Color(255, 100, 100, 200), -1));
+		mMenuItems.push_back(new TextLabel(170, 470 - 50 * x, 30, 30, letters[x], 10, Color(200, 100, 100, 200), -1));
 	}
 
 	delete[] letters;
 
+	// Squares for the board
 	board = new Piece**[FILES];
 	for (UINT x = 0; x < FILES; x++)
 	{
@@ -66,13 +72,19 @@ PlayState::PlayState()
 		}
 	}
 
+	// PawnAtEnd PopUp setup
 	mMenuItems.push_back(mPawnAtEndPop = new PopUpClass(250, 150, 300, 300, L"Pick a piece.", 15, Color(255, 100, 100, 200), 10));
 	mPawnAtEndPop->AddItem(new Button(75, 75, 125, 30, L"Queen", 15, Color(255, 255, 255, 255), 1), POPUPBUTTON);
 	mPawnAtEndPop->AddItem(new Button(75, 110, 125, 30, L"Rock", 15, Color(255, 255, 255, 255), 1), POPUPBUTTON);
 	mPawnAtEndPop->AddItem(new Button(75, 145, 125, 30, L"Knight", 15, Color(255, 255, 255, 255), 1), POPUPBUTTON);
 	mPawnAtEndPop->AddItem(new Button(75, 180, 125, 30, L"Bishop", 15, Color(255, 255, 255, 255), 1), POPUPBUTTON);
 
-	// Create all the game pieces.
+
+//-------------------------------------------------------------////
+
+//				Create all the game pieces.
+//-------------------------------------------------------------////
+
 	for (int i = 0; i < FILES; i++)
 	{
 		board[i][1] = new Pawn(White);
@@ -139,33 +151,30 @@ bool PlayState::Update(float dt)
 
 bool PlayState::Render()
 {
-
-
-
 	GameState::Render(); // All squares and menuitems are rendered in here.
 	GraphicsClass& g = GraphicsClass::GetInstance();
 
-	if (!mPawnAtEndPop->IsPop())
+	if (!mPawnAtEndPop->IsPop()) // Dont render the pices if popup is open. (They overlap the popup).
 	{
 
-	// Loop through all the squares.
-	for (UINT x = 0; x < FILES; x++)
-	{
-		for (UINT y = 0; y < RANKS; y++)
+		// Loop through all the squares.
+		for (UINT x = 0; x < FILES; x++)
 		{
-			if (board[x][y])
+			for (UINT y = 0; y < RANKS; y++)
 			{
-				// if there is a piece there, draw it.
-				g.DrawImage(board[x][y]->GetImage(), 200 + x * 50, 50 + (RANKS - y) * 50, 50, 50);
+				if (board[x][y])
+				{
+					// if there is a piece there, draw it.
+					g.DrawImage(board[x][y]->GetImage(), 200 + x * 50, 50 + (RANKS - y) * 50, 50, 50);
+				}
 			}
 		}
-	}
 
-	// Loop through all validMoves, and draw them.
-	for (int i = 0; i < validMoveCount; i++)
-	{
-		g.DrawRectangle(Color(255, 255, 0, 0), 3, 200 + validMoves[i].files * 50, 50 + (RANKS - validMoves[i].rank) * 50, 50, 50);
-	}
+		// Loop through all validMoves, and draw them.
+		for (int i = 0; i < validMoveCount; i++)
+		{
+			g.DrawRectangle(Color(255, 255, 0, 0), 3, 200 + validMoves[i].files * 50, 50 + (RANKS - validMoves[i].rank) * 50, 50, 50);
+		}
 	}
 	return true;
 }
@@ -173,46 +182,25 @@ bool PlayState::Render()
 
 bool PlayState::HandleInput()
 {
+//-------------------------------------------------------------////
+
+//			Check to see if a pawn is at the end
+//-------------------------------------------------------------////
 	if (mPawnAtEndPop->IsPop())
 	{
-		int answer = -1;
-		mPawnAtEndPop->PopUp(answer);
-		if (answer >= 0)
-		{
-			PlayerColor c = board[mPawnAtEnd.files][mPawnAtEnd.rank]->GetColor();
-			switch (answer)
-			{
-			case 0:
-			{
-				delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
-				board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Queen(c);
-				break;
-			}
-			case 1:
-			{
-				delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
-				board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Rock(c);
-				break;
-			}
-			case 2:
-			{
-				delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
-				board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Knight(c);
-				break;
-			}
-			case 3:
-			{
-				delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
-				board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Bishop(c);
-				break;
-			}
-			}
-			
-		}
+		// If there is, wait for answer from player.
+		WaitForPopAnswer();
+		return true;
 	}
-	else
-	{
+
+//--------------------------------------------------------/////
+
+
+	// If pawn not at end, continue as usual.
 	InputClass& i = InputClass::GetInstance();
+
+//				Button and key presses
+//-------------------------------------------------------------////
 
 	// Check to see if user has pressed the escape button
 	if (i.IsKeyDown(VK_ESCAPE))
@@ -220,6 +208,21 @@ bool PlayState::HandleInput()
 		PlayGame::GetInstance().ChangeState(PAUSESTATE); // If key was pressed change to pause state.		
 	}
 
+	// Check if pause button is clicked.
+	if (mPauseButton->IsClicked())
+		PlayGame::GetInstance().ChangeState(PAUSESTATE); // If button was pressed change to pause state.		
+
+	// Check if surrender button is clicked.
+	if (mSurrenderButton->IsClicked())
+	{
+		// If button was pressed, decide winner and end game.	
+		PlayGame::GetInstance().EndGameKingTaken((currPlayer == White) ? Black : White);
+	}
+
+//-------------------------------------------------------------////
+
+//						Pick a move
+//-------------------------------------------------------------////
 	// If a piece is selected, loop thourgh the valid moves.
 	if (validMoveCount > 0)
 	{
@@ -229,35 +232,14 @@ bool PlayState::HandleInput()
 			if (squares[validMoves[x].files][validMoves[x].rank]->IsClicked())
 			{
 				// If there is currently a piece in this pos, remove it.
-				if (board[validMoves[x].files][validMoves[x].rank])
-				{
-					if (board[validMoves[x].files][validMoves[x].rank]->GetType() == L"King")
-					{
-						PlayGame::GetInstance().EndGameKingTaken(currPlayer);						
-					}
-					delete board[validMoves[x].files][validMoves[x].rank];				
-				}
+				RemovePieceOnPos(validMoves[x]);
 
-					if (board[lastPick.files][lastPick.rank]->GetType() == L"Pawn")
-					{
+				// If the moved piece is a pawn
+				PieceIsPawn(validMoves[x]);
 
-						if (validMoves[x].rank == ((1 - board[lastPick.files][lastPick.rank]->GetColor()) * 7))
-						{
-							int ret = -1;
-							mPawnAtEnd = validMoves[x];
-							mPawnAtEndPop->PopUp(ret);
-						}
-						
-						
-
-					}
-
-				// Record this move to lastMoves
-				lastMoves.push_back(new Move(lastPick, validMoves[x], board[lastPick.files][lastPick.rank]->GetType(), lastMoves.size() + 1));
+				// Record this move.
+				RecordMove(validMoves[x]);
 				
-				// Add the move to the Textlist
-					lastMoveList->AddItem(lastMoves[lastMoves.size() - 1]->GetMoveText());
-
 				//Set that the piece has been moved
 				board[lastPick.files][lastPick.rank]->HasMoved();
 
@@ -266,17 +248,20 @@ bool PlayState::HandleInput()
 				board[lastPick.files][lastPick.rank] = nullptr;
 
 				// Deselect the piece
-				validMoveCount = 0;
-				lastPick = Pos();
+				Deselect();
 
 				// Change who's turn it is.
 				currPlayer = (currPlayer == White) ? Black : White;
 
-
+				return true;
 			}
 		}
 	}
 
+//-------------------------------------------------------------////
+
+//						Pick a piece
+//-------------------------------------------------------------////
 
 	// Loops through all squares and check if there is a piece there.
 	for (UINT x = 0; x < FILES; x++)
@@ -292,24 +277,108 @@ bool PlayState::HandleInput()
 					if (squares[x][y]->IsClicked())
 					{
 						// If player clicked the piece, check if it was already selected.
-						validMoveCount = 0;
 						if (lastPick == Pos(x, y))
 						{
-							// If piece was selected, unselect it.
-							lastPick = Pos();
+							// If piece was selected, deselect it.
+							Deselect();
+							return true;
 						}
 						else
 						{
 							// else select the piece and get all valid moves for the piece.
 							lastPick = Pos(x, y);
+							validMoveCount = 0;
 							board[x][y]->GetValidMoves(board, lastPick, validMoveCount, validMoves);
-
+							return true;
 						}
 					}
 				}
 			}
 		}
 	}
-	}
+
 	return true;
+}
+
+void PlayState::WaitForPopAnswer()
+{
+	int answer = -1;
+	mPawnAtEndPop->PopUp(answer);
+	if (answer >= 0)
+	{
+		// Create the selected piece.
+		PlayerColor c = board[mPawnAtEnd.files][mPawnAtEnd.rank]->GetColor();
+		switch (answer)
+		{
+		case 0:
+		{
+			delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
+			board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Queen(c);
+			break;
+		}
+		case 1:
+		{
+			delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
+			board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Rock(c);
+			break;
+		}
+		case 2:
+		{
+			delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
+			board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Knight(c);
+			break;
+		}
+		case 3:
+		{
+			delete board[mPawnAtEnd.files][mPawnAtEnd.rank];
+			board[mPawnAtEnd.files][mPawnAtEnd.rank] = new Bishop(c);
+			break;
+		}
+		}
+
+	}
+}
+
+void PlayState::RemovePieceOnPos(Pos pos)
+{
+	if (board[pos.files][pos.rank])
+	{
+		// If the pieces moved to the king pos, decide winner and end game.
+		if (board[pos.files][pos.rank]->GetType() == L"King")
+		{
+			PlayGame::GetInstance().EndGameKingTaken(currPlayer);
+		}
+		delete board[pos.files][pos.rank];
+	}
+}
+
+void PlayState::PieceIsPawn(Pos e)
+{
+	// Check if lastPick is a pawn.
+	if (board[lastPick.files][lastPick.rank]->GetType() == L"Pawn")
+	{
+		// Check if it moves to the end of the board
+		if (e.rank == ((1 - board[lastPick.files][lastPick.rank]->GetColor()) * 7))
+		{
+			// If it is at the end, open pawn at end popup.
+			int ret = -1;
+			mPawnAtEnd = e;
+			mPawnAtEndPop->PopUp(ret);
+		}
+	}
+}
+void PlayState::RecordMove(Pos e)
+{
+	// Add move to last moves
+	lastMoves.push_back(new Move(lastPick, e, board[lastPick.files][lastPick.rank]->GetType(), lastMoves.size() + 1));
+
+	// Add the move to the Textlist
+	lastMoveList->AddItem(lastMoves[lastMoves.size() - 1]->GetMoveText());
+}
+
+void PlayState::Deselect()
+{
+	// Deselect all pieces
+	validMoveCount = 0;
+	lastPick = Pos();
 }

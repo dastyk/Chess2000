@@ -6,12 +6,13 @@
 #include "Button.h"
 #include "TextLabel.h"
 #include "ImageClass.h"
+#include "Enum.h"
 
 class GameOverState :
 	public GameState
 {
 public:
-	GameOverState();
+	GameOverState(PlayerColor color);
 	~GameOverState();
 
 

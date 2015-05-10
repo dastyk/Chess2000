@@ -109,20 +109,10 @@ PlayGame&  PlayGame::GetInstance()
 
 void PlayGame::EndGameKingTaken(PlayerColor currentPlayer)
 {
-	SetWinner(currentPlayer);
-	mStates[GAMEOVERSTATE] = new GameOverState();
+	mStates[GAMEOVERSTATE] = new GameOverState(currentPlayer);
 	ChangeState(GAMEOVERSTATE);
 }
 
-void PlayGame::SetWinner(PlayerColor currentPlayer)
-{
-	winner = currentPlayer;
-}
-
-PlayerColor PlayGame::GetWinner()
-{
-	return winner;
-}
 
 void PlayGame::ChangeState(UINT state)
 {

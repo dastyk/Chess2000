@@ -351,14 +351,14 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	}
 
 	RECT rc = { 0, 0, screenWidth, screenHeight };
-	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+	AdjustWindowRect(&rc, (WS_OVERLAPPED | WS_CAPTION), FALSE);
 
 	// Create the window with the screen settings and get the handle to it.
 	mHwnd = CreateWindowEx(
 		WS_EX_APPWINDOW, 
 		mApplicationName, 
 		mApplicationName,
-		WS_OVERLAPPEDWINDOW,
+		(WS_OVERLAPPED | WS_CAPTION ),
 		posX, 
 		posY, 
 		rc.right - rc.left,

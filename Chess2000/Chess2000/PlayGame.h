@@ -34,9 +34,6 @@ public:
 	void EndGameKingTaken(PlayerColor currentPlayer);
 	void RestartGame();
 
-	void SetWinner(PlayerColor currentPlayer);
-	PlayerColor GetWinner();
-
 	static void CreateInstance();
 	static PlayGame* GetInstancePointer();
 	static PlayGame& GetInstance();
