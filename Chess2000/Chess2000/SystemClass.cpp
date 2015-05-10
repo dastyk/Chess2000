@@ -111,6 +111,7 @@ void SystemClass::Run()
 	bool result;
 
 
+
 	waveOutSetVolume(0, 0x22222222);
 	PlaySound(L"Resources/chess0", NULL, SND_FILENAME | SND_ASYNC);
 
@@ -443,4 +444,11 @@ void SystemClass::ChangeState(unsigned int state)
 void SystemClass::Exit()
 {
 	mRunning = false;
+}
+
+void SystemClass::ChangeCursor(LPCTSTR cursor)
+{
+	HCURSOR Cursor = LoadCursorFromFile(L"path/filename.cur"); //.cur or .ani
+	SetCursor(Cursor);
+	SetCursor(LoadCursor(NULL, cursor));
 }

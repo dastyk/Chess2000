@@ -15,6 +15,7 @@
 
 #include "TextLabel.h"
 #include "TextListClass.h"
+#include "Move.h"
 
 #include <sstream>
 
@@ -29,8 +30,8 @@ class PlayState :
 private:
 	Piece*** board;
 	TextLabel* squares[RANKS][FILES];
-	TextListClass* lastMoves;
-
+	TextListClass* lastMoveList;
+	std::vector<Move*> lastMoves;
 
 	Pos lastPick;
 

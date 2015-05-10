@@ -25,6 +25,15 @@ bool Display::HandleInput()
 
 bool Display::Update(float dt)
 {
+	int layer = 0;
+
+	// Update all menuitems.
+	int items = mMenuItems.size() ;
+	for (int i = 0; i < items; i++)
+	{
+		mMenuItems[i]->Update(layer);
+	}
+
 	return true;
 }
 bool Display::Render()

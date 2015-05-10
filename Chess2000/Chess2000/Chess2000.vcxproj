@@ -104,6 +104,7 @@
     <ClCompile Include="InputClass.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
+    <ClCompile Include="Move.cpp" />
     <ClCompile Include="TextListClass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />

@@ -11,16 +11,24 @@ class TextListClass :
 {
 public:
 	TextListClass();
-	TextListClass(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc);
+	TextListClass(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer);
 	~TextListClass();
 
 	void Render();
+	void Update(int& layer);
 
 	void AddItem(WCHAR* t);
+
+	void OnScroll();
 
 private:
 	TextLabel* mList;
 	REAL mFontSize;
+
+	UINT startListAt;
+	UINT endListAt;
+
+	int drag;
 
 	std::vector<TextLabel*> mItems;
 

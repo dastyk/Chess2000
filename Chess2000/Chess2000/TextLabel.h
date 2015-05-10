@@ -8,12 +8,12 @@ class TextLabel :
 {
 public:
 	TextLabel();
-	TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc);
+	TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer);
 
 	~TextLabel();
 
 	void Render();
-
+	void Update(int& layer);
 
 private:
 	WCHAR* mText;
