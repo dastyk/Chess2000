@@ -17,9 +17,19 @@ public:
 	virtual bool IsHovering();
 
 
+	int GetPosX();
+	int GetPosY();
 
+	void SetPosX(int x);
 	void SetPosY(int y);
+
+	int GetLayer();
+	void SetLayer(int layer);
+
+	UINT GetWidth();
 	UINT GetHeight();
+
+	void SetPopUpItem(bool pop);
 
 protected:
 	GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover, bool popUpItem);
@@ -36,7 +46,7 @@ protected:
 	Color mBackGroundColor;
 	Color mBCHover;
 	bool mChangeBGOnHover;
-	bool mPopUtItem;
+	bool mPopUpItem;
 };
 
 #endif

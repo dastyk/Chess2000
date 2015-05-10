@@ -9,8 +9,16 @@ Pawn::Pawn()
 	firstMoveDone = false;
 }
 
-Pawn::Pawn(WCHAR* path) : Piece(path)
+Pawn::Pawn(PlayerColor color) : Piece(color)
 {
+	if (player == White)
+	{
+		mImage = new Image(L"Resources/Pieces/White Pawn.png");
+	}
+	else
+	{
+		mImage = new Image(L"Resources/Pieces/Black Pawn.png");
+	}
 	type = L"Pawn";
 	firstMoveDone = false;
 }

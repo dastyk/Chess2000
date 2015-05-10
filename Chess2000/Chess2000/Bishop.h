@@ -10,7 +10,7 @@ private:
 public:
 	~Bishop();
 	Bishop();
-	Bishop(WCHAR* path);
+	Bishop(PlayerColor color);
 	void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]);
 
 };

@@ -15,6 +15,8 @@
 
 #include "TextLabel.h"
 #include "TextListClass.h"
+#include "PopUpClass.h"
+
 #include "Move.h"
 
 #include <sstream>
@@ -41,6 +43,8 @@ private:
 
 	PlayerColor currPlayer;
 
+	PopUpClass* mPawnAtEndPop;
+	Pos mPawnAtEnd;
 
 public:
 	PlayState();

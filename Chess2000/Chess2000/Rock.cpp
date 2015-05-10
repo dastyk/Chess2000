@@ -9,8 +9,16 @@ Rock::Rock()
 	firstMoveDone = false;
 }
 
-Rock::Rock(WCHAR* path) : Piece(path)
+Rock::Rock(PlayerColor color) : Piece(color)
 {
+	if (player == White)
+	{
+		mImage = new Image(L"Resources/Pieces/White Rock.png");
+	}
+	else
+	{
+		mImage = new Image(L"Resources/Pieces/Black Rock.png");
+	}
 	type = L"Rock";
 	firstMoveDone = false;
 }

@@ -11,6 +11,7 @@ class Button :
 public:
 	Button();
 	Button(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer);
+	Button(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer, bool popUpItem);
 	~Button();
 
 	void Render();

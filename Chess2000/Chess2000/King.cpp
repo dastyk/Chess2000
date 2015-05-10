@@ -9,8 +9,17 @@ King::King()
 	firstMoveDone = false;
 }
 
-King::King(WCHAR* path) : Piece(path)
+King::King(PlayerColor color) : Piece(color)
 {
+	if (player == White)
+	{
+		mImage = new Image(L"Resources/Pieces/White King.png");
+	}
+	else
+	{
+		mImage = new Image(L"Resources/Pieces/Black King.png");
+	}
+
 	type = L"King";
 	firstMoveDone = false;
 }

@@ -11,7 +11,7 @@ private:
 public:
 	~Pawn();
 	Pawn();
-	Pawn(WCHAR* path);
+	Pawn(PlayerColor color);
 	void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]);
 
 

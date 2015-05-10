@@ -11,7 +11,7 @@ private:
 public:
 	~Queen();
 	Queen();
-	Queen(WCHAR* path);
+	Queen(PlayerColor color);
 	void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]);
 
 };

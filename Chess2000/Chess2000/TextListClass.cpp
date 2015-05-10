@@ -1,11 +1,12 @@
 #include "TextListClass.h"
 
+#include "PopUpClass.h"
 
-TextListClass::TextListClass() : GraphicsObject(0, 0, 0, 0, Color(0, 0, 0, 0), -1, 0, false, Color(0, 0, 0, 0)), mFontSize(0)
+TextListClass::TextListClass() : GraphicsObject(0, 0, 0, 0, Color(0, 0, 0, 0), -1, 0, false, Color(0, 0, 0, 0), false), mFontSize(0)
 {
 }
 
-TextListClass::TextListClass(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer) : GraphicsObject(x, y, w, h, bc, layer, 0, false, Color(0, 0, 0, 0)), mFontSize(fS)
+TextListClass::TextListClass(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer) : GraphicsObject(x, y, w, h, bc, layer, 0, false, Color(0, 0, 0, 0), false), mFontSize(fS)
 {
 	startListAt = 0;
 	endListAt = 0;
@@ -115,9 +116,12 @@ void TextListClass::OnScroll()
 
 void TextListClass::Update(int& layer)
 {
-	GraphicsObject::Update(layer);
+	if ((!PopUpClass::IsPopActive) || mPopUpItem)
+	{
+		GraphicsObject::Update(layer);
 
-	OnScroll();
+		OnScroll();
+	}
 }
 
 

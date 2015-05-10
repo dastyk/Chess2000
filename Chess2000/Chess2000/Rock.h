@@ -12,7 +12,7 @@ private:
 public:
 	~Rock();
 	Rock();
-	Rock(WCHAR* path);
+	Rock(PlayerColor color);
 	void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]);
 
 };

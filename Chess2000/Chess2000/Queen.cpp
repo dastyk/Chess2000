@@ -8,8 +8,16 @@ Queen::Queen()
 	type = L"Queen";
 }
 
-Queen::Queen(WCHAR* path) : Piece(path)
+Queen::Queen(PlayerColor color) : Piece(color)
 {
+	if (player == White)
+	{
+		mImage = new Image(L"Resources/Pieces/White Queen.png");
+	}
+	else
+	{
+		mImage = new Image(L"Resources/Pieces/Black Queen.png");
+	}
 	type = L"Queen";
 }
 

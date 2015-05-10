@@ -24,6 +24,8 @@ public:
 	void AddItem(GraphicsObject* item, UINT type);
 
 	int PopUp(int& answer);
+	bool IsPop();
+
 
 	static bool IsPopActive;
 
@@ -35,6 +37,7 @@ private:
 	int mAnswer;
 
 	TextLabel* mBG;
+	TextLabel* mText;
 
 	struct ItemStruct
 	{

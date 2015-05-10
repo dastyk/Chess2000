@@ -4,9 +4,9 @@ Piece::Piece()
 {
 	mImage = nullptr;
 }
-Piece::Piece(WCHAR* path)
+Piece::Piece(PlayerColor color) : player(color)
 {
-	mImage = new Image(path);
+	player = color;
 }
 
 Piece::~Piece()

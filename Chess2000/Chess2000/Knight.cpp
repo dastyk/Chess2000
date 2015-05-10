@@ -8,8 +8,16 @@ Knight::Knight()
 	type = L"Knight";
 }
 
-Knight::Knight(WCHAR* path) : Piece(path)
+Knight::Knight(PlayerColor color) : Piece(color)
 {
+	if (player == White)
+	{
+		mImage = new Image(L"Resources/Pieces/White Knight.png");
+	}
+	else
+	{
+		mImage = new Image(L"Resources/Pieces/Black Knight.png");
+	}
 	type = L"Knight";
 
 }
