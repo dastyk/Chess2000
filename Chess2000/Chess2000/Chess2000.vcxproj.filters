@@ -135,6 +135,9 @@
     <ClInclude Include="TextListClass.h">
       <Filter>Header Files\MenuItems</Filter>
     </ClInclude>
+    <ClInclude Include="PopUpClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Display.cpp">
@@ -217,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="Move.cpp">
       <Filter>Source Files\HelpClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="PopUpClass.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

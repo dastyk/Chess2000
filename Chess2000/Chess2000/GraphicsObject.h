@@ -22,7 +22,7 @@ public:
 	UINT GetHeight();
 
 protected:
-	GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover);
+	GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover, bool popUpItem);
 	int mLayer;
 
 	virtual void OnEnter();
@@ -36,6 +36,7 @@ protected:
 	Color mBackGroundColor;
 	Color mBCHover;
 	bool mChangeBGOnHover;
+	bool mPopUtItem;
 };
 
 #endif

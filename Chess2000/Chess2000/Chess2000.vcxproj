@@ -75,6 +75,7 @@
     <ClInclude Include="InputClass.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />
+    <ClInclude Include="PopUpClass.h" />
     <ClInclude Include="TextListClass.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Move.h" />
@@ -105,6 +106,7 @@
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Move.cpp" />
+    <ClCompile Include="PopUpClass.cpp" />
     <ClCompile Include="TextListClass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
