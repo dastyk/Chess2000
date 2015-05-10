@@ -4,16 +4,19 @@
 PlayState::PlayState()
 {
 
+	// Set who starts the game.
 	currPlayer = White;
 
+	// Deselect all pieces.
 	validMoveCount = 0;
+	lastPick = Pos();
 
 	// Create UI elements
 	mMenuItems.push_back(new ImageClass(0, 0, 800, 600, Color(0, 0, 0, 0), L"Resources/chessBG.png", -1));
 	mMenuItems.push_back(new TextLabel(145, 5, 550, 50, L"CHESS 2000 FUCK YEAHH!!!!", 30, Color(0, 255, 0, 0), -1));
 	mMenuItems.push_back(new TextLabel(160, 50, 170, 25, L"Press 'Escape' to Pause.", 10, Color(255, 100, 100, 200), -1));
 
-	mMenuItems.push_back(lastMoveList = new TextListClass(620, 100, 200, 200, L"Previous Moves:", 15, Color(255, 100, 100, 200), 1));
+	mMenuItems.push_back(lastMoveList = new TextListClass(620, 100, 200, 350, L"Previous Moves:", 15, Color(255, 100, 100, 200), 1));
 
 	WCHAR** letters = new WCHAR*[8];
 	letters[0] = L"A";
@@ -139,7 +142,7 @@ bool PlayState::Update(float dt)
 
 bool PlayState::Render()
 {
-	GameState::Render(); // All squares are rendered in here.
+	GameState::Render(); // All squares and menuitems are rendered in here.
 	GraphicsClass& g = GraphicsClass::GetInstance();
 
 

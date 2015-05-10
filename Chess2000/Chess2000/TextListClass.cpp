@@ -11,6 +11,7 @@ TextListClass::TextListClass(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Co
 	endListAt = 0;
 	mHoverIcon = IDC_HAND;
 	mList = new TextLabel(x, y, w, h, t, fS, bc,layer);
+	InputClass::GetInstance().AddScrollListener(&drag);
 }
 
 TextListClass::~TextListClass()
@@ -37,7 +38,18 @@ void TextListClass::Render()
 
 	mList->Render();
 
-	g.FillRectangle(Color(50, 255, 255, 255), mPosX + mWidth - 40, mPosY + mFontSize + 10, 20, mHeight);
+
+	if (startListAt > 0 || endListAt < mItems.size())
+	{
+		g.FillRectangle(Color(50, 255, 255, 255), mPosX + mWidth - 40, mPosY + mFontSize + 10, 20, mHeight - (mFontSize + 10));
+
+		
+		int full = mItems.size();
+		int finHeight = ((endListAt - startListAt) / (float)full) * (mHeight - (mFontSize + 10));
+		int finPos = mPosY + mFontSize + 10 +  (startListAt / (float) full)*(mHeight - (mFontSize + 10));
+
+		g.FillRectangle(Color(100, 255, 255, 255), mPosX + mWidth - 40, finPos, 20, finHeight);
+	}
 
 
 	UINT x = 0;
@@ -66,25 +78,37 @@ void TextListClass::OnScroll()
 {
 	InputClass& i = InputClass::GetInstance();
 
-	if (mList->IsHovering())
+	if (mInFocus)
+	{
+		if (!IsHovering())
+		{
+			if (!i.IsMouseKeyDown(LMOUSE))
+			{
+				mInFocus = false;
+			}
+		}
+	}
+
+	if (mInFocus)
 	{
 		if (i.IsMouseKeyDown(LMOUSE))
 		{
 			drag += i.GetMousePosYDiff();
-			if (drag >= 10)
-			{
-				endListAt = (startListAt > 0) ? endListAt - 1 : endListAt;
-				startListAt = (startListAt > 0) ? startListAt - 1 : 0;
+		}
 
-				drag = 0;
-			}
-			else if (drag <= -10)
-			{
+		if (drag >= 10)
+		{
+			endListAt = (startListAt > 0) ? endListAt - 1 : endListAt;
+			startListAt = (startListAt > 0) ? startListAt - 1 : 0;
 
-				startListAt = (endListAt < mItems.size()) ? startListAt + 1 : startListAt;
-				endListAt = (endListAt < mItems.size()) ? endListAt + 1 : endListAt;
-				drag = 0;
-			}
+			drag = 0;
+		}
+		else if (drag <= -10)
+		{
+
+			startListAt = (endListAt < mItems.size()) ? startListAt + 1 : startListAt;
+			endListAt = (endListAt < mItems.size()) ? endListAt + 1 : endListAt;
+			drag = 0;
 		}
 	}
 }
@@ -94,4 +118,31 @@ void TextListClass::Update(int& layer)
 	GraphicsObject::Update(layer);
 
 	OnScroll();
+}
+
+
+void TextListClass::OnEnter()
+{
+	if (!mHovering)
+	{
+		if (IsHovering())
+		{
+			mInFocus = true;
+			drag = 0;
+			mHovering = true;
+		}
+	}
+
+}
+
+void TextListClass::OnExit()
+{
+	if (mHovering)
+	{
+		if (!IsHovering())
+		{
+			mHovering = false;
+		}
+	}
+
 }

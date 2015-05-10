@@ -16,8 +16,6 @@ public:
 	virtual bool IsClicked();
 	virtual bool IsHovering();
 
-	virtual void OnEnter();
-	virtual void OnExit();
 
 
 	void SetPosY(int y);
@@ -27,7 +25,10 @@ protected:
 	GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover);
 	int mLayer;
 
+	virtual void OnEnter();
+	virtual void OnExit();
 
+	bool mInFocus;
 	LPCTSTR mHoverIcon;
 	bool mHovering;
 	int mPosX, mPosY;

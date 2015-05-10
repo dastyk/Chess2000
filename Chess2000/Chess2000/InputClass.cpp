@@ -82,6 +82,17 @@ void InputClass::MouseUp(unsigned int key)
 	mMouseKeys[key] = false;
 }
 
+void InputClass::OnMouseScroll(int delta)
+{
+	// Add the delta to all scroll listeners.
+	int count = mScrollListeners.size();
+	for (int i = 0; i < count; i++)
+	{
+		(*(mScrollListeners[i])) += (delta / 10);
+	}
+}
+
+
 bool InputClass::IsMouseKeyDown(unsigned int key)
 {
 	// Return what state the key is in (pressed/not pressed).
@@ -114,4 +125,12 @@ InputClass& InputClass::GetInstance()
 int InputClass::GetMousePosYDiff()
 {
 	return mMousePosY - mLastMousePosY;
+}
+
+
+
+void InputClass::AddScrollListener(int* l)
+{
+	// Add a scroll listener. (Used for scrolling in TextList)
+	mScrollListeners.push_back(l);
 }
