@@ -16,6 +16,7 @@
 #include "TextLabel.h"
 #include "TextListClass.h"
 #include "Move.h"
+#include "Button.h"
 
 #include <sstream>
 
@@ -40,6 +41,10 @@ private:
 	int validMoveCount;
 
 	PlayerColor currPlayer;
+
+	Button* mContinueButton;
+	Button* mRestartButton;
+	Button* mEndButton;
 
 
 public:

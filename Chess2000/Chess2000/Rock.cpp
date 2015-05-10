@@ -27,33 +27,33 @@ Rock::~Rock()
 void Rock::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[])
 {
 	ReturnMoveCount = 0;
-	int maximumMovesLeft, maximumMovesDown, maximumMovesUp, maximumMovesRight;
+	int maximumMovesLeft, maximumMovesDown, maximumMovesUp, maximumMovesRight; //We check how far we can go in each direction (up, down, right,left)
 	maximumMovesLeft = currentPos.files;
 	maximumMovesRight = 8-currentPos.files-1;
 	maximumMovesDown = currentPos.rank;
 	maximumMovesUp = 8 - currentPos.rank - 1;
 
-	for (int i = 1; i <= maximumMovesLeft; i++)
+	for (int i = 1; i <= maximumMovesLeft; i++)	//For every square along the way to the left, we check
 	{
-		if (board[currentPos.files - i][currentPos.rank] == nullptr)
+		if (board[currentPos.files - i][currentPos.rank] == nullptr)	//If the square is empty
 		{
 			ReturnPos[ReturnMoveCount].files = currentPos.files - i;
 			ReturnPos[ReturnMoveCount].rank = currentPos.rank;
-			ReturnMoveCount++;
+			ReturnMoveCount++;	//Then we add it to the movement list
 		}
 		else
 		{
-			if (board[currentPos.files - i][currentPos.rank]->GetColor() != player)
+			if (board[currentPos.files - i][currentPos.rank]->GetColor() != player) //If the piece staying there is an enemy
 			{
 				ReturnPos[ReturnMoveCount].files = currentPos.files - i;
 				ReturnPos[ReturnMoveCount].rank = currentPos.rank;
-				ReturnMoveCount++;
+				ReturnMoveCount++; //Then we add it to the list
 			}
-			maximumMovesLeft = 0;
+			maximumMovesLeft = 0; //and point out that something is blocking to the left
 
 		}
 	}
-	for (int i = 1; i <= maximumMovesRight; i++)
+	for (int i = 1; i <= maximumMovesRight; i++) //Then we do it for the right
 	{
 		if (board[currentPos.files + i][currentPos.rank] == nullptr)
 		{
@@ -74,7 +74,7 @@ void Rock::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 		}
 	}
 
-	for (int i = 1; i <= maximumMovesDown; i++)
+	for (int i = 1; i <= maximumMovesDown; i++) //down
 	{
 		if (board[currentPos.files][currentPos.rank - i] == nullptr)
 		{
@@ -95,7 +95,7 @@ void Rock::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 		}
 	}
 
-	for (int i = 1; i <= maximumMovesUp; i++)
+	for (int i = 1; i <= maximumMovesUp; i++) //and up
 	{
 		if (board[currentPos.files][currentPos.rank + i] == nullptr)
 		{
@@ -115,10 +115,7 @@ void Rock::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 
 		}
 	}
-
-
-
-
+	
 }
 
 #pragma endregion

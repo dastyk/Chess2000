@@ -186,6 +186,10 @@ bool PlayState::HandleInput()
 				// If there is currently a piece in this pos, remove it.
 				if (board[validMoves[x].files][validMoves[x].rank])
 				{
+					if (board[validMoves[x].files][validMoves[x].rank]->GetType() == L"King")
+					{
+						PlayGame::GetInstance().EndGameKingTaken(currPlayer);						
+					}
 					delete board[validMoves[x].files][validMoves[x].rank];				
 				}
 

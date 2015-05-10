@@ -28,22 +28,22 @@ void Knight::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount,
 {
 	ReturnMoveCount = 0;
 
-	if (currentPos.files - 1 >= 0 && currentPos.rank - 2 >= 0)
+	if (currentPos.files - 1 >= 0 && currentPos.rank - 2 >= 0)	//THe knight is a bastard at jumping around. For each movement he can make, we check so that it's inside the bounds
 	{
 
-		if (board[currentPos.files - 1][currentPos.rank - 2] == nullptr)
+		if (board[currentPos.files - 1][currentPos.rank - 2] == nullptr) //And if there's someone there.
 		{
 			ReturnPos[ReturnMoveCount].files = currentPos.files - 1;
 			ReturnPos[ReturnMoveCount].rank = currentPos.rank - 2;
-			ReturnMoveCount++;
+			ReturnMoveCount++; //If not, we add that movement.
 		}
 		else
 		{
-			if (board[currentPos.files - 1][currentPos.rank - 2]->GetColor() != player)
+			if (board[currentPos.files - 1][currentPos.rank - 2]->GetColor() != player)  //Or if that someone is an enemy
 			{
 				ReturnPos[ReturnMoveCount].files = currentPos.files - 1;
 				ReturnPos[ReturnMoveCount].rank = currentPos.rank - 2;
-				ReturnMoveCount++;
+				ReturnMoveCount++; //And if that one is, we also add that one to the list.
 			}
 		}
 	}

@@ -26,6 +26,7 @@ Queen::~Queen()
 
 void Queen::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[])
 {
+	//Queen is a combination of Rock and Bishop, read their comments.
 	ReturnMoveCount = 0;
 	int maximumMovesUpLeft, maximumMovesUpRight, maximumMovesDownLeft, maximumMovesDownRight;
 	int maximumMovesLeft, maximumMovesDown, maximumMovesUp, maximumMovesRight;

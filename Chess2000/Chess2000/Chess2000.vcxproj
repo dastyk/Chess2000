@@ -68,6 +68,7 @@
     <ClInclude Include="Bishop.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Enum.h" />
+    <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GraphicsClass.h" />
     <ClInclude Include="GraphicsObject.h" />
@@ -97,6 +98,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Bishop.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GraphicsClass.cpp" />
     <ClCompile Include="GraphicsObject.cpp" />

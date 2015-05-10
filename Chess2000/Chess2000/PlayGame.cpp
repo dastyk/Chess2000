@@ -107,6 +107,23 @@ PlayGame&  PlayGame::GetInstance()
 	return *mInstance;
 }
 
+void PlayGame::EndGameKingTaken(PlayerColor currentPlayer)
+{
+	SetWinner(currentPlayer);
+	mStates[GAMEOVERSTATE] = new GameOverState();
+	ChangeState(GAMEOVERSTATE);
+}
+
+void PlayGame::SetWinner(PlayerColor currentPlayer)
+{
+	winner = currentPlayer;
+}
+
+PlayerColor PlayGame::GetWinner()
+{
+	return winner;
+}
+
 void PlayGame::ChangeState(UINT state)
 {
 	mCurrGameState = mStates[state];
@@ -122,6 +139,11 @@ void PlayGame::EndGame()
 	delete mStates[PLAYGAMESTATE];
 	mStates[PLAYGAMESTATE] = nullptr;
 	mCurrGameState = mStates[PICKSTATE];
+	if (mStates[GAMEOVERSTATE])	//If we start over from the 'GameOverState', we need to release it to avoid memory leaks.
+	{
+		delete mStates[GAMEOVERSTATE];
+		mStates[GAMEOVERSTATE] = nullptr;
+	}
 }
 
 void PlayGame::RestartGame()
