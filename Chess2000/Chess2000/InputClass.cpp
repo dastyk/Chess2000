@@ -84,6 +84,7 @@ void InputClass::MouseUp(unsigned int key)
 
 void InputClass::OnMouseScroll(int delta)
 {
+	// Add the delta to all scroll listeners.
 	int count = mScrollListeners.size();
 	for (int i = 0; i < count; i++)
 	{
@@ -130,5 +131,6 @@ int InputClass::GetMousePosYDiff()
 
 void InputClass::AddScrollListener(int* l)
 {
+	// Add a scroll listener. (Used for scrolling in TextList)
 	mScrollListeners.push_back(l);
 }

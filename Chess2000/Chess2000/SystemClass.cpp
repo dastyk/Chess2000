@@ -271,7 +271,7 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 	case WM_MOUSEWHEEL:
 	{
 		mInput.OnMouseScroll(GET_WHEEL_DELTA_WPARAM(wparam));
-		break;
+		return 0;
 	}
 	case WM_ERASEBKGND:
 		return TRUE;

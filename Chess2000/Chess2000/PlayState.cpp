@@ -4,9 +4,12 @@
 PlayState::PlayState()
 {
 
+	// Set who starts the game.
 	currPlayer = White;
 
+	// Deselect all pieces.
 	validMoveCount = 0;
+	lastPick = Pos();
 
 	// Create UI elements
 	mMenuItems.push_back(new ImageClass(0, 0, 800, 600, Color(0, 0, 0, 0), L"Resources/chessBG.png", -1));
@@ -139,7 +142,7 @@ bool PlayState::Update(float dt)
 
 bool PlayState::Render()
 {
-	GameState::Render(); // All squares are rendered in here.
+	GameState::Render(); // All squares and menuitems are rendered in here.
 	GraphicsClass& g = GraphicsClass::GetInstance();
 
 
