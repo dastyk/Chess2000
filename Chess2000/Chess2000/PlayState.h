@@ -14,6 +14,9 @@
 #include "King.h"
 
 #include "TextLabel.h"
+#include "TextListClass.h"
+
+#include <sstream>
 
 #define RANKS 8
 #define FILES 8
@@ -26,11 +29,16 @@ class PlayState :
 private:
 	Piece*** board;
 	TextLabel* squares[RANKS][FILES];
+	TextListClass* lastMoves;
+
 
 	Pos lastPick;
 
 	Pos validMoves[64];
 	int validMoveCount;
+
+	PlayerColor currPlayer;
+
 
 public:
 	PlayState();

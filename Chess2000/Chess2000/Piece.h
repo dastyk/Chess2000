@@ -15,7 +15,7 @@ protected:
 
 
 	PlayerColor player;
-	std::string type;
+	WCHAR* type;
 
 	Image* mImage;
 public:
@@ -24,6 +24,8 @@ public:
 	PlayerColor GetColor();
 	void SetColor(PlayerColor playerColor);
 	Image* GetImage();
+	WCHAR* GetType();
+
 
 	virtual void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]) = 0;
 

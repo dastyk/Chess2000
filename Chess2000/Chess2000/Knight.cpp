@@ -5,12 +5,12 @@
 
 Knight::Knight()
 {
-	type = "Knight";
+	type = L"Knight";
 }
 
 Knight::Knight(WCHAR* path) : Piece(path)
 {
-	type = "Knight";
+	type = L"Knight";
 
 }
 

@@ -5,12 +5,12 @@
 
 Bishop::Bishop()
 {
-	type = "Bishop";
+	type = L"Bishop";
 }
 
 Bishop::Bishop(WCHAR* path) : Piece(path)
 {
-	type = "Bishop";
+	type = L"Bishop";
 }
 
 Bishop::~Bishop()

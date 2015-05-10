@@ -5,13 +5,13 @@
 
 Rock::Rock()
 {
-	type = "Rock";
+	type = L"Rock";
 	firstMoveDone = false;
 }
 
 Rock::Rock(WCHAR* path) : Piece(path)
 {
-	type = "Rock";
+	type = L"Rock";
 	firstMoveDone = false;
 }
 

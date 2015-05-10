@@ -5,13 +5,13 @@
 
 King::King()
 {
-	type = "King";
+	type = L"King";
 	firstMoveDone = false;
 }
 
 King::King(WCHAR* path) : Piece(path)
 {
-	type = "King";
+	type = L"King";
 	firstMoveDone = false;
 }
 

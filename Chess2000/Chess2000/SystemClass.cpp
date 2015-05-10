@@ -110,6 +110,10 @@ void SystemClass::Run()
 	MSG msg;
 	bool result;
 
+
+	waveOutSetVolume(0, 0x22222222);
+	PlaySound(L"Resources/chess0", NULL, SND_FILENAME | SND_ASYNC);
+
 	// Reset the timer
 	mTimer->Reset();
 
