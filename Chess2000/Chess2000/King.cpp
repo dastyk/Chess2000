@@ -28,9 +28,9 @@ King::~King()
 void King::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[])
 {
 	ReturnMoveCount = 0;
-	if (currentPos.rank + 1 < 7)
+	if (currentPos.rank + 1 < 8)
 	{
-		if (currentPos.files - 1 > 0)
+		if (currentPos.files - 1 >= 0)
 		{
 			if (board[currentPos.files - 1][currentPos.rank + 1] != nullptr)
 			{
@@ -49,21 +49,22 @@ void King::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 			}
 		}
 
-		if (board[currentPos.files][currentPos.rank + 1] != nullptr)
+		if (board[currentPos.files][currentPos.rank+1] != nullptr)
 		{
-			if (board[currentPos.files][currentPos.rank + 1]->GetColor() != player)
+			if (board[currentPos.files][currentPos.rank]->GetColor() != player)
 			{
 				ReturnPos[ReturnMoveCount].files = currentPos.files;
-				ReturnPos[ReturnMoveCount].rank = currentPos.rank + 1;
+				ReturnPos[ReturnMoveCount].rank = currentPos.rank+1;
 				ReturnMoveCount++;
 			}
 		}
 		else
 		{
 			ReturnPos[ReturnMoveCount].files = currentPos.files;
-			ReturnPos[ReturnMoveCount].rank = currentPos.rank + 1;
+			ReturnPos[ReturnMoveCount].rank = currentPos.rank+1;
 			ReturnMoveCount++;
 		}
+
 		if (currentPos.files + 1 < 8)
 		{
 			if (board[currentPos.files + 1][currentPos.rank + 1] != nullptr)
@@ -83,7 +84,7 @@ void King::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 			}
 		}
 	}
-	if (currentPos.rank - 1 > 0)
+	if (currentPos.rank - 1 >= 0)
 	{
 		if (currentPos.files - 1 > 0)
 		{
@@ -119,7 +120,7 @@ void King::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 			ReturnPos[ReturnMoveCount].rank = currentPos.rank - 1;
 			ReturnMoveCount++;
 		}
-		if (currentPos.files + 1 < 7)
+		if (currentPos.files + 1 < 8)
 		{
 			if (board[currentPos.files + 1][currentPos.rank - 1] != nullptr)
 			{
@@ -138,7 +139,7 @@ void King::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 			}
 		}
 	}
-	if (currentPos.files + 1 < 0)
+	if (currentPos.files + 1 < 8)
 	{
 		if (board[currentPos.files + 1][currentPos.rank] != nullptr)
 		{
@@ -156,7 +157,7 @@ void King::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 			ReturnMoveCount++;
 		}
 	}
-	if (currentPos.files - 1 > 0)
+	if (currentPos.files - 1 >= 0)
 	{
 		if (board[currentPos.files - 1][currentPos.rank] != nullptr)
 		{

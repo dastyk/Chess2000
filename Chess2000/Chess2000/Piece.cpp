@@ -37,3 +37,8 @@ WCHAR* Piece::GetType()
 {
 	return type;
 }
+
+void Piece::HasMoved()
+{
+	firstMoveDone = true;
+}

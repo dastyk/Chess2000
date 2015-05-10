@@ -31,30 +31,26 @@ void Pawn::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 	ReturnMoveCount = 0;
 	if (player == White)
 	{
-		if (firstMoveDone)
+		if (!firstMoveDone)
 		{
-			if (board[currentPos.files + 1][currentPos.rank] == nullptr)
+			if (board[currentPos.files][currentPos.rank + 2] == nullptr)
 			{
-				ReturnPos[ReturnMoveCount].files = currentPos.files + 1;
-				ReturnPos[ReturnMoveCount].rank = currentPos.rank;
+				ReturnPos[ReturnMoveCount].files = currentPos.files;
+				ReturnPos[ReturnMoveCount].rank = currentPos.rank + 2;
+				ReturnMoveCount++;
+			}
+			
+		}
+		if (currentPos.rank + 1 < 8)
+		{
+			if (board[currentPos.files][currentPos.rank + 1] == nullptr)
+			{
+				ReturnPos[ReturnMoveCount].files = currentPos.files;
+				ReturnPos[ReturnMoveCount].rank = currentPos.rank + 1;
 				ReturnMoveCount++;
 			}
 		}
-		else
-		{
-			if (board[currentPos.files + 1][currentPos.rank] == nullptr)
-			{
-				ReturnPos[ReturnMoveCount].files = currentPos.files + 1;
-				ReturnPos[ReturnMoveCount].rank = currentPos.rank;
-				ReturnMoveCount++;
-			}
-			if (board[currentPos.files + 1][currentPos.rank] == nullptr)
-			{
-				ReturnPos[ReturnMoveCount].files = currentPos.files + 1;
-				ReturnPos[ReturnMoveCount].rank = currentPos.rank;
-				ReturnMoveCount++;
-			}
-		}
+
 		if (currentPos.files + 1 < 8 && currentPos.rank + 1 < 8)
 		{
 			if (board[currentPos.files + 1][currentPos.rank + 1] != nullptr)
@@ -67,50 +63,11 @@ void Pawn::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 				}
 			}
 		}
-		if (currentPos.files + 1 < 8 && currentPos.rank - 1 > 0)
-		{
-			if (board[currentPos.files + 1][currentPos.rank - 1] != nullptr)
-			{
-				if (board[currentPos.files + 1][currentPos.rank - 1]->GetColor() == Black)
-				{
-					ReturnPos[ReturnMoveCount].files = currentPos.files + 1;
-					ReturnPos[ReturnMoveCount].rank = currentPos.rank - 1;
-					ReturnMoveCount++;
-				}
-			}
-		}
-	}
-	else
-	{
-		if (firstMoveDone)
-		{
-			if (board[currentPos.files - 1][currentPos.rank] == nullptr)
-			{
-				ReturnPos[ReturnMoveCount].files = currentPos.files - 1;
-				ReturnPos[ReturnMoveCount].rank = currentPos.rank;
-				ReturnMoveCount++;
-			}
-		}
-		else
-		{
-			if (board[currentPos.files - 1][currentPos.rank] == nullptr)
-			{
-				ReturnPos[ReturnMoveCount].files = currentPos.files - 1;
-				ReturnPos[ReturnMoveCount].rank = currentPos.rank;
-				ReturnMoveCount++;
-			}
-			if (board[currentPos.files - 1][currentPos.rank] == nullptr)
-			{
-				ReturnPos[ReturnMoveCount].files = currentPos.files + 1;
-				ReturnPos[ReturnMoveCount].rank = currentPos.rank;
-				ReturnMoveCount++;
-			}
-		}
 		if (currentPos.files - 1 >= 0 && currentPos.rank + 1 < 8)
 		{
 			if (board[currentPos.files - 1][currentPos.rank + 1] != nullptr)
 			{
-				if (board[currentPos.files - 1][currentPos.rank + 1]->GetColor() == White)
+				if (board[currentPos.files - 1][currentPos.rank + 1]->GetColor() == Black)
 				{
 					ReturnPos[ReturnMoveCount].files = currentPos.files - 1;
 					ReturnPos[ReturnMoveCount].rank = currentPos.rank + 1;
@@ -118,7 +75,41 @@ void Pawn::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 				}
 			}
 		}
-		if (currentPos.files - 1 >= 0 && currentPos.rank - 1 > 0)
+	}
+	else
+	{
+		if (!firstMoveDone)
+		{
+			if (board[currentPos.files][currentPos.rank - 2] == nullptr)
+			{
+				ReturnPos[ReturnMoveCount].files = currentPos.files;
+				ReturnPos[ReturnMoveCount].rank = currentPos.rank - 2;
+				ReturnMoveCount++;
+			}
+
+		}
+		if (currentPos.rank - 1 >= 0)
+		{
+			if (board[currentPos.files][currentPos.rank - 1] == nullptr)
+			{
+				ReturnPos[ReturnMoveCount].files = currentPos.files;
+				ReturnPos[ReturnMoveCount].rank = currentPos.rank - 1;
+				ReturnMoveCount++;
+			}
+		}
+		if (currentPos.files + 1 < 8 && currentPos.rank - 1 >= 0)
+		{
+			if (board[currentPos.files + 1][currentPos.rank - 1] != nullptr)
+			{
+				if (board[currentPos.files + 1][currentPos.rank - 1]->GetColor() == White)
+				{
+					ReturnPos[ReturnMoveCount].files = currentPos.files + 1;
+					ReturnPos[ReturnMoveCount].rank = currentPos.rank - 1;
+					ReturnMoveCount++;
+				}
+			}
+		}
+		if (currentPos.files - 1 >= 0 && currentPos.rank - 1 >= 0)
 		{
 			if (board[currentPos.files - 1][currentPos.rank - 1] != nullptr)
 			{

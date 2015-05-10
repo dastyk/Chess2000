@@ -16,6 +16,7 @@ protected:
 
 	PlayerColor player;
 	WCHAR* type;
+	bool firstMoveDone;
 
 	Image* mImage;
 public:
@@ -25,6 +26,7 @@ public:
 	void SetColor(PlayerColor playerColor);
 	Image* GetImage();
 	WCHAR* GetType();
+	void HasMoved();
 
 
 	virtual void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]) = 0;
