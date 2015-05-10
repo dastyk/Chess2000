@@ -4,6 +4,9 @@
 #ifndef _INPUTCLASS_H_
 #define _INPUTCLASS_H_
 
+
+#include <vector>
+
 /////////////
 // Defines //
 /////////////
@@ -32,6 +35,9 @@ public:
 	void MouseDown(unsigned int);
 	void MouseUp(unsigned int);
 
+	void AddScrollListener(int*);
+	void OnMouseScroll(int);
+
 	bool IsMouseKeyDown(unsigned int);
 	bool GetMouseKeyStateAndReset(unsigned int);
 
@@ -46,6 +52,8 @@ private:
 	bool mMouseKeys[3];
 
 	int mMousePosX, mMousePosY, mLastMousePosX, mLastMousePosY;
+
+	std::vector<int*> mScrollListeners;
 
 	InputClass();
 	InputClass(const InputClass&);

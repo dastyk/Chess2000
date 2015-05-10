@@ -21,7 +21,14 @@ public:
 
 	void OnScroll();
 
+
+
 private:
+
+	virtual void OnEnter();
+	virtual void OnExit();
+
+
 	TextLabel* mList;
 	REAL mFontSize;
 

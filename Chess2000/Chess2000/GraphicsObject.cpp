@@ -2,7 +2,7 @@
 
 #include "SystemClass.h"
 
-GraphicsObject::GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover) : mPosX(x), mPosY(y), mWidth(w), mHeight(h), mBackGroundColor(bc), mLayer(layer), mHovering(false), mHoverIcon(hoverIcon), mChangeBGOnHover(changeBGOnHover), mBCHover(bcHover)
+GraphicsObject::GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover) : mPosX(x), mPosY(y), mWidth(w), mHeight(h), mBackGroundColor(bc), mLayer(layer), mHovering(false), mHoverIcon(hoverIcon), mChangeBGOnHover(changeBGOnHover), mBCHover(bcHover), mInFocus(false)
 {
 
 }
@@ -96,6 +96,7 @@ void GraphicsObject::OnEnter()
 
 		if (IsHovering())
 		{
+			mInFocus = true;
 			mHovering = true;
 		}
 	}
@@ -107,6 +108,7 @@ void GraphicsObject::OnExit()
 	{
 		if (!IsHovering())
 		{
+			mInFocus = false;
 			mHovering = false;
 		}
 	}
