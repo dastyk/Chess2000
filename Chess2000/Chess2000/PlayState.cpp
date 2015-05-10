@@ -26,7 +26,7 @@ PlayState::PlayState()
 	letters[6] = L"G";
 	letters[7] = L"H";
 
-	for (UINT x = 0; x < RANKS; x++)
+	for (UINT x = 0; x < FILES; x++)
 	{
 		mMenuItems.push_back(new TextLabel(200 + 50 * x, 500, 30, 30, letters[x], 10, Color(255, 100, 100, 200), -1));
 	}
@@ -43,18 +43,18 @@ PlayState::PlayState()
 
 
 
-	for (UINT x = 0; x < FILES; x++)
+	for (UINT x = 0; x < RANKS; x++)
 	{
 		mMenuItems.push_back(new TextLabel(170, 470 - 50 * x, 30, 30, letters[x], 10, Color(255, 100, 100, 200), -1));
 	}
 
 	delete[] letters;
 
-	board = new Piece**[RANKS];
-	for (UINT x = 0; x < RANKS; x++)
+	board = new Piece**[FILES];
+	for (UINT x = 0; x < FILES; x++)
 	{
-		board[x] = new Piece*[FILES];
-		for (UINT y = 0; y < FILES; y++)
+		board[x] = new Piece*[RANKS];
+		for (UINT y = 0; y < RANKS; y++)
 		{
 			UINT c = (x + y) % 2;
 			board[x][y] = nullptr;
@@ -64,7 +64,7 @@ PlayState::PlayState()
 
 
 	// Create all the game pieces.
-	for (int i = 0; i < RANKS; i++)
+	for (int i = 0; i < FILES; i++)
 	{
 		board[i][1] = new Pawn(L"Resources/Pieces/White Pawn.png");
 		board[i][1]->SetColor(White);
@@ -72,30 +72,30 @@ PlayState::PlayState()
 		board[i][6]->SetColor(Black);
 	}
 
-	board[0][0] = new Rock(L"Resources/Pieces/White Rock.png");
-	board[1][0] = new Knight(L"Resources/Pieces/White Knight.png");
-	board[2][0] = new Bishop(L"Resources/Pieces/White Bishop.png");
-	board[3][0] = new Queen(L"Resources/Pieces/White Queen.png");
-	board[4][0] = new King(L"Resources/Pieces/White King.png");
-	board[5][0] = new Bishop(L"Resources/Pieces/White Bishop.png");
-	board[6][0] = new Knight(L"Resources/Pieces/White Knight.png");
-	board[7][0] = new Rock(L"Resources/Pieces/White Rock.png");
+board[0][0] = new Rock(L"Resources/Pieces/White Rock.png");
+board[1][0] = new Knight(L"Resources/Pieces/White Knight.png");
+board[2][0] = new Bishop(L"Resources/Pieces/White Bishop.png");
+board[3][0] = new Queen(L"Resources/Pieces/White Queen.png");
+board[4][0] = new King(L"Resources/Pieces/White King.png");
+board[5][0] = new Bishop(L"Resources/Pieces/White Bishop.png");
+board[6][0] = new Knight(L"Resources/Pieces/White Knight.png");
+board[7][0] = new Rock(L"Resources/Pieces/White Rock.png");
 
-	board[0][7] = new Rock(L"Resources/Pieces/Black Rock.png");
-	board[1][7] = new Knight(L"Resources/Pieces/Black Knight.png");
-	board[2][7] = new Bishop(L"Resources/Pieces/Black Bishop.png");
-	board[3][7] = new Queen(L"Resources/Pieces/Black Queen.png");
-	board[4][7] = new King(L"Resources/Pieces/Black King.png");
-	board[5][7] = new Bishop(L"Resources/Pieces/Black Bishop.png");
-	board[6][7] = new Knight(L"Resources/Pieces/Black Knight.png");
-	board[7][7] = new Rock(L"Resources/Pieces/Black Rock.png");
+board[0][7] = new Rock(L"Resources/Pieces/Black Rock.png");
+board[1][7] = new Knight(L"Resources/Pieces/Black Knight.png");
+board[2][7] = new Bishop(L"Resources/Pieces/Black Bishop.png");
+board[3][7] = new Queen(L"Resources/Pieces/Black Queen.png");
+board[4][7] = new King(L"Resources/Pieces/Black King.png");
+board[5][7] = new Bishop(L"Resources/Pieces/Black Bishop.png");
+board[6][7] = new Knight(L"Resources/Pieces/Black Knight.png");
+board[7][7] = new Rock(L"Resources/Pieces/Black Rock.png");
 
 
-	for (int i = 0; i < RANKS; i++)
-	{
-		board[i][0]->SetColor(White);
-		board[i][7]->SetColor(Black);
-	}
+for (int i = 0; i < FILES; i++)
+{
+	board[i][0]->SetColor(White);
+	board[i][7]->SetColor(Black);
+}
 
 }
 
@@ -144,14 +144,14 @@ bool PlayState::Render()
 
 
 	// Loop through all the squares.
-	for (UINT x = 0; x < RANKS; x++)
+	for (UINT x = 0; x < FILES; x++)
 	{
-		for (UINT y = 0; y < FILES; y++)
+		for (UINT y = 0; y < RANKS; y++)
 		{
 			if (board[x][y])
 			{
 				// if there is a piece there, draw it.
-				g.DrawImage(board[x][y]->GetImage(), 200 + x * 50, 50 + (FILES - y) * 50, 50, 50);
+				g.DrawImage(board[x][y]->GetImage(), 200 + x * 50, 50 + (RANKS - y) * 50, 50, 50);
 			}
 		}
 	}
@@ -159,7 +159,7 @@ bool PlayState::Render()
 	// Loop through all validMoves, and draw them.
 	for (int i = 0; i < validMoveCount; i++)
 	{
-		g.DrawRectangle(Color(255, 255, 0, 0), 3, 200 + validMoves[i].rank * 50, 50 + (FILES - validMoves[i].files) * 50, 50, 50);
+		g.DrawRectangle(Color(255, 255, 0, 0), 3, 200 + validMoves[i].files * 50, 50 + (RANKS - validMoves[i].rank) * 50, 50, 50);
 	}
 	return true;
 }
@@ -181,23 +181,26 @@ bool PlayState::HandleInput()
 		for (int x = 0; x < validMoveCount; x++)
 		{
 			// check if a valid move has been selected.
-			if (squares[validMoves[x].rank][validMoves[x].files]->IsClicked())
+			if (squares[validMoves[x].files][validMoves[x].rank]->IsClicked())
 			{
 				// If there is currently a piece in this pos, remove it.
-				if (board[validMoves[x].rank][validMoves[x].files])
+				if (board[validMoves[x].files][validMoves[x].rank])
 				{
-					delete board[validMoves[x].rank][validMoves[x].files];				
+					delete board[validMoves[x].files][validMoves[x].rank];				
 				}
 
 				// Record this move to lastMoves
-				lastMoves.push_back(new Move(lastPick, validMoves[x], board[lastPick.rank][lastPick.files]->GetType(), lastMoves.size() + 1));
+				lastMoves.push_back(new Move(lastPick, validMoves[x], board[lastPick.files][lastPick.rank]->GetType(), lastMoves.size() + 1));
 				
 				// Add the move to the Textlist
 				lastMoveList->AddItem(lastMoves[lastMoves.size()-1]->GetMoveText());
 
+				//Set that the piece has been moved
+				board[lastPick.files][lastPick.rank]->HasMoved();
+
 				// Move the piece
-				board[validMoves[x].rank][validMoves[x].files] = board[lastPick.rank][lastPick.files];
-				board[lastPick.rank][lastPick.files] = nullptr;
+				board[validMoves[x].files][validMoves[x].rank] = board[lastPick.files][lastPick.rank];
+				board[lastPick.files][lastPick.rank] = nullptr;
 
 				// Deselect the piece
 				validMoveCount = 0;
@@ -211,9 +214,9 @@ bool PlayState::HandleInput()
 
 
 	// Loops through all squares and check if there is a piece there.
-	for (UINT x = 0; x < RANKS; x++)
+	for (UINT x = 0; x < FILES; x++)
 	{
-		for (UINT y = 0; y < FILES; y++)
+		for (UINT y = 0; y < RANKS; y++)
 		{
 			if (board[x][y])
 			{

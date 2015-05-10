@@ -6,7 +6,6 @@
 class Pawn : public Piece
 {
 private:
-	bool firstMoveDone;
 	
 
 public:
@@ -14,6 +13,7 @@ public:
 	Pawn();
 	Pawn(WCHAR* path);
 	void GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, Pos ReturnPos[]);
+
 
 };
 

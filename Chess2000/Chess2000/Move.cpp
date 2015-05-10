@@ -26,7 +26,7 @@ Move::Move(Pos start, Pos end, wchar_t* movedPiece, UINT order)
 	// Create the move text
 	std::wstringstream outs;
 
-	outs << order << L". " << letters[startSquare.rank] << startSquare.files + 1 << " - " << letters[endSquare.rank] << endSquare.files + 1 << L" " << movedPiece;
+	outs << order << L". " << letters[startSquare.files] << startSquare.rank + 1 << " - " << letters[endSquare.files] << endSquare.rank + 1 << L" " << movedPiece;
 
 	this->moveText = new wchar_t[(outs.str().length() + 1) * 2];
 	memcpy(this->moveText, outs.str().c_str(), (outs.str().length() + 1) * 2);

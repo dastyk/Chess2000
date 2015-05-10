@@ -30,33 +30,33 @@ void Queen::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, 
 	int maximumMovesUpLeft, maximumMovesUpRight, maximumMovesDownLeft, maximumMovesDownRight;
 	int maximumMovesLeft, maximumMovesDown, maximumMovesUp, maximumMovesRight;
 	maximumMovesLeft = currentPos.files;
-	maximumMovesRight = 8 - currentPos.files - 1;
+	maximumMovesRight = 8 - currentPos.files-1;
 	maximumMovesDown = currentPos.rank;
-	maximumMovesUp = 8 - currentPos.rank - 1;
+	maximumMovesUp = 8 - currentPos.rank-1;
 	maximumMovesUpLeft = 0;
 	maximumMovesUpRight = 0;
 	maximumMovesDownLeft = 0;
 	maximumMovesDownRight = 0;
 
 
-	while (currentPos.rank + maximumMovesUpLeft < 7 && currentPos.files - maximumMovesUpLeft > 0)
+	while (currentPos.files - maximumMovesUpLeft > 0 && currentPos.rank + maximumMovesUpLeft < 7)
 	{
 		maximumMovesUpLeft++;
 	}
 
-	while (currentPos.rank + maximumMovesUpRight < 7 && currentPos.files + maximumMovesUpRight < 7)
+	while (currentPos.files + maximumMovesUpRight < 7 && currentPos.rank + maximumMovesUpRight < 7)
 	{
 		maximumMovesUpRight++;
 	}
 
 
-	while (currentPos.rank - maximumMovesDownLeft > 0 && currentPos.files - maximumMovesDownLeft > 0)
+	while (currentPos.files - maximumMovesDownLeft > 0 && currentPos.rank - maximumMovesDownLeft > 0)
 	{
 		maximumMovesDownLeft++;
 	}
 
 
-	while (currentPos.rank - maximumMovesDownRight > 0 && currentPos.files + maximumMovesUpLeft < 7)
+	while (currentPos.files + maximumMovesDownRight < 7 && currentPos.rank - maximumMovesDownRight > 0)
 	{
 		maximumMovesDownRight++;
 	}
@@ -71,7 +71,7 @@ void Queen::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, 
 		}
 		else
 		{
-			if (board[currentPos.files - 1][currentPos.rank + i]->GetColor() != player)
+			if (board[currentPos.files - i][currentPos.rank + i]->GetColor() != player)
 			{
 				ReturnPos[ReturnMoveCount].files = currentPos.files - i;
 				ReturnPos[ReturnMoveCount].rank = currentPos.rank + i;
@@ -104,18 +104,18 @@ void Queen::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, 
 
 	for (int i = 1; i <= maximumMovesUpRight; i++)
 	{
-		if (board[currentPos.files + i][currentPos.rank - i] == nullptr)
+		if (board[currentPos.files + i][currentPos.rank + i] == nullptr)
 		{
 			ReturnPos[ReturnMoveCount].files = currentPos.files + i;
-			ReturnPos[ReturnMoveCount].rank = currentPos.rank - i;
+			ReturnPos[ReturnMoveCount].rank = currentPos.rank + i;
 			ReturnMoveCount++;
 		}
 		else
 		{
-			if (board[currentPos.files + i][currentPos.rank - i]->GetColor() != player)
+			if (board[currentPos.files + i][currentPos.rank + i]->GetColor() != player)
 			{
 				ReturnPos[ReturnMoveCount].files = currentPos.files + i;
-				ReturnPos[ReturnMoveCount].rank = currentPos.rank - i;
+				ReturnPos[ReturnMoveCount].rank = currentPos.rank + i;
 				ReturnMoveCount++;
 			}
 			maximumMovesUpRight = 0;
@@ -125,18 +125,18 @@ void Queen::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, 
 
 	for (int i = 1; i <= maximumMovesDownLeft; i++)
 	{
-		if (board[currentPos.files - i][currentPos.rank + i] == nullptr)
+		if (board[currentPos.files - i][currentPos.rank - i] == nullptr)
 		{
 			ReturnPos[ReturnMoveCount].files = currentPos.files - i;
-			ReturnPos[ReturnMoveCount].rank = currentPos.rank + i;
+			ReturnPos[ReturnMoveCount].rank = currentPos.rank - i;
 			ReturnMoveCount++;
 		}
 		else
 		{
-			if (board[currentPos.files][currentPos.rank + i]->GetColor() != player)
+			if (board[currentPos.files - i][currentPos.rank - i]->GetColor() != player)
 			{
 				ReturnPos[ReturnMoveCount].files = currentPos.files - i;
-				ReturnPos[ReturnMoveCount].rank = currentPos.rank + i;
+				ReturnPos[ReturnMoveCount].rank = currentPos.rank - i;
 				ReturnMoveCount++;
 			}
 			maximumMovesDownLeft = 0;
@@ -147,7 +147,7 @@ void Queen::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, 
 
 	for (int i = 1; i <= maximumMovesLeft; i++)
 	{
-		if (board[currentPos.files - i][currentPos.rank] == nullptr)
+		if (board[currentPos.files-i][currentPos.rank] == nullptr)
 		{
 			ReturnPos[ReturnMoveCount].files = currentPos.files - i;
 			ReturnPos[ReturnMoveCount].rank = currentPos.rank;
@@ -155,7 +155,7 @@ void Queen::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, 
 		}
 		else
 		{
-			if (board[currentPos.files - 1][currentPos.rank]->GetColor() != player)
+			if (board[currentPos.files - i][currentPos.rank]->GetColor() != player)
 			{
 				ReturnPos[ReturnMoveCount].files = currentPos.files - i;
 				ReturnPos[ReturnMoveCount].rank = currentPos.rank;

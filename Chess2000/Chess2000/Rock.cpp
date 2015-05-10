@@ -43,7 +43,7 @@ void Rock::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 		}
 		else
 		{
-			if (board[currentPos.files - 1][currentPos.rank]->GetColor() != player)
+			if (board[currentPos.files - i][currentPos.rank]->GetColor() != player)
 			{
 				ReturnPos[ReturnMoveCount].files = currentPos.files - i;
 				ReturnPos[ReturnMoveCount].rank = currentPos.rank;
@@ -76,18 +76,18 @@ void Rock::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 
 	for (int i = 1; i <= maximumMovesDown; i++)
 	{
-		if (board[currentPos.files][currentPos.rank-i] == nullptr)
+		if (board[currentPos.files][currentPos.rank - i] == nullptr)
 		{
 			ReturnPos[ReturnMoveCount].files = currentPos.files;
-			ReturnPos[ReturnMoveCount].rank = currentPos.rank-i;
+			ReturnPos[ReturnMoveCount].rank = currentPos.rank - i;
 			ReturnMoveCount++;
 		}
 		else
 		{
-			if (board[currentPos.files][currentPos.rank-i]->GetColor() != player)
+			if (board[currentPos.files][currentPos.rank - i]->GetColor() != player)
 			{
 				ReturnPos[ReturnMoveCount].files = currentPos.files;
-				ReturnPos[ReturnMoveCount].rank = currentPos.rank-i;
+				ReturnPos[ReturnMoveCount].rank = currentPos.rank - i;
 				ReturnMoveCount++;
 			}
 			maximumMovesDown = 0;
@@ -115,6 +115,7 @@ void Rock::GetValidMoves(Piece*** board, Pos currentPos, int &ReturnMoveCount, P
 
 		}
 	}
+
 
 
 

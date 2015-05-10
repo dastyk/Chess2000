@@ -4,13 +4,13 @@
 
 struct Pos
 {
-	int rank; //1-8
 	int files; //a-h
+	int rank; //1-8
 	Pos() : rank(-1), files(-1)
 	{
 
 	}
-	Pos(int r, int f) : rank(r), files(f)
+	Pos(int f, int r) : rank(r), files(f)
 	{
 
 	}
