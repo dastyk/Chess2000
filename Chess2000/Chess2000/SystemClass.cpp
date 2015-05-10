@@ -291,7 +291,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	mHinstance = GetModuleHandle(NULL);
 
 	// Give the application a name.
-	mApplicationName = L"Engine";
+	mApplicationName = L"Chess2000 - The lastest in Chessy goodness.";
 
 	// Setup the windows class with default settings.
 	wc.style = CS_HREDRAW | CS_VREDRAW;
@@ -430,12 +430,7 @@ SystemClass& SystemClass::GetInstance()
 
 void SystemClass::ChangeState(unsigned int state)
 {
-	std::wostringstream outs;
-	outs.precision(6);
-	outs << "State changed to: " << state;
-	SetWindowText(mHwnd, outs.str().c_str());
 
-	
 	mCurrDisplayState = mStates[state];
 
 
@@ -448,7 +443,5 @@ void SystemClass::Exit()
 
 void SystemClass::ChangeCursor(LPCTSTR cursor)
 {
-	HCURSOR Cursor = LoadCursorFromFile(L"path/filename.cur"); //.cur or .ani
-	SetCursor(Cursor);
 	SetCursor(LoadCursor(NULL, cursor));
 }

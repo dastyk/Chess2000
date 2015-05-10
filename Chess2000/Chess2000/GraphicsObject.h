@@ -24,8 +24,7 @@ public:
 	UINT GetHeight();
 
 protected:
-	GraphicsObject();
-	GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer);
+	GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover);
 	int mLayer;
 
 
@@ -34,6 +33,8 @@ protected:
 	int mPosX, mPosY;
 	UINT mWidth, mHeight;
 	Color mBackGroundColor;
+	Color mBCHover;
+	bool mChangeBGOnHover;
 };
 
 #endif

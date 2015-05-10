@@ -2,11 +2,7 @@
 
 #include "SystemClass.h"
 
-GraphicsObject::GraphicsObject() 
-{
-}
-
-GraphicsObject::GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer) : mPosX(x), mPosY(y), mWidth(w), mHeight(h), mBackGroundColor(bc), mLayer(layer), mHovering(false), mHoverIcon(IDC_ARROW)
+GraphicsObject::GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer, LPCTSTR hoverIcon, bool changeBGOnHover, Color bcHover) : mPosX(x), mPosY(y), mWidth(w), mHeight(h), mBackGroundColor(bc), mLayer(layer), mHovering(false), mHoverIcon(hoverIcon), mChangeBGOnHover(changeBGOnHover), mBCHover(bcHover)
 {
 
 }
@@ -20,7 +16,14 @@ void GraphicsObject::Render()
 {
 	GraphicsClass& g = GraphicsClass::GetInstance();
 
+
 	g.FillRectangle(mBackGroundColor, mPosX, mPosY, mWidth, mHeight);
+
+	if (mChangeBGOnHover)
+		if (mHovering)
+			g.FillRectangle(mBCHover, mPosX, mPosY, mWidth, mHeight);
+
+	
 }
 
 bool GraphicsObject::IsClicked()

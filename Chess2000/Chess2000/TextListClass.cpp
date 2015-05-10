@@ -1,11 +1,11 @@
 #include "TextListClass.h"
 
 
-TextListClass::TextListClass()
+TextListClass::TextListClass() : GraphicsObject(0, 0, 0, 0, Color(0, 0, 0, 0), -1, 0, false, Color(0, 0, 0, 0)), mFontSize(0)
 {
 }
 
-TextListClass::TextListClass(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer) : GraphicsObject(x, y, w, h, bc, layer), mFontSize(fS)
+TextListClass::TextListClass(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer) : GraphicsObject(x, y, w, h, bc, layer, 0, false, Color(0, 0, 0, 0)), mFontSize(fS)
 {
 	startListAt = 0;
 	endListAt = 0;
@@ -37,6 +37,9 @@ void TextListClass::Render()
 
 	mList->Render();
 
+	g.FillRectangle(Color(50, 255, 255, 255), mPosX + mWidth - 40, mPosY + mFontSize + 10, 20, mHeight);
+
+
 	UINT x = 0;
 	for (int i = startListAt; i < endListAt; i++)
 	{
@@ -50,7 +53,7 @@ void TextListClass::Render()
 void TextListClass::AddItem(WCHAR* t)
 {
 	int count = mItems.size();
-	mItems.push_back(new TextLabel(mPosX, mPosY + mFontSize + 5 + count * 20, mWidth, 20, t, 10, Color(0, 0, 0, 0), -1));
+	mItems.push_back(new TextLabel(mPosX, mPosY + mFontSize + 10 + count * 20, mWidth, 20, t, 10, Color(0, 0, 0, 0), -1));
 
 	endListAt++;
 	if (mFontSize + endListAt * 20  >= mList->GetHeight())
@@ -89,4 +92,6 @@ void TextListClass::OnScroll()
 void TextListClass::Update(int& layer)
 {
 	GraphicsObject::Update(layer);
+
+	OnScroll();
 }

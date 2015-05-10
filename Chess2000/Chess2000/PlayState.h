@@ -33,6 +33,7 @@ private:
 	TextListClass* lastMoveList;
 	std::vector<Move*> lastMoves;
 
+
 	Pos lastPick;
 
 	Pos validMoves[64];

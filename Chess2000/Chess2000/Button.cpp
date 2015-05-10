@@ -1,11 +1,11 @@
 #include "Button.h"
 
 
-Button::Button()
+Button::Button() : GraphicsObject(0, 0, 0, 0, Color(0, 0, 0, 0), -1, 0, false, Color(0, 0, 0, 0)), mText(nullptr), mFontSize(0)
 {
 }
 
-Button::Button(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer) : GraphicsObject(x, y, w, h, bc, layer), mText(t), mFontSize(fS)
+Button::Button(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer) : GraphicsObject(x, y, w, h, bc, layer,0,false,Color(0,0,0,0)), mText(t), mFontSize(fS)
 {
 	mHoverIcon = IDC_HAND;
 }

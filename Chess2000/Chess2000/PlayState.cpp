@@ -56,9 +56,9 @@ PlayState::PlayState()
 		board[x] = new Piece*[FILES];
 		for (UINT y = 0; y < FILES; y++)
 		{
-			UINT c = (x+y) % 2;
+			UINT c = (x + y) % 2;
 			board[x][y] = nullptr;
-			mMenuItems.push_back(squares[x][y] = new TextLabel(200 + x * 50, 50 + (FILES - y) * 50, 50, 50, L"", 45, Color(255, c * 255, c * 255, c * 255), -1));
+			mMenuItems.push_back(squares[x][y] = new TextLabel(200 + x * 50, 50 + (FILES - y) * 50, 50, 50, L"", 45, Color(255, c * 255, c * 255, c * 255), 1,IDC_HAND,true, Color(100,255,0,0)));
 		}
 	}
 
@@ -72,30 +72,30 @@ PlayState::PlayState()
 		board[i][6]->SetColor(Black);
 	}
 
-board[0][0] = new Rock(L"Resources/Pieces/White Rock.png");
-board[1][0] = new Knight(L"Resources/Pieces/White Knight.png");
-board[2][0] = new Bishop(L"Resources/Pieces/White Bishop.png");
-board[3][0] = new Queen(L"Resources/Pieces/White Queen.png");
-board[4][0] = new King(L"Resources/Pieces/White King.png");
-board[5][0] = new Bishop(L"Resources/Pieces/White Bishop.png");
-board[6][0] = new Knight(L"Resources/Pieces/White Knight.png");
-board[7][0] = new Rock(L"Resources/Pieces/White Rock.png");
+	board[0][0] = new Rock(L"Resources/Pieces/White Rock.png");
+	board[1][0] = new Knight(L"Resources/Pieces/White Knight.png");
+	board[2][0] = new Bishop(L"Resources/Pieces/White Bishop.png");
+	board[3][0] = new Queen(L"Resources/Pieces/White Queen.png");
+	board[4][0] = new King(L"Resources/Pieces/White King.png");
+	board[5][0] = new Bishop(L"Resources/Pieces/White Bishop.png");
+	board[6][0] = new Knight(L"Resources/Pieces/White Knight.png");
+	board[7][0] = new Rock(L"Resources/Pieces/White Rock.png");
 
-board[0][7] = new Rock(L"Resources/Pieces/Black Rock.png");
-board[1][7] = new Knight(L"Resources/Pieces/Black Knight.png");
-board[2][7] = new Bishop(L"Resources/Pieces/Black Bishop.png");
-board[3][7] = new Queen(L"Resources/Pieces/Black Queen.png");
-board[4][7] = new King(L"Resources/Pieces/Black King.png");
-board[5][7] = new Bishop(L"Resources/Pieces/Black Bishop.png");
-board[6][7] = new Knight(L"Resources/Pieces/Black Knight.png");
-board[7][7] = new Rock(L"Resources/Pieces/Black Rock.png");
+	board[0][7] = new Rock(L"Resources/Pieces/Black Rock.png");
+	board[1][7] = new Knight(L"Resources/Pieces/Black Knight.png");
+	board[2][7] = new Bishop(L"Resources/Pieces/Black Bishop.png");
+	board[3][7] = new Queen(L"Resources/Pieces/Black Queen.png");
+	board[4][7] = new King(L"Resources/Pieces/Black King.png");
+	board[5][7] = new Bishop(L"Resources/Pieces/Black Bishop.png");
+	board[6][7] = new Knight(L"Resources/Pieces/Black Knight.png");
+	board[7][7] = new Rock(L"Resources/Pieces/Black Rock.png");
 
 
-for (int i = 0; i < RANKS; i++)
-{
-	board[i][0]->SetColor(White);
-	board[i][7]->SetColor(Black);
-}
+	for (int i = 0; i < RANKS; i++)
+	{
+		board[i][0]->SetColor(White);
+		board[i][7]->SetColor(Black);
+	}
 
 }
 
@@ -132,10 +132,6 @@ PlayState::~PlayState()
 bool PlayState::Update(float dt)
 {
 	GameState::Update(dt);
-
-
-	// Check for scrolling in lastMoves list
-	lastMoveList->OnScroll();
 
 	return true;
 }
