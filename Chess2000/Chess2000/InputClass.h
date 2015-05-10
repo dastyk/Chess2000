@@ -37,6 +37,8 @@ public:
 
 	void GetMousePos(int &x, int &y);
 
+	int GetMousePosYDiff();
+
 	static InputClass& GetInstance();
 
 private:

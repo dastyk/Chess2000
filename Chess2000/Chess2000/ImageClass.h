@@ -10,10 +10,11 @@ class ImageClass :
 {
 public:
 	ImageClass();
-	ImageClass(int x, int y, UINT w, UINT h, Color bc, WCHAR* path);
+	ImageClass(int x, int y, UINT w, UINT h, Color bc, WCHAR* path, int layer);
 	~ImageClass();
 
 	void Render();
+	void Update(int& layer);
 
 private:
 	Image* mImage;

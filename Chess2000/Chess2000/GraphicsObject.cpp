@@ -1,11 +1,12 @@
 #include "GraphicsObject.h"
 
+#include "SystemClass.h"
 
 GraphicsObject::GraphicsObject() 
 {
 }
 
-GraphicsObject::GraphicsObject(int x, int y, UINT w, UINT h, Color bc) : mPosX(x), mPosY(y), mWidth(w), mHeight(h), mBackGroundColor(bc)
+GraphicsObject::GraphicsObject(int x, int y, UINT w, UINT h, Color bc, int layer) : mPosX(x), mPosY(y), mWidth(w), mHeight(h), mBackGroundColor(bc), mLayer(layer), mHovering(false), mHoverIcon(IDC_ARROW)
 {
 
 }
@@ -26,17 +27,84 @@ bool GraphicsObject::IsClicked()
 {
 	int x, y;
 	InputClass& i = InputClass::GetInstance();
-	if (i.IsMouseKeyDown(LMOUSE))
+	if (mHovering)
 	{
-		i.GetMousePos(x, y);
-		if (x >= mPosX && x <= mPosX + mWidth)
+		if (i.IsMouseKeyDown(LMOUSE))
 		{
-			if (y >= mPosY && y <= mPosY + mHeight)
-			{
-				i.MouseUp(LMOUSE);
-				return true;
-			}
+
+			i.MouseUp(LMOUSE);
+			return true;
+		}
+
+	}
+	return false;
+}
+
+
+void GraphicsObject::SetPosY(int y)
+{
+	mPosY = y;
+}
+
+UINT GraphicsObject::GetHeight()
+{
+	return mHeight;
+}
+
+bool GraphicsObject::IsHovering()
+{
+
+	int x, y;
+	InputClass& i = InputClass::GetInstance();
+
+	i.GetMousePos(x, y);
+	if (x >= mPosX && x <= mPosX + mWidth)
+	{
+		if (y >= mPosY && y <= mPosY + mHeight)
+		{
+			return true;
 		}
 	}
 	return false;
+}
+
+void GraphicsObject::Update(int& layer)
+{
+	if (IsHovering())
+	{
+		if (mLayer >= layer)
+		{
+			layer = mLayer;
+			SystemClass::GetInstance().ChangeCursor(mHoverIcon);
+		}
+
+
+	}
+
+	OnEnter();
+	OnExit();
+}
+
+
+void GraphicsObject::OnEnter()
+{
+	if (!mHovering)
+	{
+
+		if (IsHovering())
+		{
+			mHovering = true;
+		}
+	}
+}
+
+void GraphicsObject::OnExit()
+{
+	if (mHovering)
+	{
+		if (!IsHovering())
+		{
+			mHovering = false;
+		}
+	}
 }

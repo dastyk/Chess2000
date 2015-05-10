@@ -6,7 +6,7 @@ TextLabel::TextLabel()
 }
 
 
-TextLabel::TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc) : GraphicsObject(x, y, w, h, bc), mText(t), mFontSize(fS)
+TextLabel::TextLabel(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer) : GraphicsObject(x, y, w, h, bc, layer), mText(t), mFontSize(fS)
 {
 
 }
@@ -24,4 +24,8 @@ void TextLabel::Render()
 
 	g.DrawString(mText, mPosX + 5, mPosY + 5, mFontSize);
 
+}
+void TextLabel::Update(int& layer)
+{
+	GraphicsObject::Update(layer);
 }

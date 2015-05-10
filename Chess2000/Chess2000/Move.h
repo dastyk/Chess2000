@@ -3,19 +3,23 @@
 
 #include "Pos.h"
 #include "Piece.h"
-#include <string>
+#include <sstream>
+
 
 class Move
 {
 private:
 	Pos startSquare;
 	Pos endSquare;
-	std::string movedPiece;
-
+	wchar_t* movedPiece;
+	wchar_t* moveText;
 
 public:
-	void recordMove(Pos start, Pos end, std::string movedPiece);
+	wchar_t* GetMoveText();
 
+	Move();
+	Move(Pos start, Pos end, wchar_t* movedPiece, UINT order);
+	~Move();
 
 };
 

@@ -215,5 +215,8 @@
     <ClCompile Include="TextListClass.cpp">
       <Filter>Source Files\MenuItems</Filter>
     </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Source Files\HelpClasses</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

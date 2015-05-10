@@ -19,6 +19,17 @@ GameState::~GameState()
 
 bool GameState::Update(float dt)
 {
+	int layer = 0;
+
+
+	// Update all menuitems.
+	UINT items = mMenuItems.size();
+	for (UINT i = 0; i < items; i++)
+	{
+		mMenuItems[i]->Update(layer);
+	}
+
+
 	return true;
 }
 

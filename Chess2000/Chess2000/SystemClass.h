@@ -57,6 +57,9 @@ public:
 	void ChangeState(unsigned int state);
 	void Exit();
 
+	void ChangeCursor(LPCTSTR cursor);
+
+
 private:
 	bool Frame();
 

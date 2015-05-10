@@ -9,10 +9,11 @@ PlayState::PlayState()
 	validMoveCount = 0;
 
 	// Create UI elements
-	mMenuItems.push_back(new ImageClass(0, 0, 800, 600, Color(0, 0, 0, 0), L"Resources/chessBG.png"));
-	mMenuItems.push_back(new TextLabel(145, 5, 550, 50, L"CHESS 2000 FUCK YEAHH!!!!", 30, Color(0, 255, 0, 0)));
-	mMenuItems.push_back(new TextLabel(160, 50, 170, 25, L"Press 'Escape' to Pause.", 10, Color(255, 100, 100, 200)));
-	mMenuItems.push_back(lastMoves = new TextListClass(620, 100, 200, 400, L"Previous Moves:", 15, Color(255, 100, 100, 200)));
+	mMenuItems.push_back(new ImageClass(0, 0, 800, 600, Color(0, 0, 0, 0), L"Resources/chessBG.png", -1));
+	mMenuItems.push_back(new TextLabel(145, 5, 550, 50, L"CHESS 2000 FUCK YEAHH!!!!", 30, Color(0, 255, 0, 0), -1));
+	mMenuItems.push_back(new TextLabel(160, 50, 170, 25, L"Press 'Escape' to Pause.", 10, Color(255, 100, 100, 200), -1));
+
+	mMenuItems.push_back(lastMoveList = new TextListClass(620, 100, 200, 200, L"Previous Moves:", 15, Color(255, 100, 100, 200), 1));
 
 	WCHAR** letters = new WCHAR*[8];
 	letters[0] = L"A";
@@ -27,7 +28,7 @@ PlayState::PlayState()
 
 	for (UINT x = 0; x < RANKS; x++)
 	{
-		mMenuItems.push_back(new TextLabel(200 + 50*x, 500, 30, 30, letters[x], 10, Color(255, 100, 100, 200)));		
+		mMenuItems.push_back(new TextLabel(200 + 50 * x, 500, 30, 30, letters[x], 10, Color(255, 100, 100, 200), -1));
 	}
 
 	letters[0] = L"1";
@@ -44,7 +45,7 @@ PlayState::PlayState()
 
 	for (UINT x = 0; x < FILES; x++)
 	{
-		mMenuItems.push_back(new TextLabel(170, 470 - 50 * x, 30, 30, letters[x], 10, Color(255, 100, 100, 200)));
+		mMenuItems.push_back(new TextLabel(170, 470 - 50 * x, 30, 30, letters[x], 10, Color(255, 100, 100, 200), -1));
 	}
 
 	delete[] letters;
@@ -57,7 +58,7 @@ PlayState::PlayState()
 		{
 			UINT c = (x+y) % 2;
 			board[x][y] = nullptr;
-			mMenuItems.push_back(squares[x][y] = new TextLabel(200 + x * 50, 50 + (FILES - y) * 50, 50, 50, L"", 45, Color(255, c * 255, c * 255, c * 255)));
+			mMenuItems.push_back(squares[x][y] = new TextLabel(200 + x * 50, 50 + (FILES - y) * 50, 50, 50, L"", 45, Color(255, c * 255, c * 255, c * 255), -1));
 		}
 	}
 
@@ -117,12 +118,24 @@ PlayState::~PlayState()
 		delete[] board[x];
 	}
 	delete[] board;
+
+	// Delete all made moves.
+	UINT count = lastMoves.size();
+	for (UINT x = 0; x < count; x++)
+	{
+		delete lastMoves[x];
+		lastMoves[x] = nullptr;
+
+	}
 }
 
 bool PlayState::Update(float dt)
 {
 	GameState::Update(dt);
 
+
+	// Check for scrolling in lastMoves list
+	lastMoveList->OnScroll();
 
 	return true;
 }
@@ -179,26 +192,22 @@ bool PlayState::HandleInput()
 				{
 					delete board[validMoves[x].rank][validMoves[x].files];				
 				}
-				std::wstringstream outs;
 
+				// Record this move to lastMoves
+				lastMoves.push_back(new Move(lastPick, validMoves[x], board[lastPick.rank][lastPick.files]->GetType(), lastMoves.size() + 1));
+				
+				// Add the move to the Textlist
+				lastMoveList->AddItem(lastMoves[lastMoves.size()-1]->GetMoveText());
 
-				outs <<  lastPick.rank+1 << lastPick.files+1 << " | " << board[lastPick.rank][lastPick.files]->GetType() << " | " << validMoves[x].rank+1 << validMoves[x].files+1;
-
-				wchar_t* dst = new wchar_t[(outs.str().length()+1) * 2];
-				memcpy(dst, outs.str().c_str(), (outs.str().length()+1) * 2);
-
-
-				lastMoves->AddItem(dst);
-
+				// Move the piece
 				board[validMoves[x].rank][validMoves[x].files] = board[lastPick.rank][lastPick.files];
 				board[lastPick.rank][lastPick.files] = nullptr;
-
-				
 
 				// Deselect the piece
 				validMoveCount = 0;
 				lastPick = Pos();
 
+				// Change who's turn it is.
 				currPlayer = (currPlayer == White) ? Black : White;
 			}
 		}

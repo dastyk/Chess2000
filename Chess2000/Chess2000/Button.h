@@ -10,11 +10,11 @@ class Button :
 {
 public:
 	Button();
-	Button(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc);
+	Button(int x, int y, UINT w, UINT h, WCHAR* t, REAL fS, Color bc, int layer);
 	~Button();
 
 	void Render();
-
+	void Update(int& layer);
 
 private:
 	WCHAR* mText;

@@ -110,3 +110,8 @@ InputClass& InputClass::GetInstance()
 	return inst;
 
 }
+
+int InputClass::GetMousePosYDiff()
+{
+	return mMousePosY - mLastMousePosY;
+}

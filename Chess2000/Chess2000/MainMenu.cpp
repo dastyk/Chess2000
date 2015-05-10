@@ -5,13 +5,13 @@ MainMenu::MainMenu()
 {
 
 	// Create the meny items
-	mMenuItems.push_back(new ImageClass(0, 0, 800, 600, Color(0, 0, 0, 0), L"Resources/chessBG.png"));
+	mMenuItems.push_back(new ImageClass(0, 0, 800, 600, Color(0, 0, 0, 0), L"Resources/chessBG.png", -1));
 
-	mMenuItems.push_back(mPlayButton = new Button(300, 350, 200, 30, L"Play Game", 15, Color(255, 100, 100, 200)));
-	mMenuItems.push_back(mExitButton = new Button(300, 400, 200, 30, L"Exit Game", 15, Color(255, 100, 100, 200)));
+	mMenuItems.push_back(mPlayButton = new Button(300, 350, 200, 30, L"Play Game", 15, Color(255, 100, 100, 200), 1));
+	mMenuItems.push_back(mExitButton = new Button(300, 400, 200, 30, L"Exit Game", 15, Color(255, 100, 100, 200), 1));
 
-	mMenuItems.push_back(new TextLabel(250, 50, 300, 30, L"Chess 2000", 45, Color(0, 0, 0, 0)));
-	mMenuItems.push_back(new TextLabel(255, 95, 300, 30, L"Main Menu", 35, Color(0, 0, 0, 0)));
+	mMenuItems.push_back(new TextLabel(250, 50, 300, 30, L"Chess 2000", 45, Color(0, 0, 0, 0), -1));
+	mMenuItems.push_back(new TextLabel(255, 95, 300, 30, L"Main Menu", 35, Color(0, 0, 0, 0), -1));
 
 	
 }
