@@ -52,7 +52,6 @@ private:
 
 
 	void WaitForPopAnswer();
-	void RemovePieceOnPos(Pos pos);
 	void PieceIsPawn(Pos e);
 	void RecordMove(Pos e);
 	void Deselect();

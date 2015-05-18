@@ -124,6 +124,7 @@ InputClass& InputClass::GetInstance()
 
 int InputClass::GetMousePosYDiff()
 {
+	// Get the difference of the y pos
 	return mMousePosY - mLastMousePosY;
 }
 

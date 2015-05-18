@@ -9,6 +9,7 @@ Display::Display()
 
 Display::~Display()
 {
+	// Delete all the menu items
 	UINT items = mMenuItems.size();
 	for (UINT i = 0; i < items; i++)
 	{
@@ -55,5 +56,6 @@ bool Display::Render()
 
 void Display::GoToMainMenu()
 {
+	// Change to main menu state
 	SystemClass::GetInstance().ChangeState(MAINMENUSTATE);
 }

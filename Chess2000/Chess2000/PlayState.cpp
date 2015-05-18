@@ -217,6 +217,7 @@ bool PlayState::HandleInput()
 	{
 		// If button was pressed, decide winner and end game.	
 		PlayGame::GetInstance().EndGameKingTaken((currPlayer == White) ? Black : White);
+		return true;
 	}
 
 //-------------------------------------------------------------////
@@ -232,7 +233,16 @@ bool PlayState::HandleInput()
 			if (squares[validMoves[x].files][validMoves[x].rank]->IsClicked())
 			{
 				// If there is currently a piece in this pos, remove it.
-				RemovePieceOnPos(validMoves[x]);
+				if (board[validMoves[x].files][validMoves[x].rank])
+				{
+					// If the pieces moved to the king pos, decide winner and end game.
+					if (board[validMoves[x].files][validMoves[x].rank]->GetType() == L"King")
+					{
+						PlayGame::GetInstance().EndGameKingTaken(currPlayer);
+						return true;
+					}
+					delete board[validMoves[x].files][validMoves[x].rank];
+				}
 
 				// If the moved piece is a pawn
 				PieceIsPawn(validMoves[x]);
@@ -339,18 +349,6 @@ void PlayState::WaitForPopAnswer()
 	}
 }
 
-void PlayState::RemovePieceOnPos(Pos pos)
-{
-	if (board[pos.files][pos.rank])
-	{
-		// If the pieces moved to the king pos, decide winner and end game.
-		if (board[pos.files][pos.rank]->GetType() == L"King")
-		{
-			PlayGame::GetInstance().EndGameKingTaken(currPlayer);
-		}
-		delete board[pos.files][pos.rank];
-	}
-}
 
 void PlayState::PieceIsPawn(Pos e)
 {

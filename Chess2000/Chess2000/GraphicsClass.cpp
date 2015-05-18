@@ -57,7 +57,7 @@ bool GraphicsClass::BeginFrame()
 	rect.bottom = mHeight;
 	GetClientRect(mHwnd, &rect);
 
-
+	// Create the backbuffer
 	backbuffDC = CreateCompatibleDC(hdc);
 
 	backbuffer = CreateCompatibleBitmap(hdc, mWidth, mHeight);
@@ -67,13 +67,9 @@ bool GraphicsClass::BeginFrame()
 
 	mDevice = Graphics::FromHDC(backbuffDC);
 
+	// Clear the backbuffer
 	ClearScreen(Color(255, 0, 0, 0));
 
-
-	//HBRUSH hBrush = CreateSolidBrush(RGB(255, 255, 255));
-	//FillRect(backbuffDC, &rect, hBrush);
-	//DeleteObject(hBrush);
-	
 	return true;
 }
 
@@ -95,6 +91,7 @@ bool GraphicsClass::EndFrame()
 
 void GraphicsClass::DrawString(WCHAR* text, int x, int y, REAL fontSize)
 {
+	// Draw a text string
 	Font font(&FontFamily(L"Arial"), fontSize);
 	LinearGradientBrush brush(Rect(0, 0, 100, 100), Color::Black, Color::Black, LinearGradientModeHorizontal);
 	mDevice->DrawString(text, -1, &font, PointF((REAL)x, (REAL)y), &brush);
@@ -102,12 +99,14 @@ void GraphicsClass::DrawString(WCHAR* text, int x, int y, REAL fontSize)
 
 void GraphicsClass::DrawRectangle(Color c, REAL boarderWidth, int x, int y, int w, int h)
 {
+	// Draw a rectangle
 	Pen pen(c, boarderWidth);
 	mDevice->DrawRectangle(&pen, x, y, w, h);
 }
 
 void GraphicsClass::FillRectangle(Color c, int x, int y, int w, int h)
 {
+	// Draw a filled rectangle
 	SolidBrush brush(c);
 	mDevice->FillRectangle(&brush, x, y, w, h);
 }
@@ -120,10 +119,12 @@ GraphicsClass& GraphicsClass::GetInstance()
 
 void GraphicsClass::ClearScreen(Color c)
 {
+	// Clear screen
 	mDevice->Clear(c);
 }
 
 void GraphicsClass::DrawImage(Image* image, int x, int y, int w, int h)
 {
+	// Draw a bitmap image.
 	mDevice->DrawImage(image, x, y, w, h);
 }

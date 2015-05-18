@@ -39,12 +39,12 @@ void TextListClass::Render()
 
 	mList->Render();
 
-
+	// Check if scroll is needed.
 	if (startListAt > 0 || endListAt < mItems.size())
 	{
 		g.FillRectangle(Color(50, 255, 255, 255), mPosX + mWidth - 40, mPosY + mFontSize + 10, 20, mHeight - (mFontSize + 10));
 
-		
+		// Calculate the dimensions and position of the scroll bar.
 		int full = mItems.size();
 		int finHeight = ((endListAt - startListAt) / (float)full) * (mHeight - (mFontSize + 10));
 		int finPos = mPosY + mFontSize + 10 +  (startListAt / (float) full)*(mHeight - (mFontSize + 10));
@@ -78,7 +78,7 @@ void TextListClass::AddItem(WCHAR* t)
 void TextListClass::OnScroll()
 {
 	InputClass& i = InputClass::GetInstance();
-
+	// Handle the input for the scroll.
 	if (mInFocus)
 	{
 		if (!IsHovering())
@@ -116,10 +116,10 @@ void TextListClass::OnScroll()
 
 void TextListClass::Update(int& layer)
 {
+
+	GraphicsObject::Update(layer);
 	if ((!PopUpClass::IsPopActive) || mPopUpItem)
 	{
-		GraphicsObject::Update(layer);
-
 		OnScroll();
 	}
 }

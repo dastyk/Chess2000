@@ -23,20 +23,18 @@ Button::~Button()
 
 void Button::Render()
 {
-	if ((!PopUpClass::IsPopActive) || mPopUpItem)
-	{
-		GraphicsObject::Render();
 
-		GraphicsClass& g = GraphicsClass::GetInstance();
+	GraphicsObject::Render();
 
-		g.DrawString(mText, mPosX + 5, mPosY + 5, mFontSize);
-	}
+	GraphicsClass& g = GraphicsClass::GetInstance();
+
+	g.DrawString(mText, mPosX + 5, mPosY + 5, mFontSize);
+
 }
 
 void Button::Update(int& layer)
 {
-	if ((!PopUpClass::IsPopActive) || mPopUpItem)
-	{
-		GraphicsObject::Update(layer);
-	}
+
+	GraphicsObject::Update(layer);
+	
 }

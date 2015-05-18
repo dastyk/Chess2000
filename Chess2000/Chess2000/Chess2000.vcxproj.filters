@@ -54,12 +54,6 @@
     <ClInclude Include="Display.h">
       <Filter>Header Files\DisplayStates</Filter>
     </ClInclude>
-    <ClInclude Include="NewTournament.h">
-      <Filter>Header Files\DisplayStates</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewTournament.h">
-      <Filter>Header Files\DisplayStates</Filter>
-    </ClInclude>
     <ClInclude Include="PlayGame.h">
       <Filter>Header Files\DisplayStates</Filter>
     </ClInclude>
@@ -147,12 +141,6 @@
       <Filter>Source Files\DisplayStates</Filter>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files\DisplayStates</Filter>
-    </ClCompile>
-    <ClCompile Include="NewTournament.cpp">
-      <Filter>Source Files\DisplayStates</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewTournament.cpp">
       <Filter>Source Files\DisplayStates</Filter>
     </ClCompile>
     <ClCompile Include="PlayGame.cpp">

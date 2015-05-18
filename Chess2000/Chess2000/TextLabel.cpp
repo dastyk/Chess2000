@@ -42,8 +42,7 @@ void TextLabel::Render()
 }
 void TextLabel::Update(int& layer)
 {
-	if ((!PopUpClass::IsPopActive) || mPopUpItem)
-	{
+
 		GraphicsObject::Update(layer);
-	}
+	
 }

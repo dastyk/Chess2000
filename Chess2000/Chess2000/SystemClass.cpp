@@ -55,17 +55,17 @@ bool SystemClass::Initialize()
 		return false;
 	}
 
-	mStates[NEWSTATE] = new NewTournament();
-	if (!mStates[NEWSTATE])
-	{
-		return false;
-	}
+	//mStates[NEWSTATE] = new NewTournament();
+	//if (!mStates[NEWSTATE])
+	//{
+	//	return false;
+	//}
 
-	mStates[VIEWSTATE] = new ViewTournament();
-	if (!mStates[VIEWSTATE])
-	{
-		return false;
-	}
+	//mStates[VIEWSTATE] = new ViewTournament();
+	//if (!mStates[VIEWSTATE])
+	//{
+	//	return false;
+	//}
 
 	PlayGame::CreateInstance();
 	PlayGame* inst = PlayGame::GetInstancePointer();
@@ -182,7 +182,7 @@ bool SystemClass::Frame()
 }
 bool SystemClass::HandleInput()
 {
-
+	// Handle all the input for the current state
 	if (!mCurrDisplayState->HandleInput())
 	{
 		return false;
@@ -192,6 +192,7 @@ bool SystemClass::HandleInput()
 }
 bool SystemClass::Update(float dt)
 {
+	// Do all the updates for the current state
 	if (!mCurrDisplayState->Update(dt))
 	{
 		return false;
@@ -200,13 +201,16 @@ bool SystemClass::Update(float dt)
 }
 bool SystemClass::Render()
 {
+	// Begin the scene
 	mGraphics.BeginFrame();
 	
+	// Do all rendering for the current state
 	if (!mCurrDisplayState->Render())
 	{
 		return false;
 	}
 
+	// End the scene
 	mGraphics.EndFrame();
 
 	return true;

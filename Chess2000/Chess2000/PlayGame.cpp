@@ -15,6 +15,7 @@ PlayGame::PlayGame()
 
 PlayGame::~PlayGame()
 {
+	// Delete all the states.
 	for (unsigned int i = 0; i < NROFGAMESTATES; i++)
 	{
 		if (mStates[i])
@@ -49,7 +50,7 @@ bool PlayGame::Init()
 bool PlayGame::HandleInput()
 {
 	bool result;
-
+	// Handle all input for current state
 	result = mCurrGameState->HandleInput();
 	if (!result)
 	{
@@ -62,7 +63,7 @@ bool PlayGame::HandleInput()
 bool PlayGame::Update(float dt)
 {
 	bool result;
-
+	// Do all the updates for current state.
 	result = mCurrGameState->Update(dt);
 	if (!result)
 	{
@@ -76,6 +77,7 @@ bool PlayGame::Render()
 {
 	bool result;
 
+	// Render everything in current state.
 	result = mCurrGameState->Render();
 	if (!result)
 	{
@@ -109,8 +111,11 @@ PlayGame&  PlayGame::GetInstance()
 
 void PlayGame::EndGameKingTaken(PlayerColor currentPlayer)
 {
+	delete mStates[PLAYGAMESTATE];
+	mStates[PLAYGAMESTATE] = nullptr;
 	mStates[GAMEOVERSTATE] = new GameOverState(currentPlayer);
 	ChangeState(GAMEOVERSTATE);
+
 }
 
 

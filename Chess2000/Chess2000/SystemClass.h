@@ -29,16 +29,15 @@
 #include "graphicsclass.h"
 #include "TimerClass.h"
 #include "MainMenu.h"
-#include "NewTournament.h"
 #include "PlayGame.h"
-#include "ViewTournament.h"
 
 //Defines
-#define NROFSTATES 4
+#define NROFSTATES 2
 #define PLAYSTATE 0
-#define NEWSTATE 1
-#define VIEWSTATE 2
-#define MAINMENUSTATE 3
+#define MAINMENUSTATE 1
+#define NEWSTATE 2
+#define VIEWSTATE 3
+
 
 
 class SystemClass

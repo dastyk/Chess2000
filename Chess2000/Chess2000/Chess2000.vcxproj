@@ -80,7 +80,6 @@
     <ClInclude Include="TextListClass.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Move.h" />
-    <ClInclude Include="NewTournament.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PickState.h" />
     <ClInclude Include="Pawn.h" />
@@ -93,7 +92,6 @@
     <ClInclude Include="SystemClass.h" />
     <ClInclude Include="TextLabel.h" />
     <ClInclude Include="TimerClass.h" />
-    <ClInclude Include="ViewTournament.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
@@ -112,7 +110,6 @@
     <ClCompile Include="TextListClass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="NewTournament.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="PauseState.cpp" />
@@ -124,7 +121,6 @@
     <ClCompile Include="SystemClass.cpp" />
     <ClCompile Include="TextLabel.cpp" />
     <ClCompile Include="TimerClass.cpp" />
-    <ClCompile Include="ViewTournament.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

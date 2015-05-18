@@ -120,21 +120,22 @@ bool GraphicsObject::IsHovering()
 
 void GraphicsObject::Update(int& layer)
 {
-
-	if (IsHovering())
+	if ((!PopUpClass::IsPopActive) || mPopUpItem) // If a popup is active, ignore all non popup menu items layers.
 	{
-		if (mLayer >= layer)
+		if (IsHovering())
 		{
-			layer = mLayer;
-			SystemClass::GetInstance().ChangeCursor(mHoverIcon);
+			if (mLayer >= layer)
+			{
+				layer = mLayer;
+				SystemClass::GetInstance().ChangeCursor(mHoverIcon); // Change to the hover curos for the topmost menu item
+			}
+
+
 		}
 
-
+		OnEnter();
+		OnExit();
 	}
-
-	OnEnter();
-	OnExit();
-
 }
 
 
